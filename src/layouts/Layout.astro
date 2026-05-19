@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  ogImage?: string;
+}
+
+const {
+  title = "Dr Sohaïb Kebieche — Chirurgien-dentiste à Colombes",
+  description = "Cabinet dentaire à Colombes (92). Implantologie, parodontologie, dentisterie adhésive moderne. Une dentisterie d'excellence, expliquée, sans rush.",
+  noindex = false,
+  ogImage = "/og-image.jpg"
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebieche.com').toString();
+---
+
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="generator" content={Astro.generator} />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  {noindex && <meta name="robots" content="noindex,nofollow" />}
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site || 'https://drkebieche.com').toString()} />
+  <meta property="og:locale" content="fr_FR" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#F8F6F1" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Structured data : LocalBusiness Dentist -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Dentist",
+    "name": "Dr Sohaïb Kebieche",
+    "image": "https://drkebieche.com/og-image.jpg",
+    "telephone": "+33142429469",
+    "email": "contact@drkebieche.com",
+    "url": "https://drkebieche.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "31 Rue Felix Faure",
+      "addressLocality": "Colombes",
+      "postalCode": "92700",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 48.9239,
+      "longitude": 2.2546
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:30"
+    }],
+    "medicalSpecialty": ["Implantology", "Periodontics", "OralSurgery"],
+    "priceRange": "€€€"
+  })} />
+</head>
+<body>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+</body>
+</html>

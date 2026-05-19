@@ -1,0 +1,55 @@
+---
+const pathname = Astro.url.pathname;
+const isActive = (path: string) => {
+  if (path === '/') return pathname === '/';
+  return pathname === path || pathname.startsWith(path + '/');
+};
+---
+
+<header class="sticky top-0 z-50 backdrop-blur-xl border-b border-cream-200" style="background: rgba(248, 246, 241, 0.85)">
+  <div class="container-wide flex items-center justify-between h-16 md:h-20">
+    <a href="/" class="flex items-baseline gap-3 group">
+      <span class="text-[20px] md:text-[22px] font-display tracking-tight text-ink-900">Dr Sohaïb Kebieche</span>
+      <span class="hidden md:inline text-[12px] uppercase tracking-[0.2em] text-sage-600">Chirurgien-dentiste</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-1">
+      <a href="/cabinet" class={`nav-link ${isActive('/cabinet') ? 'active' : ''}`}>Cabinet</a>
+      <a href="/soins" class={`nav-link ${isActive('/soins') ? 'active' : ''}`}>Soins</a>
+      <a href="/honoraires" class={`nav-link ${isActive('/honoraires') ? 'active' : ''}`}>Honoraires</a>
+      <a href="/contact" class={`nav-link ${isActive('/contact') ? 'active' : ''}`}>Contact</a>
+      <a
+        href="https://www.doctolib.fr"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-primary !py-2.5 !px-5 !text-[14px] ml-3"
+      >
+        Prendre rendez-vous
+      </a>
+    </nav>
+
+    <button id="mobile-menu-btn" class="md:hidden p-2 -mr-2" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <line x1="3" y1="7" x2="21" y2="7"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-cream-200 px-6 py-5 space-y-1">
+    <a href="/cabinet" class="block py-2.5 text-[16px] font-medium">Cabinet</a>
+    <a href="/soins" class="block py-2.5 text-[16px] font-medium">Soins</a>
+    <a href="/honoraires" class="block py-2.5 text-[16px] font-medium">Honoraires</a>
+    <a href="/contact" class="block py-2.5 text-[16px] font-medium">Contact</a>
+    <a href="https://www.doctolib.fr" target="_blank" rel="noopener" class="btn btn-primary w-full mt-4 !justify-center">Prendre rendez-vous</a>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+  }
+</script>

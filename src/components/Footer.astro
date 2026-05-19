@@ -1,0 +1,60 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-32 border-t border-cream-300" style="background: var(--color-cream-50)">
+  <div class="container-wide py-16 md:py-20">
+
+    <div class="grid md:grid-cols-4 gap-10 md:gap-16">
+
+      <div class="md:col-span-2">
+        <div class="text-[20px] font-display tracking-tight mb-3">Dr Sohaïb Kebieche</div>
+        <p class="text-[14px] text-ink-500 leading-relaxed max-w-md">
+          Chirurgien-dentiste à Colombes (92).<br>
+          Implantologie, parodontologie, dentisterie adhésive moderne.
+          Une approche sans rush, expliquée, fidèle à votre histoire dentaire.
+        </p>
+      </div>
+
+      <div>
+        <div class="eyebrow mb-4">Cabinet</div>
+        <ul class="space-y-2.5 text-[14px]">
+          <li>
+            <a href="https://maps.google.com/?q=31+Rue+Felix+Faure+92700+Colombes" target="_blank" rel="noopener" class="hover:text-sage-700">
+              31 Rue Felix Faure<br>92700 Colombes
+            </a>
+          </li>
+          <li><a href="tel:+33142429469" class="hover:text-sage-700 font-medium">01 42 42 94 69</a></li>
+          <li class="text-ink-500">Lun–Ven · 9h–13h, 15h–18h30</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="eyebrow mb-4">Navigation</div>
+        <ul class="space-y-2.5 text-[14px]">
+          <li><a href="/cabinet" class="hover:text-sage-700">Cabinet</a></li>
+          <li><a href="/soins" class="hover:text-sage-700">Soins</a></li>
+          <li><a href="/honoraires" class="hover:text-sage-700">Honoraires</a></li>
+          <li><a href="/contact" class="hover:text-sage-700">Contact</a></li>
+          <li class="pt-2">
+            <a href="https://www.doctolib.fr" target="_blank" rel="noopener" class="text-sage-600 font-medium underline underline-offset-4">
+              Prendre rendez-vous →
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-cream-300 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[12px] text-ink-500">
+      <div>
+        © {year} Dr Sohaïb Kebieche · RPPS 10102308110 · Diplômé Paris-Descartes
+      </div>
+      <div class="flex gap-5">
+        <a href="/mentions-legales" class="hover:text-sage-700">Mentions légales</a>
+        <a href="/confidentialite" class="hover:text-sage-700">Confidentialité</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
