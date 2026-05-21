@@ -1,41 +1,57 @@
 @import "tailwindcss";
 
-/* Design system — Cabinet Dr Sohaïb Kebieche
-   Palette vert sauge + crème, typographie éditoriale Fraunces + Inter
-   Inspiration : spa premium, galerie d'art, clinique alpine haut de gamme
+/* Design system v2 — Cabinet Dr Sohaïb Kebieche
+   Direction artistique : "boutique chic médical"
+   Palette teal foncé + crème + accent cuivré
+   Typographie : Newsreader (serif droit contemporain) + Inter (corps)
+   Inspiration : Dr. Apa NYC, Cabinet Lecat Paris, Pure Dental Health Atlanta
+   Ni wellness/spa, ni tech-clinique froid — boutique chic.
+
+   Note : les Google Fonts sont chargés via Layout.astro (préconnect + link)
 */
 
 @theme {
-  /* Palette */
+  /* ── Palette ──
+     Crème : fond principal (cassant le froid hospitalier)
+     Teal foncé : signature visuelle "clinique d'auteur" (pas spa)
+     Cuivré : accent ponctuel (CTA secondaire, détails, divider)
+     Ink : texte
+  */
   --color-cream-50: #FBFAF6;
   --color-cream-100: #F8F6F1;
   --color-cream-200: #F0EDE4;
   --color-cream-300: #E5E0D6;
 
-  --color-sage-50: #f4f7f5;
-  --color-sage-100: #e3ebe5;
-  --color-sage-200: #c6d6cb;
-  --color-sage-300: #9eb6a6;
-  --color-sage-400: #759485;
-  --color-sage-500: #5a7a6b;
-  --color-sage-600: #4a6557;
-  --color-sage-700: #3d5447;
-  --color-sage-800: #34453b;
-  --color-sage-900: #2d3a33;
+  /* Teal foncé — déplace de "spa" vers "clinique d'auteur" */
+  --color-teal-50:  #EDF3F3;
+  --color-teal-100: #D5E2E2;
+  --color-teal-200: #A8C0C0;
+  --color-teal-300: #7BA0A0;
+  --color-teal-400: #4F807F;
+  --color-teal-500: #355D5D;
+  --color-teal-600: #2A4B4B;
+  --color-teal-700: #234343;
+  --color-teal-800: #1F3A3D;  /* ← couleur signature, hero + footer */
+  --color-teal-900: #163030;
 
-  --color-copper-300: #d8b48a;
-  --color-copper-400: #c09a5f;
-  --color-copper-500: #a98142;
+  /* Accent cuivré ponctuel (CTA secondaire, détails graphiques) */
+  --color-copper-300: #D8B48A;
+  --color-copper-400: #C09A5F;
+  --color-copper-500: #A98142;
   --color-copper-600: #876333;
 
+  /* Texte */
   --color-ink-900: #1A1F1C;
   --color-ink-700: #3A4540;
   --color-ink-500: #6B7570;
-  --color-ink-400: #94999a;
+  --color-ink-400: #94999A;
   --color-ink-300: #B5BAB6;
 
-  /* Typography */
-  --font-display: "Fraunces", "GT Sectra", "Tiempos Headline", Georgia, serif;
+  /* ── Typographie ──
+     Display : Newsreader (serif contemporain droit, élégant, médical-friendly)
+     Body : Inter (sans-serif moderne, ultra lisible, signal tech-savvy)
+  */
+  --font-display: "Newsreader", "GT Sectra", "Tiempos Headline", Georgia, serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
 
   /* Easings */
@@ -49,7 +65,6 @@
     background: var(--color-cream-100);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "ss01", "ss03", "cv11";
     letter-spacing: -0.01em;
     scroll-behavior: smooth;
   }
@@ -61,14 +76,15 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-feature-settings: "ss01";
     color: var(--color-ink-900);
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
+    font-weight: 500;
   }
 
+  /* Titres : DROIT (pas d'italique systématique) — réservé aux citations */
   h1 {
-    font-weight: 400;
-    font-variation-settings: "SOFT" 50, "WONK" 0, "opsz" 144;
+    font-weight: 500;
+    line-height: 1.05;
   }
 
   a {
@@ -77,14 +93,14 @@
   }
 
   *:focus-visible {
-    outline: 2px solid var(--color-sage-500);
+    outline: 2px solid var(--color-teal-500);
     outline-offset: 3px;
     border-radius: 4px;
   }
 
   ::selection {
-    background: var(--color-sage-200);
-    color: var(--color-sage-900);
+    background: var(--color-teal-200);
+    color: var(--color-teal-900);
   }
 }
 
@@ -99,38 +115,40 @@
     max-width: 760px;
   }
 
+  /* Boutons */
   .btn {
     @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[15px] font-medium tracking-tight transition-all;
     transition-timing-function: var(--ease-soft);
     transition-duration: 240ms;
+    border-radius: 4px;
   }
 
   .btn-primary {
-    background: var(--color-sage-500);
+    background: var(--color-teal-800);
     color: var(--color-cream-50);
   }
   .btn-primary:hover {
-    background: var(--color-sage-600);
+    background: var(--color-teal-700);
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px -8px rgba(58, 84, 71, 0.32);
+    box-shadow: 0 8px 24px -8px rgba(31, 58, 61, 0.32);
   }
 
   .btn-secondary {
-    border: 1px solid var(--color-sage-300);
-    color: var(--color-sage-700);
+    border: 1px solid var(--color-ink-300);
+    color: var(--color-ink-900);
     background: transparent;
   }
   .btn-secondary:hover {
-    background: var(--color-sage-50);
-    border-color: var(--color-sage-500);
+    border-color: var(--color-teal-800);
+    color: var(--color-teal-800);
   }
 
   .btn-ghost {
-    color: var(--color-sage-700);
+    color: var(--color-teal-700);
     background: transparent;
   }
   .btn-ghost:hover {
-    background: var(--color-sage-50);
+    background: var(--color-teal-50);
   }
 
   .card {
@@ -140,71 +158,96 @@
   }
 
   .eyebrow {
-    @apply inline-block text-[11px] font-medium uppercase tracking-[0.18em];
-    color: var(--color-sage-600);
+    @apply inline-flex items-center text-[11px] font-medium uppercase tracking-[0.18em];
+    color: var(--color-teal-700);
+  }
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--color-copper-500);
+    margin-right: 12px;
   }
 
+  /* Badge expertise (above-the-fold) */
+  .badge-expertise {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 text-[12px] font-medium rounded-full;
+    background: var(--color-cream-50);
+    border: 1px solid var(--color-cream-300);
+    color: var(--color-teal-800);
+  }
+
+  /* Prose articles soins */
   .prose-soin {
     @apply text-[17px] leading-[1.75];
     color: var(--color-ink-700);
   }
   .prose-soin h2 {
-    @apply text-[28px] md:text-[34px] font-normal mt-16 mb-6;
+    @apply text-[28px] md:text-[34px] font-medium mt-16 mb-6;
     color: var(--color-ink-900);
     line-height: 1.2;
   }
   .prose-soin h3 {
     @apply text-[20px] md:text-[22px] font-medium mt-10 mb-3;
     font-family: var(--font-body);
-    color: var(--color-sage-700);
+    color: var(--color-teal-800);
     letter-spacing: -0.015em;
   }
-  .prose-soin p {
-    @apply mb-5;
-  }
-  .prose-soin ul {
-    @apply mb-6 ml-5 space-y-2;
-  }
-  .prose-soin ul li {
-    @apply list-disc pl-2;
-  }
-  .prose-soin ol {
-    @apply mb-6 ml-5 space-y-2;
-  }
-  .prose-soin ol li {
-    @apply list-decimal pl-2;
-  }
+  .prose-soin p { @apply mb-5; }
+  .prose-soin ul { @apply mb-6 ml-5 space-y-2; }
+  .prose-soin ul li { @apply list-disc pl-2; }
+  .prose-soin ol { @apply mb-6 ml-5 space-y-2; }
+  .prose-soin ol li { @apply list-decimal pl-2; }
   .prose-soin strong {
     @apply font-semibold;
     color: var(--color-ink-900);
   }
   .prose-soin a {
-    color: var(--color-sage-600);
+    color: var(--color-teal-700);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
   }
-  .prose-soin a:hover {
-    color: var(--color-sage-700);
-  }
+  .prose-soin a:hover { color: var(--color-teal-800); }
   .prose-soin blockquote {
-    @apply my-8 pl-6 italic text-[18px];
-    border-left: 2px solid var(--color-sage-400);
+    @apply my-8 pl-6 text-[18px];
+    border-left: 2px solid var(--color-copper-400);
     color: var(--color-ink-700);
+    font-style: italic; /* italique RÉSERVÉ aux citations */
   }
 
+  /* Nav */
   .nav-link {
     @apply text-[14px] font-medium px-4 py-2 rounded-lg transition-colors;
     color: var(--color-ink-700);
   }
   .nav-link:hover {
-    color: var(--color-sage-700);
-    background: var(--color-sage-50);
+    color: var(--color-teal-800);
+    background: var(--color-cream-50);
   }
   .nav-link.active {
-    color: var(--color-sage-700);
+    color: var(--color-teal-800);
   }
 
+  /* Section dark (parcours) */
+  .section-dark {
+    background: var(--color-teal-800);
+    color: var(--color-cream-100);
+  }
+  .section-dark h1,
+  .section-dark h2,
+  .section-dark h3 {
+    color: var(--color-cream-50);
+  }
+  .section-dark .eyebrow {
+    color: var(--color-copper-400);
+  }
+  .section-dark .eyebrow::before {
+    background: var(--color-copper-400);
+  }
+
+  /* Divider cuivré subtil */
   .divider-copper {
     @apply mx-auto my-12;
     width: 60px;
@@ -212,6 +255,7 @@
     background: var(--color-copper-400);
   }
 
+  /* Animation entrance (au load — h1 hero seulement) */
   .fade-up {
     animation: fadeUp 0.8s var(--ease-soft) both;
   }
@@ -220,4 +264,30 @@
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Reveal au scroll (premium feel) ──
+   Marquer un élément avec data-reveal pour qu'il apparaisse en fade-up
+   quand il entre dans le viewport. Stagger via data-reveal-delay (ms).
+   Respect prefers-reduced-motion.
+*/
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s var(--ease-soft), transform 0.85s var(--ease-soft);
+  will-change: opacity, transform;
+}
+[data-reveal].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .fade-up {
+    animation: none;
+  }
 }

@@ -1,69 +1,88 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// 8 soins de la grille (cf. captures)
+const soins = [
+  { slug: 'implantologie', titre: 'Implantologie', desc: "Pose d'implants unitaires ou multiples, planification 3D, prothèse implanto-portée.", icon: 'circle' },
+  { slug: 'parodontologie', titre: 'Parodontologie', desc: 'Thérapeutique initiale, débridement, maintenance préventive — pour la santé des gencives et de l\'os de soutien.', icon: 'arrow-down' },
+  { slug: 'dentisterie-adhesive', titre: 'Dentisterie adhésive', desc: 'Onlays et overlays céramiques pour préserver un maximum de tissu dentaire sain.', icon: 'diamond' },
+  { slug: 'dents-de-sagesse', titre: 'Dents de sagesse', desc: 'Extraction simple ou chirurgicale, encadrement pré et post-opératoire complet.', icon: 'circle-x' },
+  { slug: 'greffes-osseuses', titre: 'Greffes & comblements osseux', desc: "Préparation du site implantaire, reconstruction osseuse, aménagements tissulaires.", icon: 'triangle' },
+  { slug: 'chirurgie-plastique-parodontale', titre: 'Chirurgie plastique parodontale', desc: 'Traitement des récessions gingivales et reconstruction des tissus parodontaux par techniques mini-invasives.', icon: 'wave' },
+  { slug: 'protheses-fixes', titre: 'Prothèses fixes', desc: 'Couronnes, bridges, réhabilitations globales, en lien étroit avec un laboratoire de prothèse français.', icon: 'square' },
+  { slug: 'omnipratique', titre: 'Omnipratique', desc: "Caries, détartrage, urgences, suivi régulier — la base d'une bouche en bonne santé.", icon: 'plus' },
+];
+
+function iconSvg(name: string) {
+  const c = 'stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"';
+  switch (name) {
+    case 'circle':       return `<svg width="20" height="20" viewBox="0 0 24 24" ${c}><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>`;
+    case 'arrow-down':   return `<svg width="20" height="20" viewBox="0 0 24 24" ${c}><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg>`;
+    case 'diamond':      return `<svg width="20" height="20" viewBox="0 0 24 24" ${c}><polygon points="12 3 21 12 12 21 3 12"/></svg>`;
+    case 'circle-x':     return `<svg width="20" height="20" viewBox="0 0 24 24" ${c}><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>`;
+    case 'triangle':     return `<svg width="20" height="20" viewBox="0 0 24 24" ${c}><polygon points="12 3 22 20 2 20"/></svg>`;
+    case 'wave':         return `<svg width="20" height="20" viewBox="0 0 24 24" ${c}><path d="M3 12 Q 8 4 12 12 T 21 12"/></svg>`;
+    case 'square':       return `<svg width="20" height="20" viewBox="0 0 24 24" ${c}><rect x="4" y="4" width="16" height="16" rx="1"/><rect x="9" y="9" width="6" height="6"/></svg>`;
+    case 'plus':         return `<svg width="20" height="20" viewBox="0 0 24 24" ${c}><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
+    default:             return '';
+  }
+}
 ---
 
 <Layout
   title="Dr Sohaïb Kebieche — Chirurgien-dentiste à Colombes"
-  description="Cabinet dentaire à Colombes (92700). Implantologie, parodontologie, dentisterie adhésive moderne. Une dentisterie d'excellence, expliquée, sans rush."
+  description="Cabinet dentaire à Colombes (92700). Implantologie, parodontologie, dentisterie adhésive. Une dentisterie qui prend le temps de vous expliquer."
 >
 
-  <!-- HERO -->
-  <section class="relative overflow-hidden">
-    <div class="container-wide pt-16 md:pt-28 pb-20 md:pb-32">
+  <!-- HERO : texte + mockup photo -->
+  <section class="relative">
+    <div class="container-wide pt-12 md:pt-20 pb-16 md:pb-24">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-      <div class="max-w-3xl">
-        <span class="eyebrow mb-6">Cabinet Dr Sohaïb Kebieche · Colombes (92)</span>
+        <!-- Texte hero : H1 SEO + accroche tonale en sous-titre (reco agent) -->
+        <div>
+          <span class="eyebrow mb-7">Chirurgien-dentiste · Colombes (92)</span>
 
-        <h1 class="text-[42px] md:text-[64px] lg:text-[72px] leading-[1.05] tracking-tight mb-7 fade-up">
-          Une dentisterie d'excellence,<br>
-          <span class="italic text-sage-600">expliquée.</span>
-        </h1>
+          <h1 class="text-[28px] md:text-[34px] lg:text-[38px] leading-[1.2] tracking-tight mb-5 fade-up" style="color: var(--color-teal-800)">
+            Dentisterie adhésive et implantologie<br>
+            <span class="text-ink-700">— Dr Sohaïb Kebieche, Colombes</span>
+          </h1>
 
-        <p class="text-[18px] md:text-[20px] text-ink-700 leading-[1.6] max-w-2xl mb-10">
-          Implantologie, parodontologie et dentisterie adhésive moderne, à Colombes.
-          Un cabinet qui prend le temps de comprendre votre histoire dentaire,
-          de l'expliquer, et d'y répondre sans rush.
-        </p>
+          <p class="text-[24px] md:text-[28px] lg:text-[32px] leading-[1.2] mb-6 max-w-xl" style="font-family: var(--font-display); color: var(--color-ink-900); font-weight: 500;">
+            Une dentisterie qui prend le temps de vous expliquer.
+          </p>
 
-        <div class="flex flex-wrap gap-3">
-          <a href="https://www.doctolib.fr" target="_blank" rel="noopener" class="btn btn-primary">
-            Prendre rendez-vous
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-          <a href="/cabinet" class="btn btn-secondary">Découvrir le cabinet</a>
+          <p class="text-[16px] md:text-[17px] text-ink-700 leading-[1.65] max-w-xl mb-7">
+            Conserver vos dents quand c'est possible, les remplacer mieux quand ce ne l'est plus. Implantologie, parodontologie et dentisterie adhésive, à Colombes — quartier des Vallées.
+          </p>
+
+          <!-- Badges expertise above-the-fold -->
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="badge-expertise">D.U. Implantologie · Paris-Saclay 2024</span>
+            <span class="badge-expertise">D.U. Parodontologie · Côte d'Azur 2025</span>
+            <span class="badge-expertise">Ancien praticien attaché APHP · chirurgie orale</span>
+            <span class="badge-expertise">Prix de thèse · Très Honorable</span>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <a href="https://www.doctolib.fr" target="_blank" rel="noopener" class="btn btn-primary">
+              Prendre rendez-vous
+            </a>
+            <a href="/praticien" class="btn btn-secondary">
+              Découvrir le praticien
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
         </div>
 
-      </div>
-    </div>
-
-    <!-- Décor subtil : ligne copper en bas du hero -->
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-px" style="background: var(--color-copper-400)"></div>
-  </section>
-
-
-  <!-- BANDEAU CONFIANCE -->
-  <section class="border-y border-cream-300" style="background: var(--color-cream-50)">
-    <div class="container-wide py-10 md:py-12">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6 text-center md:text-left">
-
-        <div>
-          <div class="text-[14px] font-medium text-sage-700 mb-1.5">Université Paris-Descartes</div>
-          <div class="text-[12px] text-ink-500">Diplôme d'État de docteur</div>
-        </div>
-
-        <div>
-          <div class="text-[14px] font-medium text-sage-700 mb-1.5">D.U. Implantologie 2024</div>
-          <div class="text-[12px] text-ink-500">Université d'Évry-Val-d'Essonne</div>
-        </div>
-
-        <div>
-          <div class="text-[14px] font-medium text-sage-700 mb-1.5">D.U. Parodontologie 2025</div>
-          <div class="text-[12px] text-ink-500">Université Côte d'Azur</div>
-        </div>
-
-        <div>
-          <div class="text-[14px] font-medium text-sage-700 mb-1.5">Praticien hospitalier</div>
-          <div class="text-[12px] text-ink-500">CASH Nanterre · APHP Louis-Mourier</div>
+        <!-- Mockup photo praticien -->
+        <div class="relative aspect-[4/5] rounded-2xl overflow-hidden" style="background: var(--color-copper-400)">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span class="text-[14px] italic" style="color: rgba(255,255,255,0.65); font-family: var(--font-display)">Portrait clinique</span>
+          </div>
+          <div class="absolute bottom-4 left-4 text-[11px] px-2.5 py-1 rounded" style="background: var(--color-teal-800); color: var(--color-cream-50)">
+            Photographie à venir
+          </div>
         </div>
 
       </div>
@@ -71,184 +90,136 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
 
-  <!-- 3 PILIERS DE SOIN -->
-  <section class="py-20 md:py-28">
+  <!-- MON APPROCHE — 3 piliers -->
+  <section class="py-20 md:py-28" style="background: var(--color-cream-50)">
     <div class="container-wide">
 
-      <div class="max-w-2xl mb-14 md:mb-18">
-        <span class="eyebrow mb-4">Domaines d'expertise</span>
-        <h2 class="text-[36px] md:text-[48px] leading-[1.1] tracking-tight">
-          Une dentisterie complète,<br>
-          <span class="italic text-sage-600">guidée par la précision.</span>
+      <div class="max-w-2xl mb-14" data-reveal>
+        <span class="eyebrow mb-4">Mon approche</span>
+        <h2 class="text-[32px] md:text-[42px] leading-[1.12] tracking-tight">
+          Trois principes qui guident chacune de mes consultations.
         </h2>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+      <div class="grid md:grid-cols-3 gap-10 md:gap-12">
 
-        <!-- Implantologie -->
-        <a href="/soins/implantologie" class="group card hover:shadow-xl hover:-translate-y-1 transition-all duration-500 cursor-pointer" style="--ease-soft: cubic-bezier(0.32, 0.72, 0, 1)">
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background: var(--color-sage-100)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a6557" stroke-width="1.6"><path d="M12 2C8 2 5 5 5 9c0 5 3 8 3 12h8c0-4 3-7 3-12 0-4-3-7-7-7z"/><path d="M9 22h6"/></svg>
-          </div>
-          <h3 class="text-[24px] font-display mb-3 tracking-tight">Implantologie</h3>
-          <p class="text-[15px] text-ink-700 leading-[1.7] mb-5">
-            Pose d'implants, comblements osseux et greffes — issus d'une formation hospitalière et d'un D.U. d'implantologie 2024.
+        <div class="border-l pl-6" style="border-color: var(--color-copper-400)" data-reveal data-reveal-delay="0">
+          <h3 class="text-[22px] md:text-[24px] font-medium mb-4">Conserver d'abord</h3>
+          <p class="text-[15px] text-ink-700 leading-[1.7]">
+            La dentisterie moderne permet souvent de préserver une dent qu'on aurait sacrifiée hier. Onlays et overlays céramiques, soins endodontiques, maintenance parodontale : la priorité est toujours donnée à ce qui est <em>votre</em> tissu.
           </p>
-          <span class="text-[14px] text-sage-700 font-medium group-hover:underline underline-offset-4">
-            Découvrir →
-          </span>
-        </a>
+        </div>
 
-        <!-- Parodontologie -->
-        <a href="/soins/parodontologie" class="group card hover:shadow-xl hover:-translate-y-1 transition-all duration-500 cursor-pointer">
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background: var(--color-sage-100)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a6557" stroke-width="1.6"><path d="M3 12c2-4 6-7 9-7s7 3 9 7c-2 4-6 7-9 7s-7-3-9-7z"/><circle cx="12" cy="12" r="2"/></svg>
-          </div>
-          <h3 class="text-[24px] font-display mb-3 tracking-tight">Parodontologie</h3>
-          <p class="text-[15px] text-ink-700 leading-[1.7] mb-5">
-            Traitement des gencives et de l'os de soutien — bilan, assainissement, maintenance. D.U. de parodontologie avancée 2025.
+        <div class="border-l pl-6" style="border-color: var(--color-copper-400)" data-reveal data-reveal-delay="140">
+          <h3 class="text-[22px] md:text-[24px] font-medium mb-4">Remplacer durablement</h3>
+          <p class="text-[15px] text-ink-700 leading-[1.7]">
+            Lorsque la conservation n'est plus possible, l'implantologie permet de retrouver une fonction et une esthétique stables sur le long terme. <em>Si nécessaire</em>, elle s'appuie sur une chirurgie pré-implantaire (greffes osseuses, aménagements tissulaires) pour préparer le site.
           </p>
-          <span class="text-[14px] text-sage-700 font-medium group-hover:underline underline-offset-4">
-            Découvrir →
-          </span>
-        </a>
+        </div>
 
-        <!-- Dentisterie adhésive -->
-        <a href="/soins/dentisterie-adhesive" class="group card hover:shadow-xl hover:-translate-y-1 transition-all duration-500 cursor-pointer">
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background: var(--color-sage-100)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a6557" stroke-width="1.6"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
-          </div>
-          <h3 class="text-[24px] font-display mb-3 tracking-tight">Dentisterie adhésive</h3>
-          <p class="text-[15px] text-ink-700 leading-[1.7] mb-5">
-            Inlays, onlays et overlays en céramique, composites stratifiés sous digue — la reconstruction respectueuse, mini-invasive et durable.
+        <div class="border-l pl-6" style="border-color: var(--color-copper-400)" data-reveal data-reveal-delay="280">
+          <h3 class="text-[22px] md:text-[24px] font-medium mb-4">Expliquer toujours</h3>
+          <p class="text-[15px] text-ink-700 leading-[1.7]">
+            Comprendre son traitement transforme l'expérience du patient. Chaque consultation se conclut par un plan de traitement écrit et un dossier de soins personnalisé que vous retrouvez sur ce site — schémas, conseils pré-opératoires, consignes post-opératoires.
           </p>
-          <span class="text-[14px] text-sage-700 font-medium group-hover:underline underline-offset-4">
-            Découvrir →
-          </span>
-        </a>
+        </div>
 
       </div>
+    </div>
+  </section>
 
-      <div class="text-center mt-12">
-        <a href="/soins" class="btn btn-ghost">Tous les soins →</a>
+
+  <!-- SOINS PROPOSÉS — 8 cards -->
+  <section class="py-20 md:py-28">
+    <div class="container-wide">
+
+      <div class="max-w-2xl mb-14" data-reveal>
+        <span class="eyebrow mb-4">Soins proposés</span>
+        <h2 class="text-[32px] md:text-[42px] leading-[1.12] tracking-tight mb-4">
+          Une expertise centrée sur la conservation et la chirurgie.
+        </h2>
+        <p class="text-[15px] text-ink-500 leading-[1.7]">
+          Omnipratique complète, avec une orientation marquée vers la chirurgie orale, l'implantologie et la parodontologie.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        {soins.map((s, idx) => (
+          <a href={`/soins/${s.slug}`} class="card hover:border-teal-300 transition-colors group" data-reveal data-reveal-delay={(idx * 70).toString()}>
+            <div class="w-9 h-9 rounded-full flex items-center justify-center mb-5" style="background: var(--color-cream-200); color: var(--color-teal-800)">
+              <Fragment set:html={iconSvg(s.icon)} />
+            </div>
+            <h3 class="text-[18px] font-medium mb-2.5">{s.titre}</h3>
+            <p class="text-[14px] text-ink-500 leading-[1.6] mb-4 min-h-[5rem]">{s.desc}</p>
+            <span class="text-[13px] font-medium" style="color: var(--color-teal-700)">En savoir plus →</span>
+          </a>
+        ))}
       </div>
 
     </div>
   </section>
 
 
-  <!-- POURQUOI MON CABINET -->
-  <section class="py-20 md:py-28" style="background: var(--color-sage-50)">
+  <!-- MON PARCOURS — section dark -->
+  <section class="section-dark py-20 md:py-28">
     <div class="container-wide">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
 
-      <div class="grid md:grid-cols-12 gap-10 md:gap-16">
-
-        <div class="md:col-span-5">
-          <span class="eyebrow mb-4">L'approche du cabinet</span>
-          <h2 class="text-[36px] md:text-[44px] leading-[1.1] tracking-tight mb-6">
-            Pas à la chaîne.<br>
-            <span class="italic text-sage-600">À votre rythme.</span>
+        <div data-reveal data-reveal-delay="0">
+          <span class="eyebrow mb-4">Mon parcours</span>
+          <h2 class="text-[32px] md:text-[42px] leading-[1.12] tracking-tight">
+            Une formation continue pensée pour la chirurgie complexe et la conservation tissulaire.
           </h2>
-          <p class="text-[16px] text-ink-700 leading-[1.7] mb-6">
-            La précision en dentisterie demande du temps — pour examiner,
-            pour expliquer, pour ajuster. Mon cabinet est organisé autour
-            de ce principe simple : un patient à la fois, sans rotation
-            de salles, sans pression sur l'agenda.
-          </p>
-          <a href="/cabinet" class="btn btn-secondary">Mon parcours →</a>
         </div>
 
-        <div class="md:col-span-7 grid sm:grid-cols-2 gap-5">
-
-          <div class="card">
-            <div class="text-[36px] font-display text-sage-600 mb-2 tabular-nums">01</div>
-            <h3 class="text-[18px] font-medium mb-2 tracking-tight">Expertise hospitalière</h3>
-            <p class="text-[14px] text-ink-700 leading-[1.65]">
-              Praticien attaché en chirurgie orale au CASH Nanterre. Formé à l'APHP Louis-Mourier et au GHT NOVO Pontoise.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="text-[36px] font-display text-sage-600 mb-2 tabular-nums">02</div>
-            <h3 class="text-[18px] font-medium mb-2 tracking-tight">Techniques récentes</h3>
-            <p class="text-[14px] text-ink-700 leading-[1.65]">
-              Dentisterie adhésive sous digue, inlays/onlays céramique, implantologie guidée. Mes D.U. de 2024 et 2025 intègrent les techniques d'aujourd'hui.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="text-[36px] font-display text-sage-600 mb-2 tabular-nums">03</div>
-            <h3 class="text-[18px] font-medium mb-2 tracking-tight">Plan de soin expliqué</h3>
-            <p class="text-[14px] text-ink-700 leading-[1.65]">
-              Chaque devis est accompagné d'un mail détaillé : ce qui est prévu, pourquoi, dans quel ordre. Vous décidez en comprenant.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="text-[36px] font-display text-sage-600 mb-2 tabular-nums">04</div>
-            <h3 class="text-[18px] font-medium mb-2 tracking-tight">Suivi sérieux</h3>
-            <p class="text-[14px] text-ink-700 leading-[1.65]">
-              Maintenance parodontale, contrôles implantaires, rappels personnalisés. La relation continue après le soin.
-            </p>
-          </div>
-
+        <div data-reveal data-reveal-delay="160">
+          <p class="text-[16px] leading-[1.75] opacity-90 mb-5">
+            Diplômé de la Faculté de chirurgie dentaire de Paris, lauréat du prix de thèse mention Très Honorable et Félicitations du jury. Mon parcours associe pratique en cabinet et expérience hospitalière en chirurgie orale, qui structurent aujourd'hui une approche centrée sur les cas complexes — conservation, implantologie et parodontologie.
+          </p>
+          <p class="text-[14px] leading-[1.7] opacity-75 mb-7">
+            Je continue de me former régulièrement : DU d'Implantologie (Paris-Saclay, 2024), DU de Parodontologie avancée (Université Côte d'Azur, 2025), formation en chirurgie plastique parodontale (Tunneling Academy).
+          </p>
+          <a href="/praticien" class="inline-flex items-center gap-2 px-5 py-2.5 text-[14px] font-medium rounded transition-colors" style="border: 1px solid rgba(255,255,255,0.3); color: var(--color-cream-50);">
+            Lire mon parcours détaillé →
+          </a>
         </div>
 
       </div>
-
     </div>
   </section>
 
 
-  <!-- TÉMOIGNAGES (placeholder) -->
+  <!-- COMPRENDRE VOS SOINS — 3 cards -->
   <section class="py-20 md:py-28">
     <div class="container-wide">
 
-      <div class="max-w-3xl mx-auto text-center mb-14">
-        <span class="eyebrow mb-4">Ce que disent les patients</span>
-        <h2 class="text-[36px] md:text-[44px] leading-[1.1] tracking-tight">
-          <span class="text-sage-600">5,0</span> sur Doctolib
+      <div class="max-w-2xl mb-14" data-reveal>
+        <span class="eyebrow mb-4">Comprendre vos soins</span>
+        <h2 class="text-[32px] md:text-[42px] leading-[1.12] tracking-tight mb-4">
+          Un dossier patient, accessible à tout moment.
         </h2>
-        <p class="text-[15px] text-ink-500 mt-4">Sur la base de 20 avis vérifiés</p>
+        <p class="text-[15px] text-ink-500 leading-[1.7]">
+          Après chaque consultation, un plan de traitement écrit vous est transmis, accompagné des liens vers cette section du site. Vous y retrouvez, soin par soin, les explications, les schémas, les consignes pré et post-opératoires, et les conseils d'hygiène quotidienne.
+        </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-3 gap-5">
+        <a href="/comprendre/avant" class="card hover:border-teal-300 transition-colors" data-reveal data-reveal-delay="0">
+          <h3 class="text-[18px] font-medium mb-3">Avant l'intervention</h3>
+          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Conseils pré-opératoires pour les extractions, implants, greffes osseuses et chirurgies parodontales.</p>
+          <span class="text-[13px] font-medium" style="color: var(--color-teal-700)">Consulter →</span>
+        </a>
 
-        <blockquote class="card">
-          <div class="flex gap-0.5 mb-4 text-copper-400">
-            ★★★★★
-          </div>
-          <p class="text-[15px] text-ink-700 leading-[1.7] mb-5 italic">
-            « Très bon dentiste, très professionnel. Il prend le temps d'expliquer et le travail est de grande qualité. »
-          </p>
-          <div class="text-[12px] text-ink-500 uppercase tracking-wider">Patient vérifié</div>
-        </blockquote>
+        <a href="/comprendre/apres" class="card hover:border-teal-300 transition-colors" data-reveal data-reveal-delay="140">
+          <h3 class="text-[18px] font-medium mb-3">Après l'intervention</h3>
+          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Consignes post-opératoires détaillées : douleur, gonflement, alimentation, hygiène, suites normales.</p>
+          <span class="text-[13px] font-medium" style="color: var(--color-teal-700)">Consulter →</span>
+        </a>
 
-        <blockquote class="card">
-          <div class="flex gap-0.5 mb-4 text-copper-400">
-            ★★★★★
-          </div>
-          <p class="text-[15px] text-ink-700 leading-[1.7] mb-5 italic">
-            « Cabinet calme, soin minutieux. On sent que tout est pensé pour la durabilité. Je recommande sans hésiter. »
-          </p>
-          <div class="text-[12px] text-ink-500 uppercase tracking-wider">Patient vérifié</div>
-        </blockquote>
-
-        <blockquote class="card">
-          <div class="flex gap-0.5 mb-4 text-copper-400">
-            ★★★★★
-          </div>
-          <p class="text-[15px] text-ink-700 leading-[1.7] mb-5 italic">
-            « Approche pédagogique, devis clairs, suivi impeccable. Une vraie différence vs mes précédents dentistes. »
-          </p>
-          <div class="text-[12px] text-ink-500 uppercase tracking-wider">Patient vérifié</div>
-        </blockquote>
-
-      </div>
-
-      <div class="text-center mt-10">
-        <a href="https://g.co/kgs/" target="_blank" rel="noopener" class="text-[14px] text-sage-700 underline underline-offset-4">
-          Voir tous les avis sur Google →
+        <a href="/comprendre/hygiene" class="card hover:border-teal-300 transition-colors" data-reveal data-reveal-delay="280">
+          <h3 class="text-[18px] font-medium mb-3">Hygiène au quotidien</h3>
+          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Brossage, brossettes interdentaires, bains de bouche, alimentation : tout ce qui se joue à la maison.</p>
+          <span class="text-[13px] font-medium" style="color: var(--color-teal-700)">Consulter →</span>
         </a>
       </div>
 
@@ -256,32 +227,41 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
 
-  <!-- CTA FINAL -->
-  <section class="pb-24 md:pb-32">
+  <!-- LE CABINET -->
+  <section class="py-20 md:py-28" style="background: var(--color-cream-50)">
     <div class="container-wide">
-      <div class="rounded-3xl px-8 md:px-16 py-16 md:py-20 text-center" style="background: var(--color-sage-700); color: var(--color-cream-50)">
-        <span class="inline-block text-[11px] font-medium uppercase tracking-[0.18em] mb-5" style="color: var(--color-copper-300)">
-          Prochaine étape
-        </span>
-        <h2 class="text-[36px] md:text-[48px] font-display leading-[1.1] tracking-tight mb-5 text-cream-50">
-          Prenons le temps<br>
-          <span class="italic" style="color: var(--color-copper-300)">d'en parler.</span>
-        </h2>
-        <p class="text-[16px] md:text-[18px] opacity-85 max-w-xl mx-auto mb-9">
-          Première consultation : examen, radiographies si nécessaire, et plan de soin expliqué. Sans engagement.
-        </p>
-        <div class="flex flex-wrap gap-3 justify-center">
-          <a href="https://www.doctolib.fr" target="_blank" rel="noopener"
-             class="btn"
-             style="background: var(--color-cream-50); color: var(--color-sage-800)">
-            Prendre rendez-vous
-          </a>
-          <a href="tel:+33142429469"
-             class="btn"
-             style="background: transparent; color: var(--color-cream-50); border: 1px solid rgba(251,250,246,0.3)">
-            01 42 42 94 69
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+        <div data-reveal data-reveal-delay="0">
+          <span class="eyebrow mb-4">Le cabinet</span>
+          <h2 class="text-[32px] md:text-[42px] leading-[1.12] tracking-tight mb-6">
+            À Colombes, dans le quartier des Vallées.
+          </h2>
+          <p class="text-[15px] text-ink-700 leading-[1.7] mb-7">
+            Le Cabinet Dentaire La Cabane est situé au cœur du quartier résidentiel des Vallées, à Colombes. Accès facile en RER (Gare de Colombes, ligne J), en bus (lignes 566, Les Vallées et Felix Faure) et en voiture. Le cabinet dispose d'un ascenseur jusqu'au premier étage.
+          </p>
+
+          <div class="text-[14px] text-ink-700 leading-[1.8] mb-7">
+            <div class="font-semibold">31 Rue Felix Faure, 92700 Colombes</div>
+            <div>Téléphone : <a href="tel:+33142429469" style="color: var(--color-teal-700)">01 42 42 94 69</a></div>
+            <div>Horaires d'ouverture : 9h00 – 13h00 · 15h00 – 18h30</div>
+          </div>
+
+          <a href="/cabinet" class="btn btn-secondary">
+            Plan d'accès et informations →
           </a>
         </div>
+
+        <!-- Mockup photo cabinet -->
+        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden section-dark" data-reveal data-reveal-delay="160">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span class="text-[14px] italic opacity-65" style="font-family: var(--font-display)">Photographie du cabinet</span>
+          </div>
+          <div class="absolute bottom-4 left-4 text-[11px] px-2.5 py-1 rounded" style="background: var(--color-teal-700); color: var(--color-cream-50)">
+            Photographie à venir
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

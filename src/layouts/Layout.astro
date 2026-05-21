@@ -52,10 +52,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-  <!-- Fonts -->
+  <!-- Fonts : Newsreader (serif droit moderne) + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Structured data : LocalBusiness Dentist -->
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -94,5 +94,31 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
     <slot />
   </main>
   <Footer />
+
+  <!-- Reveal au scroll (premium feel) — IntersectionObserver vanilla -->
+  <script is:inline>
+    (function() {
+      const reveals = document.querySelectorAll('[data-reveal]');
+      if (!reveals.length) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        reveals.forEach(el => el.classList.add('visible'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const delay = parseInt(entry.target.dataset.revealDelay || '0', 10);
+          if (delay > 0) {
+            setTimeout(() => entry.target.classList.add('visible'), delay);
+          } else {
+            entry.target.classList.add('visible');
+          }
+          io.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      reveals.forEach(el => io.observe(el));
+    })();
+  </script>
 </body>
 </html>
