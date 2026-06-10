@@ -1,0 +1,59 @@
+---
+import FamilySoinsPage from '../../components/FamilySoinsPage.astro';
+
+const sections = [
+  {
+    id: 'inlay-onlay-overlay',
+    titre: 'Inlays, onlays, overlays céramiques',
+    description: `
+      <p>Lorsqu'une dent est trop délabrée pour un simple composite mais pas assez pour justifier une couronne, on parle de <strong>restauration partielle collée</strong> : un fragment de céramique conçu sur mesure en laboratoire, puis collé de façon étanche sur la dent.</p>
+      <p>Trois variantes selon l'étendue de la perte :</p>
+      <ul>
+        <li><strong>Inlay</strong> — restauration <em>intérieure</em> à la dent, dans la cavité de carie</li>
+        <li><strong>Onlay</strong> — restauration qui recouvre une cuspide (sommet de la dent)</li>
+        <li><strong>Overlay</strong> — restauration qui recouvre toute la face occlusale (toutes les cuspides). C'est la solution la plus conservatrice pour remplacer une couronne classique.</li>
+      </ul>
+      <p>L'avantage central de ces techniques : <strong>préserver le maximum de tissu dentaire sain</strong> — au lieu de tailler la dent en moignon comme pour une couronne.</p>
+      <p><em>Texte détaillé à compléter (séances, type de céramique, longévité, distinction onlay/overlay à rendre encore plus claire pour les patients).</em></p>
+    `,
+  },
+  {
+    id: 'composites',
+    titre: 'Composites stratifiés sous digue',
+    description: `
+      <p>Le composite stratifié, posé <strong>sous digue</strong> (champ opératoire étanche en caoutchouc), est la technique de référence pour restaurer les caries antérieures et postérieures de petite à moyenne étendue.</p>
+      <p>« Stratifié » signifie : posé en plusieurs couches successives qui reproduisent l'anatomie et l'optique naturelle de la dent (émail, dentine). La digue assure une isolation parfaite, condition <em>indispensable</em> pour un collage durable.</p>
+      <p><em>Texte détaillé à compléter (avantages cliniques, longévité, esthétique).</em></p>
+    `,
+  },
+  {
+    id: 'couronnes-bridges',
+    titre: 'Couronnes & bridges',
+    description: `
+      <p>La <strong>couronne</strong> est la solution lorsqu'une dent ne peut plus être restaurée par un composite ou un onlay — typiquement après dévitalisation ou perte importante de tissu. Elle recouvre intégralement la dent et restaure sa fonction et son esthétique.</p>
+      <p>Le <strong>bridge</strong> permet de remplacer une dent absente en s'appuyant sur les deux dents adjacentes. Solution rapide, mais qui suppose de tailler des dents saines — d'où la préférence pour l'implant lorsque les dents voisines sont intactes.</p>
+      <p>Les prothèses sont conçues par un <strong>laboratoire de prothèse français</strong>, avec qui je travaille en étroite collaboration sur les cas complexes (essayages multiples, ajustements esthétiques).</p>
+      <p><em>Texte détaillé à compléter.</em></p>
+    `,
+  },
+  {
+    id: 'protheses-implants',
+    titre: 'Prothèses sur implants',
+    description: `
+      <p>Une fois les implants posés et intégrés (3 à 6 mois après la pose), on passe à la <strong>phase prothétique</strong> : couronne unitaire vissée sur un seul implant, bridge sur plusieurs implants, ou prothèse complète stabilisée sur implants pour les édentements totaux.</p>
+      <p>Cette phase se fait en plusieurs séances : prise d'empreinte numérique, essayage, ajustements, pose définitive. Le confort, la mastication et l'esthétique sont restaurés de façon durable.</p>
+      <p><em>Texte détaillé à compléter.</em></p>
+    `,
+  },
+];
+---
+
+<FamilySoinsPage
+  pageTitle="Dentisterie adhésive & prothèses à Colombes — Dr Sohaïb Kebieche"
+  pageDescription="Inlays, onlays, overlays céramiques sous digue, composites stratifiés, couronnes, bridges et prothèses sur implants au cabinet du Dr Kebieche, Colombes (92)."
+  eyebrow="Famille de soins"
+  h1="Restaurations céramiques, composites & prothèses — Colombes (92)"
+  baseline="Restaurer sans sacrifier ce qui peut être conservé."
+  intro="La dentisterie adhésive moderne — composites stratifiés et restaurations céramiques (inlays, onlays, overlays) posés <strong>sous digue</strong> — prolonge la vie d'une dent en préservant son tissu sain. Lorsque la perte est trop importante, les <strong>prothèses fixes</strong> (couronnes, bridges, prothèses implanto-portées) prennent le relais, conçues avec un laboratoire de prothèse français."
+  sections={sections}
+/>

@@ -1,0 +1,49 @@
+---
+import FamilySoinsPage from '../../components/FamilySoinsPage.astro';
+
+const sections = [
+  {
+    id: 'caries',
+    titre: 'Soins des caries',
+    description: `
+      <p>Une carie traitée tôt se restaure simplement par un <strong>composite stratifié sous digue</strong>. Plus elle évolue, plus la restauration devient complexe — d'où l'importance des contrôles réguliers.</p>
+      <p><em>Texte détaillé à compléter.</em></p>
+    `,
+  },
+  {
+    id: 'detartrage',
+    titre: 'Détartrage & hygiène',
+    description: `
+      <p>Le détartrage élimine les dépôts calcifiés (tartre) qui s'accumulent au-dessus et au-dessous de la gencive. C'est la base de la prévention des maladies parodontales. Une séance de détartrage est en général conseillée <strong>tous les 6 à 12 mois</strong> selon le profil.</p>
+      <p><em>Texte détaillé à compléter (techniques, polissage, conseils).</em></p>
+    `,
+  },
+  {
+    id: 'urgences',
+    titre: 'Urgences dentaires',
+    description: `
+      <p>Douleur aiguë, dent fracturée, abcès, traumatisme : le cabinet prend en charge les urgences dentaires pendant les heures d'ouverture. En dehors de ces horaires, contactez le <strong>15 (Samu)</strong>.</p>
+      <p><em>Texte détaillé à compléter.</em></p>
+    `,
+  },
+  {
+    id: 'blanchiment',
+    titre: 'Blanchiment dentaire',
+    description: `
+      <p>L'éclaircissement dentaire peut se faire <strong>au cabinet</strong> (séance d'environ 1h sous gouttière) ou <strong>à domicile</strong> (gouttières personnalisées + gel à porter sur plusieurs séances). Les deux techniques utilisent le même principe actif et donnent des résultats équivalents — le choix dépend de votre préférence.</p>
+      <p>Indication : sur dents vivantes (éclaircissement externe) ou sur une dent dévitalisée isolée qui a noirci (éclaircissement interne).</p>
+      <p><em>Texte détaillé à compléter (limites, sensibilités, longévité).</em></p>
+    `,
+  },
+];
+---
+
+<FamilySoinsPage
+  pageTitle="Soins dentaires du quotidien à Colombes — Dr Sohaïb Kebieche"
+  pageDescription="Soins des caries, détartrage, urgences dentaires et blanchiment au cabinet du Dr Kebieche, Colombes (92). Suivi régulier dans la continuité des soins complexes."
+  eyebrow="Famille de soins"
+  h1="Soins du quotidien — caries, détartrage, urgences, blanchiment — Colombes (92)"
+  baseline="La base d'une bouche en bonne santé sur le long terme."
+  intro="Toute la dentisterie courante au même endroit, dans la continuité des soins complexes. Le suivi régulier, le détartrage, la prise en charge rapide des urgences et le blanchiment dentaire font partie intégrante d'une approche globale — pas un service distinct."
+  sections={sections}
+/>

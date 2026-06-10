@@ -1,0 +1,44 @@
+---
+import FamilySoinsPage from '../../components/FamilySoinsPage.astro';
+
+const sections = [
+  {
+    id: 'soin-gencives',
+    titre: 'Soin médical des gencives',
+    description: `
+      <p><strong>La parodontite est une infection bactérienne qui détruit les tissus de soutien de la dent — la gencive et l'os alvéolaire — et peut mener à la perte des dents sans traitement.</strong> La thérapie parodontale vise à éliminer l'infection en profondeur ; la maintenance assure ensuite la stabilité des résultats sur le long terme.</p>
+      <p>La prise en charge débute par un <strong>bilan parodontal</strong> complet : examen clinique, sondage des poches parodontales sur chaque dent, radiographies, photographies, et établissement d'un diagnostic précis.</p>
+      <p>Le traitement initial (non-chirurgical) consiste en un <strong>débridement</strong> méthodique sous anesthésie locale, séance par séance, des dépôts bactériens calcifiés (tartre sous-gingival) à l'origine de la maladie.</p>
+      <p><em>Texte détaillé à compléter (étapes, ré-évaluation à 6-8 semaines, etc.).</em></p>
+    `,
+  },
+  {
+    id: 'recessions-gingivales',
+    titre: 'Traitement des récessions gingivales',
+    description: `
+      <p>Les récessions gingivales — ou « déchaussements » — exposent la racine de la dent, créent des sensibilités au froid, et fragilisent la dent à long terme. Plusieurs causes : brossage traumatique, malposition, parodontite ancienne, frein labial.</p>
+      <p>Le traitement chirurgical (chirurgie plastique parodontale) vise à <strong>recouvrir la racine exposée</strong> en repositionnant ou en greffant des tissus gingivaux. Une formation continue récente (Tunneling Academy) m'a permis d'intégrer les techniques <strong>mini-invasives</strong> les plus modernes — sans incisions traumatiques, avec une cicatrisation rapide et esthétique.</p>
+      <p><em>Texte détaillé à compléter (technique du tunneling, indications, etc.).</em></p>
+    `,
+  },
+  {
+    id: 'maintenance',
+    titre: 'Maintenance parodontale',
+    description: `
+      <p>Une parodontite traitée n'est jamais « guérie » au sens classique : les bactéries reviennent, l'inflammation peut redémarrer. La <strong>maintenance parodontale</strong> — séances régulières tous les 3 à 6 mois selon le risque individuel — assure la stabilité des résultats obtenus.</p>
+      <p>Chaque séance comprend une réévaluation clinique, un débridement ciblé des zones à risque, et un renforcement des conseils d'hygiène personnalisés.</p>
+      <p><em>Texte détaillé à compléter.</em></p>
+    `,
+  },
+];
+---
+
+<FamilySoinsPage
+  pageTitle="Parodontologie à Colombes — Dr Sohaïb Kebieche, D.U. Parodontologie avancée"
+  pageDescription="Bilan parodontal, traitement de la parodontite, chirurgie plastique parodontale (tunneling) et maintenance à Colombes (92). D.U. Parodontologie avancée Université Côte d'Azur 2025."
+  eyebrow="Famille de soins"
+  h1="Parodontologie — soin médical des gencives à Colombes (92)"
+  baseline="Conserver vos dents en conservant leur support."
+  intro="La parodontite est une infection bactérienne qui détruit silencieusement les tissus de soutien de la dent — gencive et os alvéolaire — et qui, sans traitement, mène à la perte des dents. Sa prise en charge combine <strong>thérapeutique médicale</strong> (débridement, désinfection), <strong>chirurgie plastique</strong> lorsque les récessions sont déjà installées, et <strong>maintenance préventive</strong> à vie."
+  sections={sections}
+/>

@@ -1,0 +1,53 @@
+---
+import FamilySoinsPage from '../../components/FamilySoinsPage.astro';
+
+const sections = [
+  {
+    id: 'implants',
+    titre: "Pose d'implants dentaires",
+    description: `
+      <p>L'implant dentaire est une racine artificielle en titane qui remplace une dent absente. Vissé dans l'os de la mâchoire, il sert de support à une couronne, un bridge ou une prothèse complète. C'est aujourd'hui la solution la plus fiable et la plus durable pour remplacer une ou plusieurs dents.</p>
+      <p>La pose se fait au cabinet, sous anesthésie locale, après une <strong>planification 3D</strong> à partir d'un scanner. Cette étape de préparation permet de visualiser précisément le volume osseux disponible, d'éviter les structures sensibles (nerf, sinus) et de définir l'angulation optimale.</p>
+      <p><em>Texte détaillé à compléter (durée d'intervention, ostéo-intégration 3-6 mois, mise en charge, etc.).</em></p>
+    `,
+  },
+  {
+    id: 'greffes-osseuses',
+    titre: 'Reconstruction osseuse pré-implantaire',
+    description: `
+      <p>Lorsque le volume osseux est insuffisant pour poser un implant — situation fréquente après une extraction ancienne ou une parodontite — une reconstruction osseuse est nécessaire. Plusieurs techniques existent selon le défaut : <strong>greffe d'apposition</strong>, <strong>comblement de sinus</strong>, <strong>régénération osseuse guidée</strong>.</p>
+      <p>Ce n'est pas systématique : dans une bonne partie des cas, l'implant peut être posé sans greffe préalable. C'est le scanner et l'examen clinique qui décident.</p>
+      <p><em>Texte détaillé à compléter (types de greffes, biomatériaux, délais de cicatrisation, etc.).</em></p>
+    `,
+  },
+  {
+    id: 'chirurgie-orale',
+    titre: 'Chirurgie orale & extractions complexes',
+    description: `
+      <p>La chirurgie orale couvre l'ensemble des interventions chirurgicales de la cavité buccale qui dépassent l'extraction simple : <strong>extractions complexes</strong>, <strong>kystes mandibulaires</strong>, <strong>dents incluses</strong>, <strong>frenectomies</strong>.</p>
+      <p>Mon parcours hospitalier en chirurgie orale (APHP Nanterre, service du Dr Sarfati) me permet de gérer ces interventions au cabinet, sous anesthésie locale, dans des conditions de sécurité comparables à celles d'un bloc opératoire.</p>
+      <p><em>Texte détaillé à compléter.</em></p>
+    `,
+  },
+  {
+    id: 'dents-de-sagesse',
+    titre: 'Dents de sagesse',
+    description: `
+      <p>L'extraction des dents de sagesse n'est <em>pas systématique</em>. Une dent de sagesse bien positionnée, fonctionnelle et accessible à l'hygiène peut tout à fait être conservée à vie. L'examen clinique et le scanner 3D décident.</p>
+      <p>Les indications classiques d'extraction sont : <strong>inclusion partielle</strong> avec inflammation chronique de la gencive (péricoronarite), <strong>impact sur la dent voisine</strong>, <strong>carie non restaurable</strong>, ou <strong>position défavorable</strong> en orthodontie.</p>
+      <p>L'intervention se fait au cabinet, sous anesthésie locale dans 95% des cas. Le scanner 3D systématique avant intervention permet d'anticiper les rapports avec le nerf alvéolaire inférieur (pour les dents inférieures) et le sinus maxillaire (pour les supérieures).</p>
+      <p><em>Texte détaillé à compléter (suites opératoires, conseils, etc.).</em></p>
+    `,
+  },
+];
+---
+
+<FamilySoinsPage
+  pageTitle="Implantologie & chirurgie à Colombes — Dr Sohaïb Kebieche"
+  pageDescription="Pose d'implants dentaires, reconstruction osseuse pré-implantaire, chirurgie orale et extractions complexes au cabinet du Dr Kebieche, Colombes (92)."
+  eyebrow="Famille de soins"
+  h1="Implantologie & chirurgie orale — Colombes (92)"
+  baseline="Reconstruire ce qui ne peut plus être conservé."
+  intro="Lorsqu'une dent ne peut plus être conservée, l'implantologie permet de retrouver une fonction et une esthétique stables sur le long terme. Lorsqu'il manque de l'os, des techniques de <strong>reconstruction osseuse</strong> permettent de préparer le site. Et lorsque l'extraction elle-même est complexe — dents de sagesse, kystes, racines fracturées — l'expérience hospitalière en chirurgie orale apporte la sécurité nécessaire."
+  sections={sections}
+/>

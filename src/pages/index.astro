@@ -1,16 +1,34 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// 8 soins de la grille (cf. captures)
-const soins = [
-  { slug: 'implantologie', titre: 'Implantologie', desc: "Pose d'implants unitaires ou multiples, planification 3D, prothèse implanto-portée.", icon: 'circle' },
-  { slug: 'parodontologie', titre: 'Parodontologie', desc: 'Thérapeutique initiale, débridement, maintenance préventive — pour la santé des gencives et de l\'os de soutien.', icon: 'arrow-down' },
-  { slug: 'dentisterie-adhesive', titre: 'Dentisterie adhésive', desc: 'Onlays et overlays céramiques pour préserver un maximum de tissu dentaire sain.', icon: 'diamond' },
-  { slug: 'dents-de-sagesse', titre: 'Dents de sagesse', desc: 'Extraction simple ou chirurgicale, encadrement pré et post-opératoire complet.', icon: 'circle-x' },
-  { slug: 'greffes-osseuses', titre: 'Greffes & comblements osseux', desc: "Préparation du site implantaire, reconstruction osseuse, aménagements tissulaires.", icon: 'triangle' },
-  { slug: 'chirurgie-plastique-parodontale', titre: 'Chirurgie plastique parodontale', desc: 'Traitement des récessions gingivales et reconstruction des tissus parodontaux par techniques mini-invasives.', icon: 'wave' },
-  { slug: 'protheses-fixes', titre: 'Prothèses fixes', desc: 'Couronnes, bridges, réhabilitations globales, en lien étroit avec un laboratoire de prothèse français.', icon: 'square' },
-  { slug: 'omnipratique', titre: 'Omnipratique', desc: "Caries, détartrage, urgences, suivi régulier — la base d'une bouche en bonne santé.", icon: 'plus' },
+// 4 familles médicales (architecture validée : pattern dentistes premium internationaux)
+// Le détail des soins individuels est sur la page /soins, chaque section ancrée
+// permet à Mélyia de pointer vers la bonne info via URL hash (#greffes-osseuses etc.)
+const familles = [
+  {
+    slug: 'implantologie-chirurgie',
+    titre: 'Implantologie & chirurgie',
+    desc: "Pose d'implants, reconstruction osseuse pré-implantaire, chirurgie orale et avulsions complexes — savoir-faire issu d'une formation hospitalière.",
+    icon: 'circle'
+  },
+  {
+    slug: 'parodontologie',
+    titre: 'Parodontologie',
+    desc: "Soin médical des gencives et de l'os de soutien, traitement des récessions gingivales par techniques mini-invasives. D.U. de parodontologie avancée 2025.",
+    icon: 'wave'
+  },
+  {
+    slug: 'dentisterie-adhesive-protheses',
+    titre: 'Dentisterie adhésive & prothèses',
+    desc: "Restaurations céramiques (inlays, onlays, overlays) et composites sous digue, couronnes, bridges et prothèses implanto-portées en laboratoire français.",
+    icon: 'diamond'
+  },
+  {
+    slug: 'soins-quotidiens',
+    titre: 'Soins du quotidien',
+    desc: "Caries, détartrage, urgences, suivi régulier, blanchiment dentaire — toute la dentisterie courante au même endroit, dans la continuité des soins complexes.",
+    icon: 'plus'
+  },
 ];
 
 function iconSvg(name: string) {
@@ -143,17 +161,28 @@ function iconSvg(name: string) {
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-        {soins.map((s, idx) => (
-          <a href={`/soins/${s.slug}`} class="card hover:border-teal-300 transition-colors group" data-reveal data-reveal-delay={(idx * 70).toString()}>
-            <div class="w-9 h-9 rounded-full flex items-center justify-center mb-5" style="background: var(--color-cream-200); color: var(--color-teal-800)">
-              <Fragment set:html={iconSvg(s.icon)} />
+      <!-- 4 familles médicales (architecture boutique chic premium) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mb-10">
+        {familles.map((f, idx) => (
+          <a href={`/soins/${f.slug}`} class="card hover:border-teal-300 transition-colors group p-8 md:p-10" data-reveal data-reveal-delay={(idx * 100).toString()}>
+            <div class="w-11 h-11 rounded-full flex items-center justify-center mb-6" style="background: var(--color-cream-200); color: var(--color-teal-800)">
+              <Fragment set:html={iconSvg(f.icon)} />
             </div>
-            <h3 class="text-[18px] font-medium mb-2.5">{s.titre}</h3>
-            <p class="text-[14px] text-ink-500 leading-[1.6] mb-4 min-h-[5rem]">{s.desc}</p>
-            <span class="text-[13px] font-medium" style="color: var(--color-teal-700)">En savoir plus →</span>
+            <h3 class="text-[22px] md:text-[24px] font-medium mb-3" style="font-family: var(--font-display)">{f.titre}</h3>
+            <p class="text-[15px] text-ink-500 leading-[1.7] mb-5">{f.desc}</p>
+            <span class="text-[13px] font-medium inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all" style="color: var(--color-teal-700)">
+              Découvrir <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
           </a>
         ))}
+      </div>
+
+      <!-- CTA vers /soins (catalogue complet) -->
+      <div class="text-center" data-reveal data-reveal-delay="500">
+        <a href="/soins" class="btn btn-secondary">
+          Découvrir tous les soins proposés
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
       </div>
 
     </div>

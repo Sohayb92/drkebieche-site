@@ -1,47 +1,79 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-const soins = [
+// 4 familles médicales avec leurs soins individuels.
+// Chaque sous-soin pointe vers la section ancrée de la page mère.
+// Mélyia peut utiliser ces URLs précises dans les mails de relance devis.
+const familles = [
   {
-    slug: 'implantologie',
-    title: 'Implantologie',
-    desc: 'Remplacement de racines manquantes par des implants, comblements osseux, greffes pré-implantaires.',
-    keywords: 'implants · comblement osseux · greffes',
+    slug: 'implantologie-chirurgie',
+    titre: 'Implantologie & chirurgie',
+    intro: "Pose d'implants, reconstruction osseuse pré-implantaire et chirurgie orale. Une formation hospitalière (chirurgie orale, APHP Nanterre) couplée à des DU récents (Implantologie Paris-Saclay 2024) au service des cas complexes.",
+    icon: 'circle',
+    soins: [
+      { titre: "Pose d'implants dentaires", hash: 'implants' },
+      { titre: "Reconstruction osseuse pré-implantaire", hash: 'greffes-osseuses' },
+      { titre: "Chirurgie orale & extractions complexes", hash: 'chirurgie-orale' },
+      { titre: "Dents de sagesse", hash: 'dents-de-sagesse' },
+    ],
   },
   {
     slug: 'parodontologie',
-    title: 'Parodontologie',
-    desc: 'Soin des gencives et de l\'os de soutien : bilan parodontal, assainissement, maintenance préventive.',
-    keywords: 'gencives · déchaussement · maintenance',
+    titre: 'Parodontologie',
+    intro: "La parodontite est une infection bactérienne qui détruit les tissus de soutien de la dent (gencive et os alvéolaire) et peut mener à la perte des dents sans traitement. Mon approche s'appuie sur un D.U. de Parodontologie avancée (2025) et la formation Tunneling Academy.",
+    icon: 'wave',
+    soins: [
+      { titre: "Soin médical des gencives", hash: 'soin-gencives' },
+      { titre: "Traitement des récessions gingivales", hash: 'recessions-gingivales' },
+      { titre: "Maintenance parodontale", hash: 'maintenance' },
+    ],
   },
   {
-    slug: 'dentisterie-adhesive',
-    title: 'Dentisterie adhésive',
-    desc: 'Reconstructions partielles en céramique (inlays, onlays, overlays) et composites stratifiés sous digue.',
-    keywords: 'inlay · onlay · overlay · composite',
+    slug: 'dentisterie-adhesive-protheses',
+    titre: 'Dentisterie adhésive & prothèses',
+    intro: "Restaurer en préservant le maximum de tissu dentaire sain. La dentisterie adhésive moderne (inlays, onlays, overlays céramiques, composites stratifiés sous digue) prolonge la vie d'une dent. Les prothèses fixes (couronnes, bridges) sont conçues avec un laboratoire de prothèse français.",
+    icon: 'diamond',
+    soins: [
+      { titre: "Inlays, onlays, overlays céramiques", hash: 'inlay-onlay-overlay' },
+      { titre: "Composites stratifiés sous digue", hash: 'composites' },
+      { titre: "Couronnes & bridges", hash: 'couronnes-bridges' },
+      { titre: "Prothèses sur implants", hash: 'protheses-implants' },
+    ],
   },
   {
-    slug: 'chirurgie-orale',
-    title: 'Chirurgie orale & avulsions',
-    desc: 'Extractions complexes, dents de sagesse, kystes — savoir-faire issu d\'une formation hospitalière.',
-    keywords: 'dents de sagesse · extractions · kystes',
-  },
-  {
-    slug: 'blanchiment',
-    title: 'Blanchiment dentaire',
-    desc: 'Éclaircissement au cabinet et à domicile, sur dents vivantes ou dévitalisées.',
-    keywords: 'blanchiment · éclaircissement',
+    slug: 'soins-quotidiens',
+    titre: 'Soins du quotidien',
+    intro: "Toute la dentisterie courante au même endroit, dans la continuité des soins complexes. Caries, détartrage, urgences, suivi régulier — la base d'une bouche en bonne santé sur le long terme. Le blanchiment dentaire est également proposé.",
+    icon: 'plus',
+    soins: [
+      { titre: "Soins des caries", hash: 'caries' },
+      { titre: "Détartrage & hygiène", hash: 'detartrage' },
+      { titre: "Urgences dentaires", hash: 'urgences' },
+      { titre: "Blanchiment dentaire", hash: 'blanchiment' },
+    ],
   },
 ];
+
+function iconSvg(name: string) {
+  const c = 'stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"';
+  switch (name) {
+    case 'circle':       return `<svg width="22" height="22" viewBox="0 0 24 24" ${c}><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>`;
+    case 'diamond':      return `<svg width="22" height="22" viewBox="0 0 24 24" ${c}><polygon points="12 3 21 12 12 21 3 12"/></svg>`;
+    case 'wave':         return `<svg width="22" height="22" viewBox="0 0 24 24" ${c}><path d="M3 12 Q 8 4 12 12 T 21 12"/></svg>`;
+    case 'plus':         return `<svg width="22" height="22" viewBox="0 0 24 24" ${c}><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
+    default:             return '';
+  }
+}
 ---
 
 <Layout
-  title="Tous les soins — Cabinet Dr Sohaïb Kebieche, Colombes"
-  description="Implantologie, parodontologie, dentisterie adhésive, chirurgie orale, blanchiment. Soins dentaires d'excellence à Colombes (92)."
+  title="Soins dentaires à Colombes — Dr Sohaïb Kebieche, implantologie, parodontologie, dentisterie adhésive"
+  description="Cabinet dentaire à Colombes (92700). Implantologie, parodontologie, dentisterie adhésive sous digue, chirurgie orale. Tous les soins expliqués en détail."
 >
 
-  <section class="container-wide pt-16 md:pt-24 pb-12 md:pb-16">
-    <div class="max-w-3xl">
+  <!-- HERO page /soins -->
+  <section class="container-wide pt-12 md:pt-20 pb-12 md:pb-16">
+    <div class="max-w-3xl" data-reveal>
       <span class="eyebrow mb-5">Tous les soins</span>
       <h1 class="text-[28px] md:text-[36px] leading-[1.2] tracking-tight mb-5" style="color: var(--color-teal-800)">
         Soins conservateurs, prothèse, implants<br>
@@ -51,22 +83,50 @@ const soins = [
         Une dentisterie complète, précise et durable.
       </p>
       <p class="text-[16px] text-ink-700 leading-[1.7]">
-        Du soin courant aux interventions complexes — implantologie, parodontologie, dentisterie adhésive moderne. Chaque soin est expliqué en détail avant d'être réalisé.
+        Du soin courant aux interventions complexes — quatre domaines d'expertise qui couvrent l'essentiel de la dentisterie moderne. Chaque soin est expliqué en détail avant d'être réalisé.
       </p>
     </div>
   </section>
 
-  <section class="container-wide pb-24">
-    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
-      {soins.map((s) => (
-        <a href={`/soins/${s.slug}`} class="group card hover:shadow-xl hover:-translate-y-1 transition-all duration-500 cursor-pointer">
-          <h2 class="text-[26px] md:text-[30px] font-display tracking-tight mb-3">{s.title}</h2>
-          <p class="text-[15px] text-ink-700 leading-[1.7] mb-4">{s.desc}</p>
-          <div class="text-[12px] text-ink-500 uppercase tracking-[0.15em] mb-5">{s.keywords}</div>
-          <span class="text-[14px] text-teal-700 font-medium group-hover:underline underline-offset-4">
-            En savoir plus →
-          </span>
-        </a>
+
+  <!-- 4 familles avec sous-listes -->
+  <section class="container-wide pb-24 md:pb-32">
+    <div class="space-y-6 md:space-y-8">
+      {familles.map((f, idx) => (
+        <article class="card p-7 md:p-10" data-reveal data-reveal-delay={(idx * 120).toString()}>
+          <div class="grid md:grid-cols-[1fr_1.4fr] gap-8 md:gap-12 items-start">
+
+            <!-- Colonne gauche : icon + titre + intro -->
+            <div>
+              <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6" style="background: var(--color-cream-200); color: var(--color-teal-800)">
+                <Fragment set:html={iconSvg(f.icon)} />
+              </div>
+              <h2 class="text-[24px] md:text-[28px] font-medium mb-4" style="font-family: var(--font-display)">{f.titre}</h2>
+              <p class="text-[15px] text-ink-700 leading-[1.7] mb-5">{f.intro}</p>
+              <a href={`/soins/${f.slug}`} class="text-[14px] font-medium inline-flex items-center gap-1.5 hover:gap-2.5 transition-all" style="color: var(--color-teal-700)">
+                Page complète <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+
+            <!-- Colonne droite : liste des soins individuels -->
+            <div>
+              <div class="text-[11px] uppercase tracking-[0.18em] font-semibold mb-4" style="color: var(--color-teal-700)">
+                Soins individuels
+              </div>
+              <ul class="space-y-1">
+                {f.soins.map(s => (
+                  <li>
+                    <a href={`/soins/${f.slug}#${s.hash}`} class="group flex items-center justify-between py-3 px-3 -mx-3 rounded-lg hover:bg-cream-50 transition-colors">
+                      <span class="text-[15px] text-ink-900">{s.titre}</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-30 group-hover:opacity-100 transition-opacity" style="color: var(--color-teal-700)"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        </article>
       ))}
     </div>
   </section>
