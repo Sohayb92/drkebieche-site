@@ -7,6 +7,9 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
+  // Domaine canonique : .fr (SEO local France = la cible), .com en redirection 301
+  site: 'https://drkebieche.fr',
+
   vite: {
     plugins: [tailwindcss()]
   },

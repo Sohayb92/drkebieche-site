@@ -12,12 +12,12 @@ interface Props {
 
 const {
   title = "Dr Sohaïb Kebieche — Chirurgien-dentiste à Colombes",
-  description = "Cabinet dentaire à Colombes (92). Implantologie, parodontologie, dentisterie adhésive moderne. Une dentisterie d'excellence, expliquée, sans rush.",
+  description = "Cabinet dentaire à Colombes (92). Implantologie, parodontologie, dentisterie adhésive moderne. Une dentisterie qui prend le temps de vous expliquer.",
   noindex = false,
   ogImage = "/og-image.jpg"
 } = Astro.props;
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebieche.com').toString();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebieche.fr').toString();
 ---
 
 <!doctype html>
@@ -37,7 +37,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:image" content={new URL(ogImage, Astro.site || 'https://drkebieche.com').toString()} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site || 'https://drkebieche.fr').toString()} />
   <meta property="og:locale" content="fr_FR" />
 
   <!-- Twitter -->
@@ -62,9 +62,14 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
     "@context": "https://schema.org",
     "@type": "Dentist",
     "name": "Dr Sohaïb Kebieche",
-    "image": "https://drkebieche.com/og-image.jpg",
+    "image": "https://drkebieche.fr/og-image.jpg",
     "telephone": "+33142429469",
-    "url": "https://drkebieche.com",
+    "email": "cabinetdentaire.lacabane@gmail.com",
+    "sameAs": [
+      "https://www.instagram.com/dr.kebieche",
+      "https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes"
+    ],
+    "url": "https://drkebieche.fr",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "31 Rue Felix Faure",
