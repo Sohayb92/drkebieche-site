@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Honoraires & prise en charge — Cabinet Dr Sohaïb Kebieche, Colombes"
-  description="Honoraires indicatifs du cabinet dentaire Dr Sohaïb Kebieche à Colombes (92) : consultations, implants, parodontologie, dentisterie adhésive. Prise en charge sécurité sociale et mutuelles."
+  description="Honoraires et prise en charge au cabinet dentaire du Dr Kebieche à Colombes (92) : tarifs conventionnés, devis systématique pour les actes à honoraires libres, sécurité sociale et mutuelles."
 >
 
   <section class="container-wide pt-16 md:pt-24 pb-12 md:pb-16">
@@ -12,10 +12,10 @@ import Layout from '../layouts/Layout.astro';
       <span class="eyebrow mb-5">Honoraires & prise en charge</span>
       <h1 class="text-[40px] md:text-[56px] leading-[1.1] tracking-tight mb-6">
         Transparence,<br>
-        <span class="italic text-teal-600">avant tout.</span>
+        <span class="text-teal-600">avant tout.</span>
       </h1>
       <p class="text-[18px] text-ink-700 leading-[1.65]">
-        Vous trouverez ici les fourchettes indicatives pratiquées au cabinet, par grande catégorie de soin. Pour tout plan de traitement, un devis détaillé est systématiquement remis en consultation et expliqué par mail.
+        Pour tout plan de traitement, un <strong>devis détaillé est systématiquement remis</strong> en consultation, expliqué, et accompagné des liens vers les pages de ce site qui décrivent chaque soin. Aucun soin à honoraires libres n'est engagé sans devis signé.
       </p>
     </div>
   </section>
@@ -23,69 +23,29 @@ import Layout from '../layouts/Layout.astro';
 
   <section class="container-prose pb-12 prose-soin">
 
-    <h2>Consultation & bilan</h2>
+    <h2>Comment sont fixés les honoraires</h2>
+
+    <p>
+      Deux familles d'actes coexistent en dentisterie :
+    </p>
 
     <ul>
-      <li><strong>Consultation initiale</strong> (examen + photographies + plan de soin écrit) — <em>30 à 80 €</em></li>
-      <li><strong>Bilan radiographique</strong> (panoramique) — <em>30 à 60 €</em></li>
-      <li><strong>Cone beam 3D</strong> (scanner volumique pour implant ou chirurgie) — <em>80 à 130 €</em></li>
-      <li><strong>Bilan parodontal complet</strong> (sondage 6 points + radios + photos + document écrit) — <em>150 à 250 €</em></li>
+      <li><strong>Les soins aux tarifs conventionnés</strong> — consultations, soins des caries, détartrage, traitements des racines, la plupart des extractions. Ils sont facturés aux tarifs fixés par la convention avec l'Assurance Maladie.</li>
+      <li><strong>Les actes à honoraires libres (entente directe)</strong> — restaurations céramiques (inlays, onlays, overlays), couronnes et bridges, implants, greffes, chirurgie parodontale, blanchiment. Leur montant dépend du cas clinique : il est précisé sur le devis, jamais engagé sans votre accord.</li>
     </ul>
 
-    <h2>Soins conservateurs & dentisterie adhésive</h2>
-
-    <ul>
-      <li><strong>Composite stratifié sous digue</strong> (1 à 3 faces) — <em>150 à 350 €</em></li>
-      <li><strong>Inlay céramique</strong> — <em>600 à 800 €</em></li>
-      <li><strong>Onlay céramique</strong> — <em>700 à 950 €</em></li>
-      <li><strong>Overlay céramique</strong> — <em>800 à 1 100 €</em></li>
-      <li><strong>Traitement endodontique</strong> (selon nombre de canaux) — <em>200 à 500 €</em></li>
-    </ul>
-
-    <h2>Parodontologie</h2>
-
-    <ul>
-      <li><strong>Détartrage par séance</strong> — <em>50 à 80 €</em> (souvent pris en charge par la sécurité sociale)</li>
-      <li><strong>Surfaçage radiculaire</strong> par quadrant (4 quadrants au total) — <em>200 à 400 €</em> par quadrant</li>
-      <li><strong>Maintenance parodontale</strong> par séance — <em>80 à 130 €</em></li>
-      <li><strong>Chirurgie parodontale</strong> (lambeau, greffe gingivale, régénération osseuse) — <em>devis détaillé après bilan</em></li>
-    </ul>
-
-    <h2>Implantologie & chirurgie orale</h2>
-
-    <ul>
-      <li><strong>Implant + couronne céramique sur implant</strong> — <em>1 800 à 2 500 €</em> par dent</li>
-      <li><strong>Comblement osseux post-extraction</strong> — <em>200 à 500 €</em></li>
-      <li><strong>Greffe osseuse pré-implantaire</strong> — <em>devis détaillé selon volume nécessaire</em></li>
-      <li><strong>Sinus lift</strong> — <em>800 à 1 500 €</em></li>
-      <li><strong>Extraction dent de sagesse simple</strong> — <em>70 à 130 €</em></li>
-      <li><strong>Extraction dent de sagesse complexe</strong> (germectomie, désinclusion) — <em>130 à 250 €</em></li>
-      <li><strong>Lot 4 dents de sagesse</strong> — <em>280 à 800 €</em> (selon complexité)</li>
-    </ul>
-
-    <h2>Prothèse</h2>
-
-    <ul>
-      <li><strong>Couronne céramique</strong> sur dent naturelle — <em>500 à 900 €</em></li>
-      <li><strong>Bridge céramique 3 éléments</strong> — <em>1 500 à 2 500 €</em></li>
-      <li><strong>Prothèse amovible</strong> partielle ou complète — <em>devis selon design</em></li>
-    </ul>
-
-    <h2>Esthétique</h2>
-
-    <ul>
-      <li><strong>Blanchiment ambulatoire complet</strong> (gouttières + gel 2-3 semaines) — <em>400 à 700 €</em></li>
-      <li><strong>Blanchiment au fauteuil</strong> (1 à 2 séances) — <em>500 à 900 €</em></li>
-    </ul>
+    <p>
+      Le montant exact de chaque acte dépend de la situation clinique (nombre de faces d'une restauration, complexité d'une extraction, volume d'une greffe). C'est précisément le rôle du devis : chiffrer <em>votre</em> cas, pas un cas moyen.
+    </p>
 
     <h2>Prise en charge sécurité sociale & mutuelles</h2>
 
     <p>
-      Le cabinet est <strong>conventionné secteur 1 et 2</strong> selon les actes (carte vitale acceptée). Les actes au tarif conventionné (consultations, soins conservateurs, certaines extractions) sont pris en charge à 70% par l'Assurance Maladie, le reste par votre mutuelle.
+      Le cabinet est <strong>conventionné</strong> (carte vitale acceptée). Les soins aux tarifs conventionnés sont pris en charge à 70% par l'Assurance Maladie, le complément par votre mutuelle. Les actes à honoraires libres sont remboursés sur une base Sécurité sociale plus faible, complétée selon votre contrat de mutuelle.
     </p>
 
     <p>
-      Les actes hors nomenclature (implants, blanchiment, chirurgies spécifiques, prothèses dépassant le panier 100% santé) sont remboursés différemment selon votre mutuelle. <strong>Le devis détaillé remis systématiquement indique</strong> :
+      <strong>Le devis détaillé remis systématiquement indique</strong> :
     </p>
 
     <ul>

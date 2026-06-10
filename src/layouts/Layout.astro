@@ -64,7 +64,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
     "name": "Dr Sohaïb Kebieche",
     "image": "https://drkebieche.com/og-image.jpg",
     "telephone": "+33142429469",
-    "email": "contact@drkebieche.com",
     "url": "https://drkebieche.com",
     "address": {
       "@type": "PostalAddress",
@@ -82,6 +81,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
       "opens": "09:00",
+      "closes": "13:00"
+    }, {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "15:00",
       "closes": "18:30"
     }],
     "medicalSpecialty": ["Implantology", "Periodontics", "OralSurgery"],
