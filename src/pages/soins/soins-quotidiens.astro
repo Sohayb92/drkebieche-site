@@ -6,33 +6,43 @@ const sections = [
     id: 'caries',
     titre: 'Soins des caries',
     description: `
-      <p>Une carie traitée tôt se restaure simplement par un <strong>composite stratifié sous digue</strong>. Plus elle évolue, plus la restauration devient complexe — d'où l'importance des contrôles réguliers.</p>
-      <p><em>Texte détaillé à compléter.</em></p>
+      <p>Une carie progresse <strong>de l'extérieur vers l'intérieur</strong> de la dent : l'émail, puis la dentine, puis le nerf. Au début, elle ne fait pas mal — c'est justement le bon moment pour la traiter.</p>
+      <p><strong>Quand la traiter.</strong> Dès qu'elle est détectée : une carie ne régresse jamais d'elle-même.</p>
+      <p><strong>Ce que cela évite.</strong> Traitée tôt : un petit composite, une séance. Traitée tard : dévitalisation, couronne, parfois extraction. Plus l'attente est longue, plus la perte de dent est importante — et la douleur n'arrive que lorsque le nerf est déjà touché.</p>
     `,
   },
   {
     id: 'detartrage',
-    titre: 'Détartrage & hygiène',
+    titre: 'Contrôle annuel & détartrage',
     description: `
-      <p>Le détartrage élimine les dépôts calcifiés (tartre) qui s'accumulent au-dessus et au-dessous de la gencive. C'est la base de la prévention des maladies parodontales. Une séance de détartrage est en général conseillée <strong>tous les 6 à 12 mois</strong> selon le profil.</p>
-      <p><em>Texte détaillé à compléter (techniques, polissage, conseils).</em></p>
+      <p>Le tartre, c'est la plaque dentaire qui s'est <strong>calcifiée</strong> : la brosse ne peut plus l'enlever, si rigoureuse que soit l'hygiène. Il s'accumule au ras de la gencive et l'irrite en permanence.</p>
+      <p><strong>Le rythme.</strong> Un rendez-vous de contrôle <strong>une fois par an</strong> : examen clinique complet, radiographies de contrôle et détartrage. C'est ce qui permet de dépister tôt — caries débutantes, début de déchaussement, usure — quand tout se traite encore simplement.</p>
+      <p><strong>Ce que cela protège.</strong> La gencive : saignements, inflammation et, à terme, le déchaussement — première cause de perte de dents chez l'adulte, souvent sans douleur.</p>
     `,
   },
   {
     id: 'urgences',
     titre: 'Urgences dentaires',
     description: `
-      <p>Douleur aiguë, dent fracturée, abcès, traumatisme : le cabinet prend en charge les urgences dentaires pendant les heures d'ouverture. En dehors de ces horaires, contactez le <strong>15 (Samu)</strong>.</p>
-      <p><em>Texte détaillé à compléter.</em></p>
+      <p>Douleur vive, dent cassée, abcès, gonflement : le cabinet vous reçoit au plus vite. La priorité est de soulager et de mettre la dent en sécurité ; le traitement définitif se planifie ensuite, au calme.</p>
+      <p><strong>Quand consulter.</strong> Sans attendre — une douleur calmée par un antalgique ne signifie pas que le problème est réglé.</p>
+      <p><strong>Ce que cela évite.</strong> L'aggravation : une infection prise tôt épargne souvent la dent ; une fracture vue à temps peut souvent être réparée.</p>
+      <p>Pendant les heures d'ouverture, appelez le cabinet : <a href="tel:+33142429469">01 42 42 94 69</a>. En dehors des horaires, contactez le <strong>15 (Samu)</strong>.</p>
     `,
   },
   {
     id: 'blanchiment',
     titre: 'Blanchiment dentaire',
     description: `
-      <p>L'éclaircissement dentaire peut se faire <strong>au cabinet</strong> (séance d'environ 1h sous gouttière) ou <strong>à domicile</strong> (gouttières personnalisées + gel à porter sur plusieurs séances). Les deux techniques utilisent le même principe actif et donnent des résultats équivalents — le choix dépend de votre préférence.</p>
-      <p>Indication : sur dents vivantes (éclaircissement externe) ou sur une dent dévitalisée isolée qui a noirci (éclaircissement interne).</p>
-      <p><em>Texte détaillé à compléter (limites, sensibilités, longévité).</em></p>
+      <p>Le blanchiment éclaircit la teinte naturelle des dents à l'aide de <strong>gouttières sur mesure</strong> et d'un gel de blanchiment, portés à domicile.</p>
+      <p><strong>Le déroulé.</strong></p>
+      <ul>
+        <li><strong>1<sup>re</sup> séance</strong> : empreinte des dents au cabinet, pour fabriquer les gouttières sur mesure.</li>
+        <li><strong>Une semaine plus tard</strong> : remise des gouttières et du produit, avec les explications d'utilisation.</li>
+        <li><strong>Port quotidien</strong> : minimum 2 heures par jour, pendant 4 à 6 semaines.</li>
+      </ul>
+      <p>Le résultat se maintient en général <strong>entre 3 et 5 ans</strong>, selon l'hygiène et les habitudes (café, thé, tabac). La teinte finale dépend de la teinte de départ et ne peut pas être garantie à l'avance.</p>
+      <p><strong>Préalable.</strong> Des dents et gencives saines : caries et tartre sont traités d'abord. Cas particulier : une dent dévitalisée qui a grisé peut être éclaircie de l'intérieur, par une technique dédiée à cette seule dent.</p>
     `,
   },
 ];
@@ -40,10 +50,10 @@ const sections = [
 
 <FamilySoinsPage
   pageTitle="Soins dentaires du quotidien à Colombes — Dr Sohaïb Kebieche"
-  pageDescription="Soins des caries, détartrage, urgences dentaires et blanchiment au cabinet du Dr Kebieche, Colombes (92). Suivi régulier dans la continuité des soins complexes."
+  pageDescription="Soins des caries, contrôle annuel, détartrage, urgences dentaires et blanchiment au cabinet du Dr Kebieche, Colombes (92)."
   eyebrow="Famille de soins"
   h1="Soins du quotidien — caries, détartrage, urgences, blanchiment — Colombes (92)"
   baseline="La base d'une bouche en bonne santé sur le long terme."
-  intro="Toute la dentisterie courante au même endroit, dans la continuité des soins complexes. Le suivi régulier, le détartrage, la prise en charge rapide des urgences et le blanchiment dentaire font partie intégrante d'une approche globale — pas un service distinct."
+  intro="Toute la dentisterie courante au même endroit, dans la continuité des soins complexes. Le contrôle annuel, le détartrage, la prise en charge rapide des urgences et le blanchiment dentaire font partie intégrante d'une approche globale — pas un service distinct."
   sections={sections}
 />

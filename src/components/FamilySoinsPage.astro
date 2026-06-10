@@ -1,10 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SchemaRestaurations from './SchemaRestaurations.astro';
 
 interface Section {
   id: string;
   titre: string;
   description: string;  // HTML autorisé (set:html — contrôlé)
+  schema?: string;      // nom d'un schéma pédagogique à afficher après le texte ('restaurations', ...)
 }
 
 interface Props {
@@ -62,6 +64,7 @@ const { pageTitle, pageDescription, eyebrow, h1, baseline, intro, sections } = A
               {s.titre}
             </h2>
             <div class="prose-soin" set:html={s.description}></div>
+            {s.schema === 'restaurations' && <SchemaRestaurations />}
           </section>
         ))}
       </div>

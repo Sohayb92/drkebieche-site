@@ -1,0 +1,130 @@
+---
+/**
+ * Schéma comparatif Inlay · Onlay · Overlay · Couronne.
+ * Message : plus on va vers la couronne, moins on conserve de tissu naturel.
+ * Codes couleur : teal = céramique collée · crème = dent naturelle · hachuré = tissu préparé (retiré).
+ */
+
+// Proportion de dent naturelle conservée (qualitatif, pour la jauge)
+const panels = [
+  {
+    nom: 'Inlay',
+    ligne: "Une pièce de céramique collée à l'intérieur de la dent, quand la carie est trop volumineuse pour un simple composite.",
+    conserve: 0.93,
+  },
+  {
+    nom: 'Onlay',
+    ligne: "La pièce recouvre aussi une pointe fragilisée de la dent, qu'elle protège.",
+    conserve: 0.84,
+  },
+  {
+    nom: 'Overlay',
+    ligne: "Une « demi-couronne » collée qui coiffe toute la surface : protège des fêlures en préservant la dent.",
+    conserve: 0.74,
+  },
+  {
+    nom: 'Couronne',
+    ligne: "Quand il reste trop peu de dent : on taille ce qui reste pour poser une coiffe complète.",
+    conserve: 0.45,
+  },
+];
+
+// Tracé commun de la molaire (couronne à deux cuspides + deux racines)
+const TOOTH_PATH = `M 52 148
+  C 47 112 49 80 62 62
+  C 72 47 85 45 93 57
+  C 96 63 104 63 107 57
+  C 115 45 128 47 138 62
+  C 151 80 153 112 148 148
+  C 147 172 142 196 133 208
+  C 129 213 125 208 124 196
+  C 123 182 121 170 117 162
+  C 111 154 89 154 83 162
+  C 79 170 77 182 76 196
+  C 75 208 71 213 67 208
+  C 58 196 53 172 52 148 Z`;
+
+// Restaurations céramique (une par panneau, dessinées sur la couronne)
+const RESTAURATIONS: Record<string, string> = {
+  Inlay: `M 90 60 C 95 67 105 67 110 60 L 108 86 C 105 95 95 95 92 86 Z`,
+  Onlay: `M 95 59 C 98 63 102 63 107 57 C 115 45 128 47 138 62
+          C 145 71 149 84 150 96 L 136 99 C 132 82 122 74 112 79
+          C 104 83 98 75 95 59 Z`,
+  Overlay: `M 54 90 C 52 79 56 69 62 62 C 72 47 85 45 93 57
+            C 96 63 104 63 107 57 C 115 45 128 47 138 62
+            C 144 69 148 79 146 90 L 132 93 C 126 80 114 76 106 82
+            C 102 85 98 85 94 82 C 86 76 74 80 68 93 Z`,
+  Couronne: `M 52 148 C 47 112 49 80 62 62 C 72 47 85 45 93 57
+             C 96 63 104 63 107 57 C 115 45 128 47 138 62
+             C 151 80 153 112 148 148 Z`,
+};
+
+// Moignon résiduel (panneau Couronne uniquement)
+const STUMP_PATH = `M 80 148 C 78 118 80 98 86 88 L 114 88 C 120 98 122 118 120 148 Z`;
+
+const GAUGE_X = 30;
+const GAUGE_W = 140;
+---
+
+<figure class="my-10 md:my-12">
+
+  <!-- Pattern hachuré partagé (référencé par tous les SVG de la page) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <pattern id="hatch-restaurations" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="6" height="6" style="fill: var(--color-cream-100)"></rect>
+        <line x1="0" y1="0" x2="0" y2="6" style="stroke: var(--color-ink-300); stroke-width: 1.4"></line>
+      </pattern>
+    </defs>
+  </svg>
+
+  <!-- Axe de lecture : du plus conservateur au plus couvrant -->
+  <div class="flex items-center gap-3 mb-6 px-1" aria-hidden="true">
+    <span class="text-[11px] uppercase tracking-[0.14em] font-semibold whitespace-nowrap" style="color: var(--color-teal-700)">Le plus conservateur</span>
+    <div class="flex-1 h-px relative" style="background: var(--color-copper-400)">
+      <span class="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0" style="border-left: 6px solid var(--color-copper-400); border-top: 4px solid transparent; border-bottom: 4px solid transparent"></span>
+    </div>
+    <span class="text-[11px] uppercase tracking-[0.14em] font-semibold whitespace-nowrap" style="color: var(--color-copper-600)">Le plus couvrant</span>
+  </div>
+
+  <!-- 4 panneaux -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+    {panels.map((p) => (
+      <div class="rounded-2xl p-4 md:p-5 text-center" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+        <svg viewBox="0 0 200 240" role="img" aria-label={`Schéma ${p.nom}`} class="w-full max-w-[170px] mx-auto">
+          <!-- ligne de gencive -->
+          <line x1="24" y1="148" x2="176" y2="148" style="stroke: var(--color-cream-300); stroke-width: 2" stroke-dasharray="4 4" />
+          <!-- dent naturelle -->
+          <path d={TOOTH_PATH} style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2.5" stroke-linejoin="round" />
+          {p.nom === 'Couronne' && (
+            <path d={STUMP_PATH} style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 1.6" stroke-dasharray="3 3" />
+          )}
+          <!-- restauration céramique -->
+          <path d={RESTAURATIONS[p.nom]} style={`fill: var(--color-teal-400); stroke: var(--color-teal-700); stroke-width: 1.6; ${p.nom === 'Couronne' ? 'fill-opacity: 0.82' : 'fill-opacity: 0.9'}`} stroke-linejoin="round" />
+          <!-- jauge de tissu conservé -->
+          <rect x={GAUGE_X} y="222" width={GAUGE_W} height="10" rx="5" fill="url(#hatch-restaurations)" style="stroke: var(--color-ink-300); stroke-width: 1" />
+          <rect x={GAUGE_X} y="222" width={GAUGE_W * p.conserve} height="10" rx="5" style="fill: var(--color-cream-300); stroke: var(--color-ink-300); stroke-width: 1" />
+        </svg>
+        <div class="mt-3 text-[17px] md:text-[18px] font-medium" style="font-family: var(--font-display)">{p.nom}</div>
+        <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">{p.ligne}</p>
+      </div>
+    ))}
+  </div>
+
+  <!-- Légende -->
+  <figcaption class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-ink-500">
+    <span class="inline-flex items-center gap-2">
+      <span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-teal-400); border: 1px solid var(--color-teal-700)"></span>
+      Céramique collée
+    </span>
+    <span class="inline-flex items-center gap-2">
+      <span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-cream-100); border: 1px solid var(--color-ink-400)"></span>
+      Dent naturelle conservée
+    </span>
+    <span class="inline-flex items-center gap-2">
+      <svg width="14" height="14" class="rounded overflow-hidden"><rect width="14" height="14" fill="url(#hatch-restaurations)" style="stroke: var(--color-ink-300); stroke-width: 1"/></svg>
+      Tissu préparé (jauge : part de dent conservée)
+    </span>
+  </figcaption>
+
+</figure>

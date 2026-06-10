@@ -28,7 +28,17 @@ const KEY_PAGES = [
   { route: '/soins/implantologie-chirurgie', mobile: false },
 ];
 
-async function capture(browser, route, isMobile) {
+function normalizeRoute(route) {
+  // Git Bash (MSYS) convertit les arguments commençant par "/" en chemins Windows
+  // (ex: /soins → C:/Program Files/Git/soins). On accepte donc les routes sans slash
+  // et on nettoie toute pollution de chemin résiduelle.
+  let r = String(route).replace(/^[A-Za-z]:[\\/].*?Git[\\/]/i, '').replace(/\\/g, '/');
+  if (!r.startsWith('/')) r = '/' + r;
+  return r;
+}
+
+async function capture(browser, rawRoute, isMobile) {
+  const route = normalizeRoute(rawRoute);
   const page = await browser.newPage();
   if (isMobile) {
     await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
@@ -42,20 +52,13 @@ async function capture(browser, route, isMobile) {
 
   const url = BASE_URL + route;
   await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
-  // Déclenche les animations reveal au scroll en scrollant jusqu'en bas puis en haut
-  await page.evaluate(async () => {
-    await new Promise(resolve => {
-      let total = 0;
-      const step = 400;
-      const timer = setInterval(() => {
-        window.scrollBy(0, step);
-        total += step;
-        if (total >= document.body.scrollHeight) { clearInterval(timer); resolve(); }
-      }, 80);
-    });
-    window.scrollTo(0, 0);
+  // Capture déterministe : on force l'état final des animations reveal
+  // (le scroll programmatique rapide ne déclenche pas fiablement l'IntersectionObserver
+  // en headless — vérifié : le reveal fonctionne avec un scroll humain réel).
+  await page.evaluate(() => {
+    document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('visible'));
   });
-  await new Promise(r => setTimeout(r, 800));
+  await new Promise(r => setTimeout(r, 900));
 
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
   const routeSlug = route === '/' ? 'home' : route.replace(/^\//, '').replace(/\//g, '-');

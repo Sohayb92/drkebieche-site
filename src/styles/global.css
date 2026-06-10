@@ -216,6 +216,22 @@
     color: var(--color-ink-700);
     font-style: italic; /* italique RÉSERVÉ aux citations */
   }
+  .prose-soin table {
+    @apply w-full my-7 text-[14.5px];
+    border-collapse: collapse;
+  }
+  .prose-soin th, .prose-soin td {
+    @apply px-4 py-2.5 text-left align-top;
+    border: 1px solid var(--color-cream-300);
+  }
+  .prose-soin th {
+    @apply font-semibold text-[13px] uppercase tracking-wide;
+    background: var(--color-cream-200);
+    color: var(--color-teal-800);
+  }
+  .prose-soin tbody tr:nth-child(even) td {
+    background: var(--color-cream-50);
+  }
 
   /* Nav */
   .nav-link {
