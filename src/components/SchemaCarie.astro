@@ -1,0 +1,102 @@
+---
+/**
+ * Évolution d'une carie en 4 stades : émail → dentine → nerf → dent délabrée.
+ * Coupe de molaire avec couches visibles (émail, dentine, nerf).
+ * Plus on attend, plus la réparation est lourde.
+ */
+const panels = [
+  {
+    nom: 'Stade 1 — Émail',
+    ligne: "Une tache sur l'émail. Invisible, indolore. Réparation minime, une séance.",
+    reparation: 'Composite simple',
+  },
+  {
+    nom: 'Stade 2 — Dentine',
+    ligne: 'La carie creuse la dentine. Sensibilité possible au sucre, au froid.',
+    reparation: 'Composite ou inlay',
+  },
+  {
+    nom: 'Stade 3 — Nerf',
+    ligne: 'Le nerf est touché : douleur. La dent doit être dévitalisée.',
+    reparation: 'Dévitalisation + overlay',
+  },
+  {
+    nom: 'Stade 4 — Délabrement',
+    ligne: 'La dent est très détruite. Couronne — parfois extraction.',
+    reparation: 'Couronne, voire extraction',
+  },
+];
+
+// Couronne de molaire (sans racines longues, coupe pédagogique)
+const ENAMEL_PATH = `M 50 145
+  C 46 108 48 76 62 60
+  C 72 46 85 44 93 56
+  C 96 62 104 62 107 56
+  C 115 44 128 46 138 60
+  C 152 76 154 108 150 145
+  L 132 188 C 122 200 78 200 68 188 Z`;
+
+// Dentine (couche interne)
+const DENTINE_PATH = `M 64 140
+  C 61 112 63 88 72 76
+  C 80 66 88 65 93 72
+  C 96 77 104 77 107 72
+  C 112 65 120 66 128 76
+  C 137 88 139 112 136 140
+  L 124 178 C 116 187 84 187 76 178 Z`;
+
+// Chambre pulpaire + canaux (le nerf)
+const PULP_PATH = `M 86 100
+  C 86 90 114 90 114 100
+  C 114 112 110 120 108 132
+  L 106 170 L 94 170 L 92 132
+  C 90 120 86 112 86 100 Z`;
+
+// Caries par stade (taches sombres de plus en plus grosses)
+const CARIES: Record<number, string> = {
+  0: `M 96 55 C 100 51 106 52 108 56 C 109 60 104 63 100 62 C 96 61 94 58 96 55 Z`,
+  1: `M 94 54 C 102 48 112 52 114 60 C 116 70 110 80 102 82 C 94 84 88 76 88 68 C 88 61 90 57 94 54 Z`,
+  2: `M 92 53 C 102 46 116 52 118 62 C 120 76 114 90 106 98 C 100 104 92 102 88 94 C 84 84 84 64 92 53 Z`,
+  3: `M 76 52 C 94 42 124 50 130 66 C 136 84 128 110 114 126 C 104 138 88 136 80 122 C 70 104 66 68 76 52 Z`,
+};
+---
+
+<figure class="my-10 md:my-12">
+
+  <!-- Axe de lecture -->
+  <div class="flex items-center gap-3 mb-6 px-1" aria-hidden="true">
+    <span class="text-[11px] uppercase tracking-[0.14em] font-semibold whitespace-nowrap" style="color: var(--color-teal-700)">Traitée tôt : simple</span>
+    <div class="flex-1 h-px relative" style="background: var(--color-copper-400)">
+      <span class="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0" style="border-left: 6px solid var(--color-copper-400); border-top: 4px solid transparent; border-bottom: 4px solid transparent"></span>
+    </div>
+    <span class="text-[11px] uppercase tracking-[0.14em] font-semibold whitespace-nowrap" style="color: var(--color-copper-600)">Traitée tard : lourde</span>
+  </div>
+
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+    {panels.map((p, i) => (
+      <div class="rounded-2xl p-4 md:p-5 text-center" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+        <svg viewBox="0 0 200 215" role="img" aria-label={p.nom} class="w-full max-w-[160px] mx-auto">
+          <!-- Émail -->
+          <path d={ENAMEL_PATH} style="fill: var(--color-cream-50); stroke: var(--color-ink-400); stroke-width: 2.5" stroke-linejoin="round" />
+          <!-- Dentine -->
+          <path d={DENTINE_PATH} style="fill: var(--color-cream-300); stroke: var(--color-ink-300); stroke-width: 1.4" stroke-linejoin="round" />
+          <!-- Nerf -->
+          <path d={PULP_PATH} style="fill: var(--color-copper-400); stroke: var(--color-copper-600); stroke-width: 1.4" stroke-linejoin="round" />
+          <!-- Carie -->
+          <path d={CARIES[i]} style="fill: var(--color-ink-700); fill-opacity: 0.88" />
+        </svg>
+        <div class="mt-3 text-[15.5px] md:text-[16.5px] font-medium" style="font-family: var(--font-display)">{p.nom}</div>
+        <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">{p.ligne}</p>
+        <div class="mt-2.5 inline-block px-2.5 py-1 rounded-full text-[11px] font-medium" style="background: var(--color-cream-200); color: var(--color-teal-800)">{p.reparation}</div>
+      </div>
+    ))}
+  </div>
+
+  <figcaption class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-ink-500">
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-cream-50); border: 1px solid var(--color-ink-400)"></span> Émail</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-cream-300); border: 1px solid var(--color-ink-300)"></span> Dentine</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-copper-400); border: 1px solid var(--color-copper-600)"></span> Nerf</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-ink-700)"></span> Carie</span>
+  </figcaption>
+
+</figure>

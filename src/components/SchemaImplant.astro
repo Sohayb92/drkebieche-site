@@ -1,0 +1,98 @@
+---
+/**
+ * Frise temporelle de l'implant : pose → ostéo-intégration (3-6 mois) → couronne.
+ * Vocabulaire visuel commun : os = crème-200, gencive = cuivré-300, implant/céramique = teal.
+ */
+const steps = [
+  {
+    num: '1',
+    titre: "Pose de l'implant",
+    duree: 'Jour J',
+    ligne: "La racine artificielle en titane est placée dans l'os, sous anesthésie locale, selon la planification 3D.",
+  },
+  {
+    num: '2',
+    titre: 'Ostéo-intégration',
+    duree: '3 à 6 mois',
+    ligne: "L'os s'attache progressivement à la surface de l'implant — c'est ce qui fait sa solidité à vie.",
+  },
+  {
+    num: '3',
+    titre: 'Pose de la couronne',
+    duree: 'Dernière étape',
+    ligne: 'Une couronne céramique est fixée sur l\'implant : la dent retrouve sa fonction et son esthétique.',
+  },
+];
+---
+
+<figure class="my-10 md:my-12">
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+    {steps.map((s) => (
+      <div class="rounded-2xl p-4 md:p-5 text-center relative" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+
+        <!-- Badge étape + durée -->
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full text-[12px] font-semibold" style="background: var(--color-teal-800); color: var(--color-cream-50)">{s.num}</span>
+          <span class="text-[11px] uppercase tracking-[0.14em] font-semibold" style="color: var(--color-copper-600)">{s.duree}</span>
+        </div>
+
+        <svg viewBox="0 0 200 200" role="img" aria-label={s.titre} class="w-full max-w-[180px] mx-auto">
+          <!-- Os (socle) -->
+          <rect x="12" y="112" width="176" height="76" rx="6" style="fill: var(--color-cream-200); stroke: var(--color-ink-300); stroke-width: 1.5" />
+          <!-- Gencive (bande) -->
+          <rect x="12" y="100" width="176" height="16" rx="6" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
+
+          <!-- Dents voisines (contexte) -->
+          <path d="M 26 104 C 25 78 28 62 36 58 C 44 54 54 54 60 58 C 68 62 71 78 70 104 Z" style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2" stroke-linejoin="round" />
+          <path d="M 130 104 C 129 78 132 62 140 58 C 148 54 158 54 164 58 C 172 62 175 78 174 104 Z" style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2" stroke-linejoin="round" />
+
+          <!-- Implant (vis titane) -->
+          <path d="M 91 110 L 109 110 L 106 178 C 104 186 96 186 94 178 Z" style="fill: var(--color-teal-400); stroke: var(--color-teal-700); stroke-width: 1.6" stroke-linejoin="round" />
+          <line x1="91" y1="124" x2="109" y2="124" style="stroke: var(--color-teal-700); stroke-width: 1.4" />
+          <line x1="92" y1="138" x2="108" y2="138" style="stroke: var(--color-teal-700); stroke-width: 1.4" />
+          <line x1="93" y1="152" x2="107" y2="152" style="stroke: var(--color-teal-700); stroke-width: 1.4" />
+          <line x1="94" y1="166" x2="106" y2="166" style="stroke: var(--color-teal-700); stroke-width: 1.4" />
+
+          {s.num === '1' && (
+            <!-- Flèche d'insertion -->
+            <g>
+              <line x1="100" y1="58" x2="100" y2="88" style="stroke: var(--color-copper-500); stroke-width: 2.5" stroke-linecap="round" />
+              <polygon points="100,98 93,86 107,86" style="fill: var(--color-copper-500)" />
+            </g>
+          )}
+
+          {s.num === '2' && (
+            <!-- Traits d'ancrage osseux autour de l'implant -->
+            <g style="stroke: var(--color-teal-500); stroke-width: 2" stroke-linecap="round">
+              <line x1="80" y1="128" x2="88" y2="126" />
+              <line x1="78" y1="146" x2="87" y2="144" />
+              <line x1="81" y1="164" x2="89" y2="162" />
+              <line x1="120" y1="128" x2="112" y2="126" />
+              <line x1="122" y1="146" x2="113" y2="144" />
+              <line x1="119" y1="164" x2="111" y2="162" />
+            </g>
+          )}
+
+          {s.num === '3' && (
+            <!-- Pilier + couronne céramique -->
+            <g>
+              <rect x="94" y="92" width="12" height="20" rx="2" style="fill: var(--color-teal-600)" />
+              <path d="M 78 96 C 76 70 81 56 90 52 C 95 50 98 53 100 53 C 102 53 105 50 110 52 C 119 56 124 70 122 96 Z" style="fill: var(--color-teal-400); stroke: var(--color-teal-700); stroke-width: 1.8" stroke-linejoin="round" />
+            </g>
+          )}
+        </svg>
+
+        <div class="mt-3 text-[17px] md:text-[18px] font-medium" style="font-family: var(--font-display)">{s.titre}</div>
+        <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">{s.ligne}</p>
+      </div>
+    ))}
+  </div>
+
+  <figcaption class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-ink-500">
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-teal-400); border: 1px solid var(--color-teal-700)"></span> Implant & couronne</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-cream-200); border: 1px solid var(--color-ink-300)"></span> Os</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-copper-300); border: 1px solid var(--color-copper-500)"></span> Gencive</span>
+  </figcaption>
+
+</figure>

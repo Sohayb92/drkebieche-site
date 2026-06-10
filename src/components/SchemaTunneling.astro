@@ -1,0 +1,74 @@
+---
+/**
+ * Récession gingivale traitée par tunneling : racine exposée → greffon glissé → racine recouverte.
+ * Dent antérieure (incisive), gencive en cuivré, greffon en cuivré foncé.
+ */
+const CROWN_PATH = `M 72 30 C 72 22 128 22 128 30 L 126 95 L 74 95 Z`;
+const ROOT_PATH  = `M 74 95 L 126 95 C 125 130 114 158 100 158 C 86 158 75 130 74 95 Z`;
+---
+
+<figure class="my-10 md:my-12">
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+
+    <!-- 1. Racine exposée -->
+    <div class="rounded-2xl p-4 md:p-5 text-center" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+      <svg viewBox="0 0 200 185" role="img" aria-label="Racine exposée" class="w-full max-w-[160px] mx-auto">
+        <!-- Gencive abaissée (récession) -->
+        <path d="M 14 122 L 186 122 L 186 178 L 14 178 Z" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
+        <!-- Racine (pas d'émail : teinte plus soutenue) -->
+        <path d={ROOT_PATH} style="fill: var(--color-cream-300); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
+        <!-- Couronne (émail) -->
+        <path d={CROWN_PATH} style="fill: var(--color-cream-50); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
+        <!-- Annotation : racine à nu entre y=95 et y=122 -->
+        <line x1="146" y1="95" x2="146" y2="122" style="stroke: var(--color-copper-600); stroke-width: 1.6" />
+        <line x1="140" y1="95" x2="152" y2="95" style="stroke: var(--color-copper-600); stroke-width: 1.6" />
+        <line x1="140" y1="122" x2="152" y2="122" style="stroke: var(--color-copper-600); stroke-width: 1.6" />
+      </svg>
+      <div class="mt-3 text-[17px] font-medium" style="font-family: var(--font-display)">Racine exposée</div>
+      <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">La gencive s'est rétractée : la racine, non protégée par l'émail, est à nu — sensibilité, usure.</p>
+    </div>
+
+    <!-- 2. Greffon glissé par le tunnel -->
+    <div class="rounded-2xl p-4 md:p-5 text-center" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+      <svg viewBox="0 0 200 185" role="img" aria-label="Greffon glissé sous la gencive" class="w-full max-w-[160px] mx-auto">
+        <path d="M 14 122 L 186 122 L 186 178 L 14 178 Z" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
+        <path d={ROOT_PATH} style="fill: var(--color-cream-300); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
+        <path d={CROWN_PATH} style="fill: var(--color-cream-50); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
+        <!-- Greffon : croissant glissé sous le bord gingival -->
+        <path d="M 70 118 C 80 108 120 108 130 118 C 120 126 80 126 70 118 Z" style="fill: var(--color-copper-500); stroke: var(--color-copper-600); stroke-width: 1.6" />
+        <!-- Flèche du tunnel (le greffon entre par le côté, sous la gencive) -->
+        <path d="M 178 96 C 160 98 146 104 136 112" style="fill: none; stroke: var(--color-teal-600); stroke-width: 2.4" stroke-linecap="round" stroke-dasharray="5 4" />
+        <polygon points="132,115 142,106 145,116" style="fill: var(--color-teal-600)" />
+      </svg>
+      <div class="mt-3 text-[17px] font-medium" style="font-family: var(--font-display)">Greffon glissé en tunnel</div>
+      <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">Un greffon de gencive est glissé <em>sous</em> la gencive existante, sans incisions étendues.</p>
+    </div>
+
+    <!-- 3. Racine recouverte -->
+    <div class="rounded-2xl p-4 md:p-5 text-center" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+      <svg viewBox="0 0 200 185" role="img" aria-label="Racine recouverte" class="w-full max-w-[160px] mx-auto">
+        <!-- Gencive remontée, épaissie -->
+        <path d="M 14 96 L 186 96 L 186 178 L 14 178 Z" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
+        <path d={ROOT_PATH} style="fill: var(--color-cream-300); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
+        <!-- Bandeau gingival recouvrant la racine (par-dessus la racine) -->
+        <path d="M 14 96 L 186 96 L 186 130 C 130 122 70 122 14 130 Z" style="fill: var(--color-copper-300)" />
+        <path d="M 14 96 L 186 96" style="stroke: var(--color-copper-500); stroke-width: 1.5" />
+        <path d={CROWN_PATH} style="fill: var(--color-cream-50); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
+        <!-- Coche -->
+        <circle cx="168" cy="34" r="15" style="fill: var(--color-teal-400); stroke: var(--color-teal-700); stroke-width: 1.6" />
+        <polyline points="160,34 166,40 176,28" style="fill: none; stroke: var(--color-cream-50); stroke-width: 3" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <div class="mt-3 text-[17px] font-medium" style="font-family: var(--font-display)">Racine recouverte</div>
+      <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">La gencive, repositionnée et épaissie, protège à nouveau la racine. Cicatrisation rapide, résultat discret.</p>
+    </div>
+
+  </div>
+
+  <figcaption class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-ink-500">
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-copper-300); border: 1px solid var(--color-copper-500)"></span> Gencive</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-copper-500); border: 1px solid var(--color-copper-600)"></span> Greffon</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-cream-300); border: 1px solid var(--color-ink-400)"></span> Racine (sans émail)</span>
+  </figcaption>
+
+</figure>
