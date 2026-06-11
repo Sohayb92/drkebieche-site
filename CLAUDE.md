@@ -51,6 +51,8 @@ DA validée 2026-05-21 :
 - **DU implanto** : "Université d'Évry Paris-Saclay (2024)" (forme unique)
 - **Maintenance paro 6 mois · contrôle+radios+détartrage 1×/an · blanchiment 2h/j 4-6 sem, résultat 3-5 ans**
 - **Première consultation : 40 min** (pas 45) · si bilan RAS, détartrage souvent fait dans la même séance
+- **Endo/RTE** : RTE si TE non étanche + lésion apicale · 2 suites (couronne/overlay direct OU provisoire ~6 mois jusqu'à cicat vérifiée) · dépose couronne+inlay-core = risque fracture · reconstruction = faux moignon compo / tenon fibré (inlay-core rare)
+- **Cone beam DDS PAS systématique** : panoramique d'abord, 3D seulement si proximité nerveuse visible en 2D (ne pas inquiéter)
 - **Avis Google** : home = fiche GBP sans /review (lire les avis) · footer + fiches post-soin = lien /review (laisser un avis)
 - Domaine canonique : **drkebieche.fr** (.com en 301)
 - Honoraires : PAS de grilles chiffrées sur actes opposables (risque CPAM) — devis systématique · PAS de mention « 100% santé / reste à charge 0 » (retirée à la demande du user 2026-06-11)
