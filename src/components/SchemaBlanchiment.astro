@@ -1,0 +1,91 @@
+---
+/**
+ * Blanchiment : le protocole en 3 temps (empreinte → gouttières + gel à J+7 → port 2h/j pendant 4-6 sem).
+ */
+const steps = [
+  {
+    num: '1',
+    duree: '1re séance',
+    titre: 'Empreinte au cabinet',
+    ligne: 'Une empreinte des dents est réalisée pour fabriquer vos gouttières sur mesure.',
+  },
+  {
+    num: '2',
+    duree: 'Une semaine après',
+    titre: 'Remise des gouttières + gel',
+    ligne: 'Les gouttières ajustées et le produit de blanchiment sont remis, avec les explications d\'utilisation.',
+  },
+  {
+    num: '3',
+    duree: '4 à 6 semaines',
+    titre: 'Port quotidien à domicile',
+    ligne: 'Minimum 2 heures par jour. Le résultat se maintient en général 3 à 5 ans.',
+  },
+];
+---
+
+<figure class="my-10 md:my-12">
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+    {steps.map((s) => (
+      <div class="rounded-2xl p-4 md:p-5 text-center" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full text-[12px] font-semibold" style="background: var(--color-teal-800); color: var(--color-cream-50)">{s.num}</span>
+          <span class="text-[11px] uppercase tracking-[0.14em] font-semibold" style="color: var(--color-copper-600)">{s.duree}</span>
+        </div>
+
+        <svg viewBox="0 0 200 150" role="img" aria-label={s.titre} class="w-full max-w-[180px] mx-auto">
+          <!-- Arcade : 5 dents en arc -->
+          {[0, 1, 2, 3, 4].map((i) => {
+            const cx = 40 + i * 30;
+            const cy = 78 + Math.abs(i - 2) * -10 + 20;
+            return (
+              <path d={`M ${cx - 11} ${cy + 22} C ${cx - 12} ${cy + 2} ${cx - 9} ${cy - 8} ${cx} ${cy - 10} C ${cx + 9} ${cy - 8} ${cx + 12} ${cy + 2} ${cx + 11} ${cy + 22} Z`}
+                    style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 1.8" stroke-linejoin="round" />
+            );
+          })}
+
+          {s.num === '1' && (
+            <!-- Porte-empreinte au-dessus, qui descend -->
+            <g>
+              <path d="M 22 38 C 22 24 178 24 178 38 L 172 52 C 130 42 70 42 28 52 Z" style="fill: var(--color-teal-200); stroke: var(--color-teal-600); stroke-width: 1.8" stroke-linejoin="round" />
+              <line x1="100" y1="14" x2="100" y2="26" style="stroke: var(--color-copper-500); stroke-width: 2.4" stroke-linecap="round" />
+              <polygon points="100,32 94,22 106,22" style="fill: var(--color-copper-500)" />
+            </g>
+          )}
+
+          {s.num === '2' && (
+            <!-- Gouttière transparente épousant l'arcade + seringue de gel -->
+            <g>
+              <path d="M 24 92 C 28 56 60 38 100 38 C 140 38 172 56 176 92 L 162 96 C 156 66 132 52 100 52 C 68 52 44 66 38 96 Z"
+                    style="fill: var(--color-teal-200); fill-opacity: 0.55; stroke: var(--color-teal-600); stroke-width: 1.8" stroke-linejoin="round" />
+              <rect x="142" y="112" width="40" height="11" rx="5" style="fill: var(--color-cream-100); stroke: var(--color-teal-700); stroke-width: 1.6" />
+              <rect x="132" y="114" width="12" height="7" rx="2" style="fill: var(--color-teal-500)" />
+              <line x1="182" y1="117.5" x2="192" y2="117.5" style="stroke: var(--color-teal-700); stroke-width: 3; stroke-linecap: round" />
+            </g>
+          )}
+
+          {s.num === '3' && (
+            <!-- Gouttière portée (sur les dents) + horloge 2h -->
+            <g>
+              <path d="M 26 100 C 30 62 62 44 100 44 C 138 44 170 62 174 100 L 160 103 C 154 72 130 58 100 58 C 70 58 46 72 40 103 Z"
+                    style="fill: var(--color-teal-300); fill-opacity: 0.6; stroke: var(--color-teal-600); stroke-width: 1.8" stroke-linejoin="round" />
+              <circle cx="168" cy="28" r="17" style="fill: var(--color-cream-50); stroke: var(--color-copper-500); stroke-width: 2" />
+              <line x1="168" y1="28" x2="168" y2="18" style="stroke: var(--color-copper-600); stroke-width: 2; stroke-linecap: round" />
+              <line x1="168" y1="28" x2="176" y2="32" style="stroke: var(--color-copper-600); stroke-width: 2; stroke-linecap: round" />
+            </g>
+          )}
+        </svg>
+
+        <div class="mt-3 text-[16.5px] font-medium" style="font-family: var(--font-display)">{s.titre}</div>
+        <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">{s.ligne}</p>
+      </div>
+    ))}
+  </div>
+
+  <figcaption class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-ink-500">
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-teal-200); border: 1px solid var(--color-teal-600)"></span> Gouttière sur mesure</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-cream-100); border: 1px solid var(--color-ink-400)"></span> Dents</span>
+  </figcaption>
+
+</figure>

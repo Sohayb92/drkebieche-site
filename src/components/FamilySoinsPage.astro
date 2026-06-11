@@ -7,6 +7,9 @@ import SchemaTunneling from './SchemaTunneling.astro';
 import SchemaCarie from './SchemaCarie.astro';
 import SchemaBridgeImplant from './SchemaBridgeImplant.astro';
 import SchemaGreffe from './SchemaGreffe.astro';
+import SchemaDDS from './SchemaDDS.astro';
+import SchemaBlanchiment from './SchemaBlanchiment.astro';
+import SchemaCouronneImplant from './SchemaCouronneImplant.astro';
 
 // Registre des schémas pédagogiques (prop `schema` des sections)
 const SCHEMAS: Record<string, any> = {
@@ -17,6 +20,9 @@ const SCHEMAS: Record<string, any> = {
   carie: SchemaCarie,
   'bridge-implant': SchemaBridgeImplant,
   greffe: SchemaGreffe,
+  dds: SchemaDDS,
+  blanchiment: SchemaBlanchiment,
+  'couronne-implant': SchemaCouronneImplant,
 };
 
 interface Section {
