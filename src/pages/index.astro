@@ -1,5 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import fs from 'node:fs';
+
+// Le portrait s'affiche automatiquement dès que public/portrait.jpg existe (même logique que /praticien)
+const hasPortrait = fs.existsSync(new URL('../../public/portrait.jpg', import.meta.url));
 
 // 4 familles médicales (architecture validée : pattern dentistes premium internationaux)
 // Le détail des soins individuels est sur la page /soins, chaque section ancrée
@@ -57,32 +61,31 @@ function iconSvg(name: string) {
     <div class="container-wide pt-12 md:pt-20 pb-16 md:pb-24">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-        <!-- Texte hero : H1 SEO + accroche tonale en sous-titre (reco agent) -->
+        <!-- Texte hero : accroche dominante (Newsreader), H1 SEO en strapline -->
         <div>
-          <span class="eyebrow mb-7">Chirurgien-dentiste · Colombes (92)</span>
+          <span class="eyebrow mb-6 fade-up-1">Chirurgien-dentiste · Colombes (92)</span>
 
-          <h1 class="text-[28px] md:text-[34px] lg:text-[38px] leading-[1.2] tracking-tight mb-5 fade-up" style="color: var(--color-teal-800)">
-            Dentisterie adhésive et implantologie<br>
-            <span class="text-ink-700">— Dr Sohaïb Kebieche, Colombes</span>
+          <h1 class="text-[15px] md:text-[16px] font-semibold tracking-tight mb-4 fade-up-1" style="font-family: var(--font-body); color: var(--color-teal-700); line-height: 1.4">
+            Dentisterie adhésive et implantologie — Dr Sohaïb Kebieche, Colombes
           </h1>
 
-          <p class="text-[24px] md:text-[28px] lg:text-[32px] leading-[1.2] mb-6 max-w-xl" style="font-family: var(--font-display); color: var(--color-ink-900); font-weight: 500;">
+          <p class="text-[38px] md:text-[48px] lg:text-[54px] leading-[1.08] tracking-tight mb-6 max-w-xl fade-up-2" style="font-family: var(--font-display); color: var(--color-ink-900); font-weight: 500;">
             Une dentisterie qui prend le temps de vous expliquer.
           </p>
 
-          <p class="text-[16px] md:text-[17px] text-ink-700 leading-[1.65] max-w-xl mb-7">
+          <p class="text-[16px] md:text-[17px] text-ink-700 leading-[1.65] max-w-xl mb-7 fade-up-3">
             Conserver vos dents quand c'est possible, les remplacer mieux quand ce ne l'est plus. Implantologie, parodontologie et dentisterie adhésive, à Colombes — quartier des Vallées.
           </p>
 
-          <!-- Badges expertise above-the-fold -->
-          <div class="flex flex-wrap gap-2 mb-8">
-            <span class="badge-expertise">D.U. Implantologie · Évry Paris-Saclay 2024</span>
-            <span class="badge-expertise">D.U. Parodontologie · Côte d'Azur 2025</span>
-            <span class="badge-expertise">Expérience hospitalière · chirurgie orale</span>
-            <span class="badge-expertise">Prix de thèse · Très Honorable</span>
+          <!-- Badges expertise above-the-fold, cliquables vers les pages liées -->
+          <div class="flex flex-wrap gap-2 mb-8 fade-up-4">
+            <a href="/soins/implantologie-chirurgie" class="badge-expertise hover:border-teal-300 transition-colors">D.U. Implantologie · Évry Paris-Saclay 2024</a>
+            <a href="/soins/parodontologie" class="badge-expertise hover:border-teal-300 transition-colors">D.U. Parodontologie · Côte d'Azur 2025</a>
+            <a href="/praticien" class="badge-expertise hover:border-teal-300 transition-colors">Expérience hospitalière · chirurgie orale</a>
+            <a href="/praticien" class="badge-expertise hover:border-teal-300 transition-colors">Prix de thèse · Très Honorable</a>
           </div>
 
-          <div class="flex flex-wrap gap-3">
+          <div class="flex flex-wrap gap-3 fade-up-5">
             <a href="https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile" target="_blank" rel="noopener" class="btn btn-primary">
               Prendre rendez-vous
             </a>
@@ -92,21 +95,39 @@ function iconSvg(name: string) {
             </a>
           </div>
 
-          <a href="https://g.page/r/CSAhN9X9DtepEBM" target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-6 text-[13.5px] font-medium hover:underline underline-offset-4" style="color: var(--color-copper-600)">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.38L17.8 20.5 12 17.27 6.2 20.5l1.05-6.85L2.5 9.27l6.6-1.01L12 2z"/></svg>
-            Les avis des patients sur Google →
-          </a>
+          <div class="fade-up-5">
+            <a href="https://g.page/r/CSAhN9X9DtepEBM" target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-6 text-[13.5px] font-medium hover:underline underline-offset-4" style="color: var(--color-copper-600)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L21.5 9.27l-4.75 4.38L17.8 20.5 12 17.27 6.2 20.5l1.05-6.85L2.5 9.27l6.6-1.01L12 2z"/></svg>
+              Les avis des patients sur Google →
+            </a>
+            <span class="block mt-3 text-[13px] text-ink-500">Le cabinet accueille de nouveaux patients · Conventionné, carte Vitale acceptée</span>
+          </div>
         </div>
 
-        <!-- Mockup photo praticien -->
-        <div class="relative aspect-[4/5] rounded-2xl overflow-hidden" style="background: var(--color-copper-400)">
-          <div class="absolute inset-0 flex items-center justify-center">
-            <span class="text-[14px] italic" style="color: rgba(255,255,255,0.65); font-family: var(--font-display)">Portrait clinique</span>
+        <!-- Portrait (auto dès dépôt de public/portrait.jpg) ou composition de marque -->
+        {hasPortrait ? (
+          <div class="relative aspect-[4/3] md:aspect-[4/5] rounded-2xl overflow-hidden fade-up-3">
+            <img src="/portrait.jpg" alt="Dr Sohaïb Kebieche, chirurgien-dentiste à Colombes" class="absolute inset-0 w-full h-full object-cover" />
           </div>
-          <div class="absolute bottom-4 left-4 text-[11px] px-2.5 py-1 rounded" style="background: var(--color-teal-800); color: var(--color-cream-50)">
-            Photographie à venir
+        ) : (
+          <div class="relative aspect-[4/3] md:aspect-[4/5] rounded-2xl overflow-hidden section-dark fade-up-3">
+            <svg class="absolute inset-0 w-full h-full opacity-[0.06]" aria-hidden="true">
+              <defs>
+                <pattern id="trame-hero" width="28" height="28" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1.1" fill="#C09A5F" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#trame-hero)" />
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-10 gap-5">
+              <span class="text-[64px] md:text-[84px] leading-none" style="font-family: var(--font-display); color: var(--color-cream-50)">K</span>
+              <span class="block w-12 h-px" style="background: var(--color-copper-400)"></span>
+              <p class="text-[18px] md:text-[21px] leading-[1.45] max-w-[300px]" style="font-family: var(--font-display); color: var(--color-cream-100)">
+                Conserver d'abord.<br>Remplacer durablement.<br>Expliquer toujours.
+              </p>
+            </div>
           </div>
-        </div>
+        )}
 
       </div>
     </div>
@@ -267,7 +288,45 @@ function iconSvg(name: string) {
   </section>
 
 
-  <!-- LE CABINET -->
+  <!-- VOTRE PREMIÈRE VISITE — parcours en 3 temps (pattern leaders internationaux) -->
+  <section class="py-20 md:py-28">
+    <div class="container-wide">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <span class="eyebrow mb-4">Votre première visite</span>
+        <h2 class="text-[32px] md:text-[42px] leading-[1.12] tracking-tight">
+          Un déroulé simple, sans surprise.
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 mb-10">
+        <div class="card" data-reveal data-reveal-delay="0">
+          <div class="text-[40px] leading-none mb-4" style="font-family: var(--font-display); color: var(--color-copper-400)">1</div>
+          <h3 class="text-[19px] font-medium mb-2.5">Examen complet</h3>
+          <p class="text-[14px] text-ink-700 leading-[1.65]">Votre histoire, vos attentes, l'examen clinique — et les radiographies si nécessaire. Environ 45 minutes.</p>
+        </div>
+        <div class="card" data-reveal data-reveal-delay="120">
+          <div class="text-[40px] leading-none mb-4" style="font-family: var(--font-display); color: var(--color-copper-400)">2</div>
+          <h3 class="text-[19px] font-medium mb-2.5">Explications, schémas à l'appui</h3>
+          <p class="text-[14px] text-ink-700 leading-[1.65]">Ce qui a été observé, ce qui est proposé et pourquoi — avec les pages de ce site en support, à relire chez vous.</p>
+        </div>
+        <div class="card" data-reveal data-reveal-delay="240">
+          <div class="text-[40px] leading-none mb-4" style="font-family: var(--font-display); color: var(--color-copper-400)">3</div>
+          <h3 class="text-[19px] font-medium mb-2.5">Devis remis avant tout soin</h3>
+          <p class="text-[14px] text-ink-700 leading-[1.65]">Un plan de traitement écrit et chiffré. Rien n'est engagé sans votre accord — vous décidez à tête reposée.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-3 text-[13.5px] text-ink-700" data-reveal>
+        <a href="/conseils/premiere-consultation" class="font-medium inline-flex items-center gap-1.5" style="color: var(--color-teal-700)">
+          Comment se passe la première consultation →
+        </a>
+        <span class="text-ink-500">Patient anxieux ? Dites-le simplement à la prise de rendez-vous : le déroulé s'adapte.</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- LE CABINET + plateau technique -->
   <section class="py-20 md:py-28" style="background: var(--color-cream-50)">
     <div class="container-wide">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -292,13 +351,42 @@ function iconSvg(name: string) {
           </a>
         </div>
 
-        <!-- Mockup photo cabinet -->
-        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden section-dark" data-reveal data-reveal-delay="160">
-          <div class="absolute inset-0 flex items-center justify-center">
-            <span class="text-[14px] italic opacity-65" style="font-family: var(--font-display)">Photographie du cabinet</span>
-          </div>
-          <div class="absolute bottom-4 left-4 text-[11px] px-2.5 py-1 rounded" style="background: var(--color-teal-700); color: var(--color-cream-50)">
-            Photographie à venir
+        <!-- Plateau technique (remplace le placeholder photo en attendant le shooting) -->
+        <div data-reveal data-reveal-delay="160">
+          <div class="rounded-2xl p-7 md:p-9 section-dark">
+            <div class="eyebrow mb-6">Le plateau technique</div>
+            <ul class="space-y-5">
+              <li class="flex gap-4 items-start">
+                <span class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center" style="background: rgba(255,255,255,0.08)">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color: var(--color-copper-300)"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="3" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </span>
+                <div>
+                  <div class="text-[15.5px] font-medium mb-0.5">Imagerie 3D (cone beam)</div>
+                  <p class="text-[13.5px] opacity-75 leading-[1.6]">Chaque implant, chaque chirurgie est planifié avant le geste — jamais pendant.</p>
+                </div>
+              </li>
+              <li class="flex gap-4 items-start">
+                <span class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center" style="background: rgba(255,255,255,0.08)">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color: var(--color-copper-300)"><path d="M15 5l4 4L8 20l-5 1 1-5L15 5z"/><path d="M13 7l4 4"/></svg>
+                </span>
+                <div>
+                  <div class="text-[15.5px] font-medium mb-0.5">Empreinte optique</div>
+                  <p class="text-[13.5px] opacity-75 leading-[1.6]">Des empreintes numériques à la caméra — sans pâte, plus confortables, plus précises.</p>
+                </div>
+              </li>
+              <li class="flex gap-4 items-start">
+                <span class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center" style="background: rgba(255,255,255,0.08)">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color: var(--color-copper-300)"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="12" cy="12" r="4"/></svg>
+                </span>
+                <div>
+                  <div class="text-[15.5px] font-medium mb-0.5">Collages sous digue</div>
+                  <p class="text-[13.5px] opacity-75 leading-[1.6]">Un champ opératoire étanche, systématique : la condition d'une dentisterie adhésive durable.</p>
+                </div>
+              </li>
+            </ul>
+            <a href="/cabinet" class="inline-flex items-center gap-2 mt-7 text-[13.5px] font-medium" style="color: var(--color-copper-300)">
+              Découvrir l'équipement du cabinet →
+            </a>
           </div>
         </div>
 
