@@ -51,8 +51,8 @@
      Display : Newsreader (serif contemporain droit, élégant, médical-friendly)
      Body : Inter (sans-serif moderne, ultra lisible, signal tech-savvy)
   */
-  --font-display: "Newsreader", "GT Sectra", "Tiempos Headline", Georgia, serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-display: "Newsreader Variable", "Newsreader", Georgia, serif;
+  --font-body: "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
 
   /* Easings */
   --ease-soft: cubic-bezier(0.32, 0.72, 0, 1);
