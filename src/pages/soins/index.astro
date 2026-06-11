@@ -54,14 +54,37 @@ const familles = [
   },
 ];
 
+// Vignettes mini-schémas : dessin au trait par famille (cohérent avec les schémas pédagogiques)
 function iconSvg(name: string) {
-  const c = 'stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"';
+  const c = 'fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
   switch (name) {
-    case 'circle':       return `<svg width="22" height="22" viewBox="0 0 24 24" ${c}><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>`;
-    case 'diamond':      return `<svg width="22" height="22" viewBox="0 0 24 24" ${c}><polygon points="12 3 21 12 12 21 3 12"/></svg>`;
-    case 'wave':         return `<svg width="22" height="22" viewBox="0 0 24 24" ${c}><path d="M3 12 Q 8 4 12 12 T 21 12"/></svg>`;
-    case 'plus':         return `<svg width="22" height="22" viewBox="0 0 24 24" ${c}><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
-    default:             return '';
+    case 'circle': // implant : couronne + pilier + vis
+      return `<svg width="44" height="44" viewBox="0 0 48 48" ${c}>
+        <path d="M16 15 q8 -8 16 0 l-1.5 6 h-13 z"/>
+        <path d="M21 21 h6 v3.5 h-6 z"/>
+        <path d="M20 24.5 h8 l-1.3 13 q-2.7 4.5 -5.4 0 z"/>
+        <line x1="20.6" y1="29" x2="27.4" y2="29"/>
+        <line x1="21" y1="33" x2="27" y2="33"/>
+      </svg>`;
+    case 'wave': // paro : dent + ligne de gencive
+      return `<svg width="44" height="44" viewBox="0 0 48 48" ${c}>
+        <path d="M17 14 q7 -6 14 0 q3.5 3 2.5 9 q-1 7 -3.5 12 q-1.8 3.5 -3.4 -1.5 q-1.2 -4 -2.6 -4 q-1.4 0 -2.6 4 q-1.6 5 -3.4 1.5 q-2.5 -5 -3.5 -12 q-1 -6 2.5 -9 z"/>
+        <path d="M8 22 q5 -4 10 -1.5" />
+        <path d="M30 20.5 q5 -2.5 10 1.5" />
+      </svg>`;
+    case 'diamond': // adhésif : dent + pièce céramique (vue éclatée)
+      return `<svg width="44" height="44" viewBox="0 0 48 48" ${c}>
+        <path d="M17 22 q7 -5 14 0 q3.5 3 2.5 8 q-1 6 -3.5 10 q-1.8 3 -3.4 -1.2 q-1.2 -3.5 -2.6 -3.5 q-1.4 0 -2.6 3.5 q-1.6 4.2 -3.4 1.2 q-2.5 -4 -3.5 -10 q-1 -5 2.5 -8 z"/>
+        <polygon points="24 6 29 11 24 16 19 11"/>
+        <line x1="24" y1="17.5" x2="24" y2="20.5"/>
+      </svg>`;
+    case 'plus': // quotidien : dent + croix de soin
+      return `<svg width="44" height="44" viewBox="0 0 48 48" ${c}>
+        <path d="M15 18 q8 -7 16 0 q4 3.5 3 10 q-1.2 8 -4 13.5 q-2 4 -3.8 -1.5 q-1.4 -4.5 -3.2 -4.5 q-1.8 0 -3.2 4.5 q-1.8 5.5 -3.8 1.5 q-2.8 -5.5 -4 -13.5 q-1 -6.5 3 -10 z"/>
+        <line x1="37" y1="7" x2="37" y2="15"/>
+        <line x1="33" y1="11" x2="41" y2="11"/>
+      </svg>`;
+    default: return '';
   }
 }
 ---
@@ -93,12 +116,12 @@ function iconSvg(name: string) {
   <section class="container-wide pb-24 md:pb-32">
     <div class="space-y-6 md:space-y-8">
       {familles.map((f, idx) => (
-        <article class="card p-7 md:p-10" data-reveal data-reveal-delay={(idx * 120).toString()}>
+        <article class="card p-7 md:p-10" style={idx % 2 === 1 ? 'background: var(--color-teal-50)' : undefined} data-reveal data-reveal-delay={(idx * 120).toString()}>
           <div class="grid md:grid-cols-[1fr_1.4fr] gap-8 md:gap-12 items-start">
 
-            <!-- Colonne gauche : icon + titre + intro -->
+            <!-- Colonne gauche : vignette + titre + intro -->
             <div>
-              <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6" style="background: var(--color-cream-200); color: var(--color-teal-800)">
+              <div class="w-16 h-16 rounded-xl flex items-center justify-center mb-6" style={`background: ${idx % 2 === 1 ? 'var(--color-cream-50)' : 'var(--color-cream-200)'}; color: var(--color-teal-800)`}>
                 <Fragment set:html={iconSvg(f.icon)} />
               </div>
               <h2 class="text-[24px] md:text-[28px] font-medium mb-4" style="font-family: var(--font-display)">{f.titre}</h2>

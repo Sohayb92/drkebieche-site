@@ -21,49 +21,100 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
 
-  <section class="container-prose pb-12 prose-soin">
+  <!-- Deux familles d'actes : 2 cards -->
+  <section class="container-wide pb-16 md:pb-20">
+    <div class="max-w-4xl">
+      <div data-reveal>
+        <h2 class="text-[26px] md:text-[32px] font-medium mb-3 leading-[1.2]" style="font-family: var(--font-display)">
+          Comment sont fixés les honoraires
+        </h2>
+        <p class="text-[16px] text-ink-700 mb-8">
+          Deux familles d'actes coexistent en dentisterie :
+        </p>
+      </div>
 
-    <h2>Comment sont fixés les honoraires</h2>
+      <div class="grid md:grid-cols-2 gap-5 md:gap-6">
+        <div class="card" data-reveal>
+          <div class="eyebrow mb-4">Tarifs conventionnés</div>
+          <h3 class="text-[20px] font-medium mb-3" style="font-family: var(--font-display)">
+            Les soins du quotidien
+          </h3>
+          <p class="text-[15px] text-ink-700 leading-[1.7]">
+            Consultations, soins des caries, détartrage, traitements des racines, la plupart des extractions. Ils sont facturés aux tarifs fixés par la convention avec l'Assurance Maladie.
+          </p>
+        </div>
+        <div class="card" data-reveal data-reveal-delay="100">
+          <div class="eyebrow mb-4">Honoraires libres (entente directe)</div>
+          <h3 class="text-[20px] font-medium mb-3" style="font-family: var(--font-display)">
+            Les actes sur devis
+          </h3>
+          <p class="text-[15px] text-ink-700 leading-[1.7]">
+            Restaurations céramiques (inlays, onlays, overlays), couronnes et bridges, implants, greffes, chirurgie parodontale, blanchiment. Leur montant dépend du cas clinique : il est précisé sur le devis, jamais engagé sans votre accord.
+          </p>
+        </div>
+      </div>
 
-    <p>
-      Deux familles d'actes coexistent en dentisterie :
-    </p>
+      <p class="mt-8 text-[15px] text-ink-700 leading-[1.7] max-w-3xl" data-reveal>
+        Le montant exact de chaque acte dépend de la situation clinique (nombre de faces d'une restauration, complexité d'une extraction, volume d'une greffe). C'est précisément le rôle du devis : chiffrer <em>votre</em> cas, pas un cas moyen.
+      </p>
+    </div>
+  </section>
 
-    <ul>
-      <li><strong>Les soins aux tarifs conventionnés</strong> — consultations, soins des caries, détartrage, traitements des racines, la plupart des extractions. Ils sont facturés aux tarifs fixés par la convention avec l'Assurance Maladie.</li>
-      <li><strong>Les actes à honoraires libres (entente directe)</strong> — restaurations céramiques (inlays, onlays, overlays), couronnes et bridges, implants, greffes, chirurgie parodontale, blanchiment. Leur montant dépend du cas clinique : il est précisé sur le devis, jamais engagé sans votre accord.</li>
-    </ul>
 
-    <p>
-      Le montant exact de chaque acte dépend de la situation clinique (nombre de faces d'une restauration, complexité d'une extraction, volume d'une greffe). C'est précisément le rôle du devis : chiffrer <em>votre</em> cas, pas un cas moyen.
-    </p>
+  <!-- Prise en charge : 60 % en display -->
+  <section class="py-16 md:py-20" style="background: var(--color-cream-50)">
+    <div class="container-wide">
+      <div class="max-w-4xl grid md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-center" data-reveal>
+        <div class="text-center md:text-left">
+          <div class="text-[72px] md:text-[88px] leading-none" style="font-family: var(--font-display); color: var(--color-teal-800)">
+            60<span class="text-[40px] md:text-[48px]" style="color: var(--color-copper-500)">%</span>
+          </div>
+          <div class="mt-2 text-[12px] uppercase tracking-[0.16em] font-semibold" style="color: var(--color-ink-500)">
+            Assurance Maladie
+          </div>
+        </div>
+        <div>
+          <h2 class="text-[26px] md:text-[32px] font-medium mb-4 leading-[1.2]" style="font-family: var(--font-display)">
+            Prise en charge sécurité sociale & mutuelles
+          </h2>
+          <p class="text-[15.5px] text-ink-700 leading-[1.75]">
+            Le cabinet est <strong>conventionné</strong> (carte vitale acceptée). Les soins aux tarifs conventionnés sont pris en charge à <strong>60%</strong> par l'Assurance Maladie, le complément par votre mutuelle. Les actes à honoraires libres sont remboursés sur une base Sécurité sociale plus faible, complétée selon votre contrat de mutuelle.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <h2>Prise en charge sécurité sociale & mutuelles</h2>
 
-    <p>
-      Le cabinet est <strong>conventionné</strong> (carte vitale acceptée). Les soins aux tarifs conventionnés sont pris en charge à <strong>60%</strong> par l'Assurance Maladie, le complément par votre mutuelle. Les actes à honoraires libres sont remboursés sur une base Sécurité sociale plus faible, complétée selon votre contrat de mutuelle.
-    </p>
+  <!-- Le devis : 3 mini-cards -->
+  <section class="container-wide py-16 md:py-20">
+    <div class="max-w-4xl">
+      <h2 class="text-[26px] md:text-[32px] font-medium mb-8 leading-[1.2]" style="font-family: var(--font-display)" data-reveal>
+        Le devis détaillé remis systématiquement indique
+      </h2>
+      <div class="grid sm:grid-cols-3 gap-5">
+        {[
+          { n: '1', titre: 'Le tarif total', texte: 'Chiffré pour votre cas précis, poste par poste.' },
+          { n: '2', titre: 'La base de remboursement', texte: "Le montant pris en compte par l'Assurance Maladie." },
+          { n: '3', titre: 'Le code CCAM', texte: 'Pour transmission à votre mutuelle.' },
+        ].map((item, idx) => (
+          <div class="card !p-6" data-reveal data-reveal-delay={(idx * 90).toString()}>
+            <div class="text-[34px] leading-none mb-3" style="font-family: var(--font-display); color: var(--color-copper-500)">{item.n}</div>
+            <div class="text-[16px] font-semibold mb-1.5">{item.titre}</div>
+            <p class="text-[13.5px] text-ink-500 leading-[1.6]">{item.texte}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-8 text-[15px] text-ink-700 leading-[1.7] max-w-3xl" data-reveal>
+        Le devis peut être adressé à votre mutuelle pour connaître votre niveau de prise en charge avant de programmer les soins. C'est important pour décider sereinement.
+      </p>
 
-    <p>
-      <strong>Le devis détaillé remis systématiquement indique</strong> :
-    </p>
-
-    <ul>
-      <li>Le tarif total</li>
-      <li>La base de remboursement de l'Assurance Maladie</li>
-      <li>Le code CCAM (pour transmission à votre mutuelle)</li>
-    </ul>
-
-    <p>
-      Le devis peut être adressé à votre mutuelle pour connaître votre niveau de prise en charge avant de programmer les soins. C'est important pour décider sereinement.
-    </p>
-
-    <h2>Moyens de paiement</h2>
-
-    <p>
-      Cartes bancaires, chèques, espèces. Paiement en plusieurs fois possible sur les plans de traitement importants — à discuter en consultation.
-    </p>
-
+      <div class="mt-10 flex gap-4 items-start rounded-2xl p-5 md:p-6" style="background: var(--color-cream-200); border-left: 3px solid var(--color-copper-400)" data-reveal>
+        <p class="text-[14px] text-ink-700 leading-[1.65]">
+          <strong>Moyens de paiement</strong> — Cartes bancaires, chèques, espèces. Paiement en plusieurs fois possible sur les plans de traitement importants — à discuter en consultation.
+        </p>
+      </div>
+    </div>
   </section>
 
 
