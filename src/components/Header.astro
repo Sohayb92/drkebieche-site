@@ -4,19 +4,22 @@ const isActive = (path: string) => {
   if (path === '/') return pathname === '/';
   return pathname === path || pathname.startsWith(path + '/');
 };
+const DOCTOLIB = 'https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile';
 ---
 
-<!-- Barre urgence (top) -->
-<div class="hidden md:block text-[12px] text-center py-2 border-b border-cream-300" style="background: var(--color-cream-50); color: var(--color-ink-700);">
-  En cas d'urgence dentaire pendant les heures d'ouverture, appelez le cabinet :
-  <a href="tel:+33142429469" class="font-medium" style="color: var(--color-copper-500)">01 42 42 94 69</a>
-  · En dehors des horaires, contactez le <strong>15 (Samu)</strong>.
+<!-- Barre urgence (top) — visible aussi en mobile, compacte et cliquable -->
+<div class="text-[12px] text-center py-2 border-b border-cream-300" style="background: var(--color-cream-50); color: var(--color-ink-700);">
+  <span class="hidden md:inline">En cas d'urgence dentaire pendant les heures d'ouverture, appelez le cabinet :</span>
+  <span class="md:hidden">Urgence ?</span>
+  <a href="tel:+33142429469" class="font-semibold whitespace-nowrap" style="color: var(--color-copper-600)">01 42 42 94 69</a>
+  <span class="hidden md:inline">· En dehors des horaires, contactez le <strong>15 (Samu)</strong>.</span>
+  <span class="md:hidden">· hors horaires : le <strong>15</strong></span>
 </div>
 
-<header class="sticky top-0 z-50 backdrop-blur-xl border-b border-cream-200" style="background: rgba(248, 246, 241, 0.92)">
-  <div class="container-wide flex items-center justify-between h-16 md:h-20">
-    <a href="/" class="flex items-baseline gap-3 group">
-      <span class="text-[20px] md:text-[22px] font-display tracking-tight text-ink-900">
+<header class="site-header sticky top-0 z-50 backdrop-blur-xl border-b border-cream-200" style="background: rgba(248, 246, 241, 0.92)">
+  <div class="container-wide flex items-center justify-between h-16 md:h-20 gap-3">
+    <a href="/" class="flex items-baseline gap-3 group min-w-0">
+      <span class="text-[18px] md:text-[22px] font-display tracking-tight text-ink-900 truncate">
         Dr <span class="italic">Sohaïb</span> Kebieche
       </span>
     </a>
@@ -27,39 +30,101 @@ const isActive = (path: string) => {
       <a href="/conseils" class={`nav-link ${isActive('/conseils') ? 'active' : ''}`}>Conseils patient</a>
       <a href="/cabinet" class={`nav-link ${isActive('/cabinet') ? 'active' : ''}`}>Le cabinet</a>
       <a href="/honoraires" class={`nav-link ${isActive('/honoraires') ? 'active' : ''}`}>Honoraires</a>
-      <a
-        href="https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile"
-        target="_blank"
-        rel="noopener"
-        class="btn btn-secondary !py-2 !px-4 !text-[14px] ml-3"
-      >
+      <a href="/contact" class={`nav-link ${isActive('/contact') ? 'active' : ''}`}>Contact</a>
+      <a href={DOCTOLIB} target="_blank" rel="noopener" class="btn btn-secondary !py-2 !px-4 !text-[14px] ml-3">
         Prendre RDV
       </a>
     </nav>
 
-    <button id="mobile-menu-btn" class="md:hidden p-2 -mr-2" aria-label="Menu">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-        <line x1="3" y1="7" x2="21" y2="7"/>
-        <line x1="3" y1="17" x2="21" y2="17"/>
-      </svg>
-    </button>
+    <!-- Mobile : CTA RDV persistant + burger -->
+    <div class="flex md:hidden items-center gap-1.5">
+      <a href={DOCTOLIB} target="_blank" rel="noopener" class="btn btn-primary !py-2 !px-3.5 !text-[13px] whitespace-nowrap">
+        Prendre RDV
+      </a>
+      <button id="mobile-menu-btn" class="p-2 -mr-2" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line class="burger-top" x1="3" y1="7" x2="21" y2="7"/>
+          <line class="burger-bottom" x1="3" y1="17" x2="21" y2="17"/>
+        </svg>
+      </button>
+    </div>
   </div>
 
-  <!-- Mobile drawer -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-cream-200 px-6 py-5 space-y-1">
-    <a href="/praticien" class="block py-2.5 text-[16px] font-medium">Le praticien</a>
-    <a href="/soins" class="block py-2.5 text-[16px] font-medium">Soins</a>
-    <a href="/conseils" class="block py-2.5 text-[16px] font-medium">Conseils patient</a>
-    <a href="/cabinet" class="block py-2.5 text-[16px] font-medium">Le cabinet</a>
-    <a href="/honoraires" class="block py-2.5 text-[16px] font-medium">Honoraires</a>
-    <a href="https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile" target="_blank" rel="noopener" class="btn btn-primary w-full mt-4 !justify-center">Prendre RDV</a>
+  <!-- Mobile drawer (animé : grid-rows 0fr → 1fr + stagger des liens) -->
+  <div id="mobile-menu" class="md:hidden drawer">
+    <div class="drawer-inner">
+      <nav class="border-t border-cream-200 px-6 py-5 space-y-1">
+        <a href="/praticien" class="drawer-link block py-2.5 text-[16px] font-medium">Le praticien</a>
+        <a href="/soins" class="drawer-link block py-2.5 text-[16px] font-medium">Soins</a>
+        <a href="/conseils" class="drawer-link block py-2.5 text-[16px] font-medium">Conseils patient</a>
+        <a href="/cabinet" class="drawer-link block py-2.5 text-[16px] font-medium">Le cabinet</a>
+        <a href="/honoraires" class="drawer-link block py-2.5 text-[16px] font-medium">Honoraires</a>
+        <a href="/contact" class="drawer-link block py-2.5 text-[16px] font-medium">Contact</a>
+        <a href={DOCTOLIB} target="_blank" rel="noopener" class="drawer-link btn btn-primary w-full mt-4 !justify-center">Prendre RDV</a>
+      </nav>
+    </div>
   </div>
 </header>
+
+<style>
+  /* Drawer : hauteur animée sans JS de mesure (grid-template-rows) */
+  .drawer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s var(--ease-soft);
+  }
+  .drawer-inner {
+    overflow: hidden;
+  }
+  .drawer.open {
+    grid-template-rows: 1fr;
+  }
+
+  /* Stagger des liens à l'ouverture */
+  .drawer-link {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s var(--ease-soft), transform 0.3s var(--ease-soft);
+  }
+  .drawer.open .drawer-link { opacity: 1; transform: none; }
+  .drawer.open .drawer-link:nth-child(1) { transition-delay: 0.05s; }
+  .drawer.open .drawer-link:nth-child(2) { transition-delay: 0.09s; }
+  .drawer.open .drawer-link:nth-child(3) { transition-delay: 0.13s; }
+  .drawer.open .drawer-link:nth-child(4) { transition-delay: 0.17s; }
+  .drawer.open .drawer-link:nth-child(5) { transition-delay: 0.21s; }
+  .drawer.open .drawer-link:nth-child(6) { transition-delay: 0.25s; }
+  .drawer.open .drawer-link:nth-child(7) { transition-delay: 0.3s; }
+
+  /* Burger → croix */
+  .burger-top, .burger-bottom {
+    transition: transform 0.3s var(--ease-soft);
+  }
+  .burger-top { transform-origin: 12px 7px; }
+  .burger-bottom { transform-origin: 12px 17px; }
+  #mobile-menu-btn[aria-expanded="true"] .burger-top {
+    transform: translateY(5px) rotate(45deg);
+  }
+  #mobile-menu-btn[aria-expanded="true"] .burger-bottom {
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .drawer, .drawer-link, .burger-top, .burger-bottom { transition: none; }
+  }
+</style>
 
 <script>
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
   if (btn && menu) {
-    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    const setOpen = (open: boolean) => {
+      menu.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    };
+    btn.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) setOpen(false);
+    });
   }
 </script>

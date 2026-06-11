@@ -98,8 +98,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
   })} />
 </head>
 <body>
+  <a href="#contenu" class="skip-link">Aller au contenu</a>
   <Header />
-  <main>
+  <main id="contenu">
     <slot />
   </main>
   <Footer />
@@ -118,11 +119,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           const delay = parseInt(entry.target.dataset.revealDelay || '0', 10);
-          if (delay > 0) {
-            setTimeout(() => entry.target.classList.add('visible'), delay);
-          } else {
-            entry.target.classList.add('visible');
-          }
+          if (delay > 0) entry.target.style.transitionDelay = delay + 'ms';
+          entry.target.classList.add('visible');
           io.unobserve(entry.target);
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });

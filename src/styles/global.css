@@ -66,7 +66,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: -0.01em;
-    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
   }
 
   body {
@@ -151,10 +154,41 @@
     background: var(--color-teal-50);
   }
 
+  /* Boutons sur fonds sombres (section-dark, blocs teal) */
+  .btn-light {
+    background: var(--color-cream-50);
+    color: var(--color-teal-800);
+  }
+  .btn-light:hover {
+    background: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.35);
+  }
+  .btn-outline-light {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: var(--color-cream-50);
+    background: transparent;
+  }
+  .btn-outline-light:hover {
+    border-color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
   .card {
     @apply rounded-2xl p-7 md:p-9;
     background: var(--color-cream-50);
     border: 1px solid var(--color-cream-300);
+  }
+
+  /* Cards cliquables : feedback hover digne (lift + ombre), repos légèrement détaché */
+  a.card {
+    box-shadow: 0 1px 2px rgba(31, 58, 61, 0.04);
+    transition: transform 0.35s var(--ease-soft), box-shadow 0.35s var(--ease-soft), border-color 0.25s ease;
+  }
+  a.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 44px -18px rgba(31, 58, 61, 0.22);
+    border-color: var(--color-teal-300);
   }
 
   .eyebrow {
@@ -275,6 +309,33 @@
   .fade-up {
     animation: fadeUp 0.8s var(--ease-soft) both;
   }
+
+  /* Chorégraphie d'entrée du hero : cascade eyebrow → titre → accroche → badges → CTA */
+  .fade-up-1, .fade-up-2, .fade-up-3, .fade-up-4, .fade-up-5 {
+    animation: fadeUp 0.7s var(--ease-soft) both;
+  }
+  .fade-up-1 { animation-delay: 0.05s; }
+  .fade-up-2 { animation-delay: 0.14s; }
+  .fade-up-3 { animation-delay: 0.24s; }
+  .fade-up-4 { animation-delay: 0.34s; }
+  .fade-up-5 { animation-delay: 0.46s; }
+
+  /* Lien d'évitement clavier */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 12px;
+    z-index: 100;
+    padding: 10px 18px;
+    border-radius: 6px;
+    background: var(--color-teal-800);
+    color: var(--color-cream-50);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .skip-link:focus-visible {
+    left: 12px;
+  }
 }
 
 @keyframes fadeUp {
@@ -291,19 +352,40 @@
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.85s var(--ease-soft), transform 0.85s var(--ease-soft);
-  will-change: opacity, transform;
 }
 [data-reveal].visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ── View transitions natives (sensation "app" entre pages, zéro JS) ── */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: var(--ease-soft);
+}
+.site-header {
+  view-transition-name: site-header;
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] {
     opacity: 1;
     transform: none;
     transition: none;
   }
-  .fade-up {
+  .fade-up,
+  .fade-up-1, .fade-up-2, .fade-up-3, .fade-up-4, .fade-up-5 {
     animation: none;
+  }
+  @view-transition {
+    navigation: none;
+  }
+  a.card,
+  a.card:hover {
+    transform: none;
   }
 }

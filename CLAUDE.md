@@ -47,7 +47,7 @@ DA validée 2026-05-21 :
 - **Doctolib (tous les CTA)** : `https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile`
 - **Email public** : cabinetdentaire.lacabane@gmail.com · **Tél** : 01 42 42 94 69
 - **Sécu rembourse 60%** (réforme — plus jamais écrire 70%)
-- **Bio** : hospitalier TOUJOURS en parallèle du cabinet (jamais "hôpital puis cabinet") · relativiser l'hôpital ("attaché en chirurgie orale", lieu facultatif) · NE PLUS citer le GHT NOVO Pontoise · 1er cabinet = Paris 8e chez un implantologiste expérimenté (compagnonnage) · APHP toujours au passé (arrêté 2025)
+- **Bio** : hospitalier TOUJOURS en parallèle du cabinet (jamais "hôpital puis cabinet") · relativiser l'hôpital ("attaché en chirurgie orale", lieu facultatif) · NE PLUS citer le GHT NOVO Pontoise · 1er cabinet = Clichy, puis Paris 8e chez un implantologiste expérimenté (compagnonnage) · hospitalier toujours au passé (arrêté 2025) · **NE JAMAIS écrire « AP-HP »** (c'était probablement Max Fourestier/Nanterre — sur le site : « expérience hospitalière en chirurgie orale » sans établissement)
 - **DU implanto** : "Université d'Évry Paris-Saclay (2024)" (forme unique)
 - **Maintenance paro 6 mois · contrôle+radios+détartrage 1×/an · blanchiment 2h/j 4-6 sem, résultat 3-5 ans**
 - Domaine canonique : **drkebieche.fr** (.com en 301)
