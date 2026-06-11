@@ -8,8 +8,19 @@ const sections = [
     schema: 'carie',
     description: `
       <p>Une carie progresse <strong>de l’extérieur vers l’intérieur</strong> de la dent : l’émail, puis la dentine, puis le nerf. Au début, elle ne fait pas mal — c’est justement le bon moment pour la traiter.</p>
-      <p><strong>Quand la traiter.</strong> Dès qu’elle est détectée : une carie ne régresse jamais d’elle-même.</p>
+      <p><strong>Quand la traiter.</strong> Dès qu’elle est détectée : une carie installée ne régresse plus d’elle-même.</p>
+      <p><strong>Une exception, au tout premier stade.</strong> Une lésion débutante limitée à l’émail, sans cavité, peut encore être <strong>reminéralisée ou stoppée</strong> — fluor, hygiène ciblée, surveillance régulière. C’est ce qu’on appelle une « carie arrêtée », et c’est tout l’intérêt du dépistage précoce. Dès qu’une cavité s’est formée, en revanche, seul un soin répare la dent.</p>
       <p><strong>Ce que cela évite.</strong> Traitée tôt : un petit composite, une séance. Traitée tard : dévitalisation, couronne, parfois extraction. Plus l’attente est longue, plus la perte de dent est importante — et la douleur n’arrive que lorsque le nerf est déjà touché.</p>
+    `,
+  },
+  {
+    id: 'endodontie',
+    titre: 'Traitement de racine (dévitalisation)',
+    schema: 'endodontie',
+    description: `
+      <p>Quand une carie profonde atteint le nerf, ou qu’une dent est fracturée ou infectée, elle peut le plus souvent être conservée grâce au <strong>traitement endodontique</strong> — la « dévitalisation » : les canaux de la racine sont nettoyés, désinfectés, puis obturés de façon étanche.</p>
+      <p><strong>Comment ça se passe.</strong> Sous anesthésie locale et <strong>sous digue</strong> — le champ opératoire qui isole la dent de la salive, condition d’une désinfection fiable — en une à deux séances selon la dent. Le traitement n’est pas douloureux : c’est lui qui supprime la douleur.</p>
+      <p><strong>Et après.</strong> Une dent dévitalisée devient plus cassante : elle est généralement protégée par un overlay ou une couronne, précisé sur le devis dès le départ.</p>
     `,
   },
   {
@@ -53,9 +64,9 @@ const sections = [
 
 <FamilySoinsPage
   pageTitle="Soins dentaires du quotidien à Colombes — Dr Sohaïb Kebieche"
-  pageDescription="Soins des caries, contrôle annuel, détartrage, urgences dentaires et blanchiment au cabinet du Dr Kebieche, Colombes (92)."
+  pageDescription="Soins des caries, traitement de racine (dévitalisation), contrôle annuel, détartrage, urgences dentaires et blanchiment au cabinet du Dr Kebieche, Colombes (92)."
   eyebrow="Famille de soins"
-  h1="Soins du quotidien — caries, détartrage, urgences, blanchiment — Colombes (92)"
+  h1="Soins du quotidien — caries, dévitalisations, détartrage, urgences, blanchiment — Colombes (92)"
   baseline="La base d’une bouche en bonne santé sur le long terme."
   intro="Toute la dentisterie courante au même endroit, dans la continuité des soins complexes. Le contrôle annuel, le détartrage, la prise en charge rapide des urgences et le blanchiment dentaire font partie intégrante d’une approche globale — pas un service distinct."
   sections={sections}

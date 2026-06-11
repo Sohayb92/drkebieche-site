@@ -12,6 +12,8 @@ import SchemaBlanchiment from './SchemaBlanchiment.astro';
 import SchemaCouronneImplant from './SchemaCouronneImplant.astro';
 import SchemaBrossage from './SchemaBrossage.astro';
 import SchemaBrossettes from './SchemaBrossettes.astro';
+import SchemaEndodontie from './SchemaEndodontie.astro';
+import SchemaCouronnes from './SchemaCouronnes.astro';
 
 // Registre des schémas pédagogiques (prop `schema` des sections)
 const SCHEMAS: Record<string, any> = {
@@ -27,13 +29,15 @@ const SCHEMAS: Record<string, any> = {
   'couronne-implant': SchemaCouronneImplant,
   brossage: SchemaBrossage,
   brossettes: SchemaBrossettes,
+  endodontie: SchemaEndodontie,
+  couronnes: SchemaCouronnes,
 };
 
 interface Section {
   id: string;
   titre: string;
-  description: string;  // HTML autorisé (set:html — contrôlé)
-  schema?: string;      // nom d’un schéma pédagogique à afficher après le texte
+  description: string;        // HTML autorisé (set:html — contrôlé)
+  schema?: string | string[]; // schéma(s) pédagogique(s) affiché(s) après le texte
 }
 
 interface RelatedLink {
@@ -127,7 +131,9 @@ const { pageTitle, pageDescription, eyebrow, h1, baseline, intro, sections, cta 
                 {s.titre}
               </h2>
               <div class="prose-soin" set:html={s.description}></div>
-              {Schema && <Schema />}
+              {Array.isArray(s.schema)
+                ? s.schema.map((name) => { const C = SCHEMAS[name]; return C ? <C /> : null; })
+                : (Schema && <Schema />)}
             </section>
           );
         })}
@@ -182,6 +188,9 @@ const { pageTitle, pageDescription, eyebrow, h1, baseline, intro, sections, cta 
             Écrire au cabinet
           </a>
         </div>
+        <p class="mt-7 text-[13.5px] text-ink-500">
+          Satisfait de votre prise en charge ? <a href="https://g.page/r/CSAhN9X9DtepEBM/review" target="_blank" rel="noopener" class="underline underline-offset-4" style="color: var(--color-teal-700)">Laisser un avis sur Google</a> aide d’autres patients à franchir le pas.
+        </p>
       </div>
     </section>
   ) : (
