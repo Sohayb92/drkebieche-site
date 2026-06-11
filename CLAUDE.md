@@ -51,7 +51,8 @@ DA validée 2026-05-21 :
 - **DU implanto** : "Université d'Évry Paris-Saclay (2024)" (forme unique)
 - **Maintenance paro 6 mois · contrôle+radios+détartrage 1×/an · blanchiment 2h/j 4-6 sem, résultat 3-5 ans**
 - Domaine canonique : **drkebieche.fr** (.com en 301)
-- Honoraires : PAS de grilles chiffrées sur actes opposables (risque CPAM) — devis systématique
+- Honoraires : PAS de grilles chiffrées sur actes opposables (risque CPAM) — devis systématique · PAS de mention « 100% santé / reste à charge 0 » (retirée à la demande du user 2026-06-11)
+- **Plateau technique réel** : cone beam (scanner 3D) + **caméra optique** (empreintes numériques sans pâte) + digue systématique + labo français
 
 ## Ne JAMAIS faire
 - Push sans validation visuelle screenshot + accord user
