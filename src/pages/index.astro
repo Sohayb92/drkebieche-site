@@ -1,9 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import fs from 'node:fs';
 
-// Le portrait s’affiche automatiquement dès que public/portrait.jpg existe (même logique que /praticien)
-const hasPortrait = fs.existsSync(new URL('../../public/portrait.jpg', import.meta.url));
 
 // 4 familles médicales (architecture validée : pattern dentistes premium internationaux)
 // Le détail des soins individuels est sur la page /soins, chaque section ancrée
@@ -104,30 +101,26 @@ function iconSvg(name: string) {
           </div>
         </div>
 
-        <!-- Portrait (auto dès dépôt de public/portrait.jpg) ou composition de marque -->
-        {hasPortrait ? (
-          <div class="relative aspect-[4/3] md:aspect-[4/5] rounded-2xl overflow-hidden fade-up-3">
-            <img src="/portrait.jpg" alt="Dr Sohaïb Kebieche, chirurgien-dentiste à Colombes" class="absolute inset-0 w-full h-full object-cover" />
+        <!-- Composition de marque (choix DA validé 2026-06-11 : le portrait reste
+             l'exclusivité de /praticien ; une photo d'ambiance cabinet prendra
+             cette place après le shooting) -->
+        <div class="relative aspect-[4/3] md:aspect-[4/5] rounded-2xl overflow-hidden section-dark fade-up-3">
+          <svg class="absolute inset-0 w-full h-full opacity-[0.06]" aria-hidden="true">
+            <defs>
+              <pattern id="trame-hero" width="28" height="28" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1.1" fill="#C09A5F" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#trame-hero)" />
+          </svg>
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-10 gap-5">
+            <span class="text-[64px] md:text-[84px] leading-none" style="font-family: var(--font-display); color: var(--color-cream-50)">K</span>
+            <span class="block w-12 h-px" style="background: var(--color-copper-400)"></span>
+            <p class="text-[18px] md:text-[21px] leading-[1.45] max-w-[300px]" style="font-family: var(--font-display); color: var(--color-cream-100)">
+              Conserver d’abord.<br>Remplacer durablement.<br>Expliquer toujours.
+            </p>
           </div>
-        ) : (
-          <div class="relative aspect-[4/3] md:aspect-[4/5] rounded-2xl overflow-hidden section-dark fade-up-3">
-            <svg class="absolute inset-0 w-full h-full opacity-[0.06]" aria-hidden="true">
-              <defs>
-                <pattern id="trame-hero" width="28" height="28" patternUnits="userSpaceOnUse">
-                  <circle cx="2" cy="2" r="1.1" fill="#C09A5F" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#trame-hero)" />
-            </svg>
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-10 gap-5">
-              <span class="text-[64px] md:text-[84px] leading-none" style="font-family: var(--font-display); color: var(--color-cream-50)">K</span>
-              <span class="block w-12 h-px" style="background: var(--color-copper-400)"></span>
-              <p class="text-[18px] md:text-[21px] leading-[1.45] max-w-[300px]" style="font-family: var(--font-display); color: var(--color-cream-100)">
-                Conserver d’abord.<br>Remplacer durablement.<br>Expliquer toujours.
-              </p>
-            </div>
-          </div>
-        )}
+        </div>
 
       </div>
     </div>
