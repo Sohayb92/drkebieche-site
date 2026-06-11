@@ -47,9 +47,11 @@ DA validée 2026-05-21 :
 - **Doctolib (tous les CTA)** : `https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile`
 - **Email public** : cabinetdentaire.lacabane@gmail.com · **Tél** : 01 42 42 94 69
 - **Sécu rembourse 60%** (réforme — plus jamais écrire 70%)
-- **Bio** : hospitalier TOUJOURS en parallèle du cabinet (jamais "hôpital puis cabinet") · relativiser l'hôpital ("attaché en chirurgie orale", lieu facultatif) · NE PLUS citer le GHT NOVO Pontoise · 1er cabinet = Clichy, puis Paris 8e chez un implantologiste expérimenté (compagnonnage) · hospitalier toujours au passé (arrêté 2025) · **NE JAMAIS écrire « AP-HP »** (c'était probablement Max Fourestier/Nanterre — sur le site : « expérience hospitalière en chirurgie orale » sans établissement)
+- **Bio** : hospitalier TOUJOURS en parallèle du cabinet (jamais "hôpital puis cabinet") · relativiser l'hôpital ("attaché en chirurgie orale", lieu facultatif) · NE PLUS citer le GHT NOVO Pontoise · 1er cabinet = **Clichy-Levallois**, puis Paris 8e chez un implantologiste expérimenté (compagnonnage) · hospitalier toujours au passé (arrêté 2025) · **NE JAMAIS écrire « AP-HP »** (c'était probablement Max Fourestier/Nanterre — sur le site : « expérience hospitalière en chirurgie orale » sans établissement) · **PAS de « bloc » ni d'anesthésie générale** en hospitalier : cas complexes sous anesthésie locale uniquement
 - **DU implanto** : "Université d'Évry Paris-Saclay (2024)" (forme unique)
 - **Maintenance paro 6 mois · contrôle+radios+détartrage 1×/an · blanchiment 2h/j 4-6 sem, résultat 3-5 ans**
+- **Première consultation : 40 min** (pas 45) · si bilan RAS, détartrage souvent fait dans la même séance
+- **Avis Google** : home = fiche GBP sans /review (lire les avis) · footer + fiches post-soin = lien /review (laisser un avis)
 - Domaine canonique : **drkebieche.fr** (.com en 301)
 - Honoraires : PAS de grilles chiffrées sur actes opposables (risque CPAM) — devis systématique · PAS de mention « 100% santé / reste à charge 0 » (retirée à la demande du user 2026-06-11)
 - **Plateau technique réel** : cone beam (scanner 3D) + **caméra optique** (empreintes numériques sans pâte) + digue systématique + labo français

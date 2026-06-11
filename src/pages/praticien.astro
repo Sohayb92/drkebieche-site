@@ -92,12 +92,12 @@ const etapes = [
       <div class="max-w-3xl">
         {etapes.map((e, idx) => (
           <div class="relative pl-10 pb-12 last:pb-0" data-reveal data-reveal-delay={(idx * 90).toString()}>
-            <!-- Ligne verticale -->
+            <!-- Ligne verticale (se déploie au scroll) -->
             {idx < etapes.length - 1 && (
-              <span class="absolute left-[7px] top-5 bottom-0 w-px" style="background: var(--color-cream-300)"></span>
+              <span class="timeline-line absolute left-[7px] top-5 bottom-0 w-px" style="background: var(--color-cream-300)"></span>
             )}
-            <!-- Point cuivré -->
-            <span class="absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full" style="background: var(--color-copper-400); border: 3px solid var(--color-cream-50); box-shadow: 0 0 0 1px var(--color-copper-500)"></span>
+            <!-- Point cuivré (pop au scroll) -->
+            <span class="timeline-dot absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full" style="background: var(--color-copper-400); border: 3px solid var(--color-cream-50); box-shadow: 0 0 0 1px var(--color-copper-500)"></span>
 
             <div class="text-[11px] uppercase tracking-[0.16em] font-semibold mb-1.5" style="color: var(--color-copper-600)">{e.periode}</div>
             <h3 class="text-[20px] md:text-[22px] font-medium mb-2.5" style="font-family: var(--font-display)">{e.titre}</h3>
@@ -148,3 +148,26 @@ const etapes = [
   </section>
 
 </Layout>
+
+<style>
+  /* Timeline du parcours : la ligne se déploie et le point « pop » quand
+     l'étape entre dans le viewport (s'appuie sur data-reveal → .visible) */
+  .timeline-line {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.9s var(--ease-soft) 0.25s;
+  }
+  .timeline-dot {
+    transform: scale(0);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s;
+  }
+  :global([data-reveal].visible) .timeline-line { transform: scaleY(1); }
+  :global([data-reveal].visible) .timeline-dot { transform: scale(1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-line, .timeline-dot {
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
