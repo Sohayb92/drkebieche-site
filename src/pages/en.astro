@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const DOCTOLIB = 'https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile';
+
+const services = [
+  {
+    titre: 'Implant dentistry & oral surgery',
+    texte: "Dental implants, pre-implant bone reconstruction, complex extractions and wisdom teeth — with hospital experience in oral surgery and a postgraduate diploma in implantology (2024).",
+    href: '/soins/implantologie-chirurgie',
+  },
+  {
+    titre: 'Periodontics (gum care)',
+    texte: "Medical treatment of gum disease, minimally invasive gum-recession surgery (tunneling technique), and long-term maintenance. Postgraduate diploma in advanced periodontics (2025).",
+    href: '/soins/parodontologie',
+  },
+  {
+    titre: 'Adhesive & restorative dentistry',
+    texte: "Ceramic inlays, onlays and overlays bonded under rubber dam, layered composites, crowns and bridges made by a French dental laboratory.",
+    href: '/soins/dentisterie-adhesive-protheses',
+  },
+  {
+    titre: 'General & preventive care',
+    texte: "Check-ups, fillings, root canal treatments, scaling, emergencies and at-home whitening with custom trays.",
+    href: '/soins/soins-quotidiens',
+  },
+];
+---
+
+<Layout
+  title="English-speaking dentist in Colombes (92), near La Défense — Dr Sohaïb Kebieche"
+  description="English-speaking dental practice in Colombes (92700), 15 minutes from La Défense. Implants, periodontics, adhesive dentistry, general care. Consultations in English."
+  lang="en"
+  alternates={[
+    { hreflang: 'fr', href: '/' },
+    { hreflang: 'en', href: '/en' },
+    { hreflang: 'x-default', href: '/' },
+  ]}
+>
+
+  <section class="container-wide pt-12 md:pt-20 pb-12 md:pb-16">
+    <div class="max-w-3xl" data-reveal>
+      <span class="eyebrow mb-5">English-speaking dentist · Colombes (92)</span>
+      <h1 class="text-[34px] md:text-[48px] leading-[1.12] tracking-tight mb-6">
+        An English-speaking dentist near La Défense
+        <span class="block mt-2 text-[15px] md:text-[17px] font-semibold tracking-normal text-ink-500" style="font-family: var(--font-body)">Dr Sohaïb Kebieche — dental practice in Colombes (92700)</span>
+      </h1>
+      <p class="text-[22px] md:text-[26px] leading-[1.3] mb-6" style="font-family: var(--font-display); color: var(--color-ink-900); font-weight: 500;">
+        Dentistry that takes the time to explain.
+      </p>
+      <p class="text-[16px] text-ink-700 leading-[1.75]">
+        The practice welcomes English-speaking patients — consultations are conducted in English on request. Every treatment starts with a thorough examination and a clear, written treatment plan: nothing is undertaken without your informed consent. The practice is <strong>conventionné</strong> (French social security and carte Vitale accepted) and works with all mutuelles.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="py-16 md:py-20" style="background: var(--color-cream-50)">
+    <div class="container-wide">
+      <div class="max-w-2xl mb-10" data-reveal>
+        <span class="eyebrow mb-4">What we do</span>
+        <h2 class="text-[28px] md:text-[36px] leading-[1.15] tracking-tight">
+          Comprehensive, modern dentistry.
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5">
+        {services.map((s, idx) => (
+          <a href={s.href} class="card !p-6 md:!p-7 block" data-reveal data-reveal-delay={(idx * 80).toString()}>
+            <h3 class="text-[18px] md:text-[19px] font-medium mb-2.5" style="font-family: var(--font-display)">{s.titre}</h3>
+            <p class="text-[14.5px] text-ink-700 leading-[1.7]">{s.texte}</p>
+            <span class="inline-flex items-center gap-1.5 mt-4 text-[13.5px] font-medium" style="color: var(--color-teal-700)">Details (in French) →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Practical -->
+  <section class="container-wide py-16 md:py-20">
+    <div class="max-w-4xl grid md:grid-cols-2 gap-5">
+      <div class="card !p-6 md:!p-7" data-reveal>
+        <div class="eyebrow mb-4">Visit us</div>
+        <p class="text-[15px] text-ink-700 leading-[1.8]">
+          <strong>31 rue Félix Faure, 92700 Colombes</strong><br>
+          15 minutes from La Défense — Colombes station (line J) and Les Vallées station (line L) nearby.<br>
+          Open Monday to Friday, 9:00–13:00 / 15:00–18:30.
+        </p>
+      </div>
+      <div class="card !p-6 md:!p-7" data-reveal data-reveal-delay="90">
+        <div class="eyebrow mb-4">Book an appointment</div>
+        <p class="text-[15px] text-ink-700 leading-[1.8] mb-4">
+          Online via Doctolib (in French), or by phone — just mention you prefer English.
+        </p>
+        <a href="tel:+33142429469" class="block text-[24px] font-display tracking-tight whitespace-nowrap mb-1" style="color: var(--color-teal-800)">+33 1 42 42 94 69</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="container-wide pb-24">
+    <div class="rounded-3xl px-8 md:px-14 py-12 md:py-16 text-center" style="background: var(--color-teal-50); border: 1px solid var(--color-cream-300)" data-reveal>
+      <h3 class="text-[26px] md:text-[32px] font-medium mb-3" style="font-family: var(--font-display)">
+        New patients are welcome.
+      </h3>
+      <p class="text-[15px] text-ink-700 mb-7 max-w-xl mx-auto">
+        A first consultation takes about 40 minutes: examination, explanations, and a written treatment plan if needed — nothing more.
+      </p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href={DOCTOLIB} target="_blank" rel="noopener" class="btn btn-primary">
+          Book on Doctolib
+        </a>
+        <a href="tel:+33142429469" class="btn btn-secondary whitespace-nowrap">
+          +33 1 42 42 94 69
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,58 @@
+---
+import FamilySoinsPage from '../../components/FamilySoinsPage.astro';
+
+const sections = [
+  {
+    id: 'au-quotidien',
+    titre: 'Au quotidien : comme une dent, et un peu plus',
+    description: `
+      <p>Un implant ne se carie pas — mais la gencive et l’os qui l’entourent restent vivants, et c’est eux qu’il faut protéger. L’entretien quotidien est le même que pour vos dents naturelles, avec une attention particulière au pourtour de l’implant :</p>
+      <ul>
+        <li><strong>Brossage deux fois par jour</strong>, en insistant doucement au ras de la gencive autour de la couronne sur implant.</li>
+        <li><strong>Brossettes interdentaires calibrées</strong> autour de l’implant chaque jour : c’est le geste le plus important. Le calibrage est fait au cabinet, les brossettes remises avec la taille adaptée.</li>
+        <li><strong>Le tabac</strong> est le premier facteur de risque pour la santé des tissus autour des implants — chaque réduction compte.</li>
+      </ul>
+    `,
+  },
+  {
+    id: 'controles',
+    titre: 'Les contrôles : surveiller ce qui ne se voit pas',
+    description: `
+      <p>L’os autour d’un implant peut évoluer sans aucun symptôme. C’est le contrôle régulier — examen clinique et radiographie de contrôle — qui permet de vérifier que tout est stable, et d’intervenir tôt si besoin.</p>
+      <p><strong>Le rythme.</strong> Au minimum le contrôle annuel, comme pour le reste de la bouche. Si vous êtes suivi en <a href="/soins/parodontologie#maintenance">maintenance parodontale</a>, le suivi de vos implants s’y intègre naturellement (tous les 6 mois).</p>
+      <p><strong>Pourquoi c’est important.</strong> L’inflammation des tissus autour d’un implant (la « péri-implantite ») évolue silencieusement, comme une parodontite. Détectée tôt, elle se traite simplement ; tard, elle peut menacer l’implant.</p>
+    `,
+  },
+  {
+    id: 'signes-alerte',
+    titre: 'Les signes qui doivent faire consulter',
+    description: `
+      <p>Entre deux contrôles, certains signes méritent un appel sans attendre le prochain rendez-vous :</p>
+      <ul>
+        <li><strong>Gencive qui saigne</strong> au brossage autour de l’implant, rougeur ou gonflement persistant ;</li>
+        <li><strong>Gêne ou douleur</strong> à la mastication sur l’implant ;</li>
+        <li><strong>Couronne qui bouge</strong> ou sensation de jeu — souvent une simple vis à resserrer, mais à vérifier rapidement ;</li>
+        <li><strong>Goût ou écoulement inhabituel</strong> autour de l’implant.</li>
+      </ul>
+      <p>Aucun de ces signes ne signifie nécessairement un problème grave — mais tous justifient un contrôle. Pris tôt, presque tout se traite simplement.</p>
+    `,
+  },
+];
+---
+
+<FamilySoinsPage
+  pageTitle="Entretenir ses implants dentaires — conseils du cabinet Dr Kebieche, Colombes"
+  pageDescription="Comment entretenir un implant dentaire : brossage, brossettes calibrées, contrôles réguliers, signes d’alerte (péri-implantite) — conseils du cabinet Dr Kebieche, Colombes (92)."
+  eyebrow="Conseils patient"
+  h1="Entretenir ses implants dentaires — au quotidien et dans le temps"
+  baseline="Un implant bien entretenu est fait pour durer."
+  intro="Votre implant est posé, la couronne en place : voici ce qui se joue maintenant — l’hygiène quotidienne, les contrôles, et les signes qui doivent faire appeler. Les consignes remises en consultation priment toujours."
+  sections={sections}
+  cta="conseil"
+  urgenceNote="<strong>Une couronne sur implant qui bouge, une gencive douloureuse ou qui saigne autour d’un implant ?</strong> Appelez le cabinet : <a href='tel:+33142429469' class='font-semibold whitespace-nowrap' style='color: var(--color-teal-700)'>01 42 42 94 69</a>. Pris tôt, presque tout se traite simplement."
+  related={[
+    { href: '/soins/implantologie-chirurgie#implants', label: "Comprendre la pose d’un implant" },
+    { href: '/conseils/hygiene', label: 'Hygiène au quotidien — brossage et brossettes' },
+    { href: '/soins/parodontologie#maintenance', label: 'La maintenance parodontale' },
+  ]}
+/>

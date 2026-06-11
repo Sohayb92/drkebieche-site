@@ -7,7 +7,8 @@ const ROUTES = [
   '/soins/dentisterie-adhesive-protheses', '/soins/soins-quotidiens',
   '/conseils', '/conseils/premiere-consultation', '/conseils/avant',
   '/conseils/apres-chirurgie', '/conseils/apres-parodontologie',
-  '/conseils/blanchiment', '/conseils/hygiene',
+  '/conseils/blanchiment', '/conseils/hygiene', '/conseils/maintenance-implants',
+  '/urgences', '/faq', '/second-avis', '/en',
   '/mentions-legales', '/confidentialite', '/cookies',
 ];
 

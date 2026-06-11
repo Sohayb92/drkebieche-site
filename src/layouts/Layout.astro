@@ -12,20 +12,24 @@ interface Props {
   description?: string;
   noindex?: boolean;
   ogImage?: string;
+  lang?: string; // 'en' pour la page anglophone
+  alternates?: { hreflang: string; href: string }[]; // hreflang FR ↔ EN
 }
 
 const {
   title = "Dr Sohaïb Kebieche — Chirurgien-dentiste à Colombes",
   description = "Cabinet dentaire à Colombes (92). Implantologie, parodontologie, dentisterie adhésive moderne. Une dentisterie qui prend le temps de vous expliquer.",
   noindex = false,
-  ogImage = "/og-image.jpg"
+  ogImage = "/og-image.jpg",
+  lang = "fr",
+  alternates = []
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebieche.fr').toString();
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={lang}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -35,6 +39,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
   <meta name="description" content={description} />
   {noindex && <meta name="robots" content="noindex,nofollow" />}
   <link rel="canonical" href={canonicalUrl} />
+  {alternates.map((a) => (
+    <link rel="alternate" hreflang={a.hreflang} href={new URL(a.href, 'https://drkebieche.fr').toString()} />
+  ))}
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />

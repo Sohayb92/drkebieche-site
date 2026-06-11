@@ -20,7 +20,10 @@ const LAQUO = '«';     // guillemet ouvrant
 const RAQUO = '»';     // guillemet fermant
 
 const RE_APOS = /([\p{L}\p{N}])'([\p{L}\p{N}])/gu;
-const RE_PONCT = new RegExp('([\\p{L}\\p{N}»…]) ([:;!?])', 'gu');
+// NB : la ponctuation n'est traitée que si elle est suivie d'un espace, d'un
+// chevron HTML ou d'une fin de ligne — un !:;? suivi d'une lettre/chiffre est
+// du code (classe Tailwind "card !p-6", sélecteur CSS " :global", etc.).
+const RE_PONCT = new RegExp('([\\p{L}\\p{N}»…]) ([:;!?])(?=[\\s<»"\']|$)', 'gu');
 const RE_LAQUO = new RegExp(LAQUO + ' ', 'g');
 const RE_RAQUO = new RegExp(' ' + RAQUO, 'g');
 

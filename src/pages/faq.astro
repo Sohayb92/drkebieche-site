@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// FAQ : uniquement des faits validés par le praticien. HTML léger dans `reponse`
+// (la version texte pour le JSON-LD est dérivée en retirant les balises).
+const faqs = [
+  {
+    q: 'Le cabinet accepte-t-il de nouveaux patients ?',
+    reponse: "Oui. La prise de rendez-vous se fait en ligne via Doctolib ou par téléphone au 01 42 42 94 69.",
+  },
+  {
+    q: 'Comment se déroule la première consultation ?',
+    reponse: "Elle dure environ 40 minutes : votre histoire, vos attentes, un examen complet et des radiographies si nécessaire. Aucun soin n’y est imposé. Si un traitement est indiqué, un plan écrit et chiffré vous est remis — et si le bilan ne révèle rien de particulier, le détartrage est souvent réalisé dans la même séance. Le détail est sur la page <a href='/conseils/premiere-consultation'>Votre première consultation</a>.",
+  },
+  {
+    q: 'Le cabinet est-il conventionné ? Comment suis-je remboursé ?',
+    reponse: "Oui, le cabinet est conventionné et la carte Vitale est acceptée. Les soins aux tarifs conventionnés sont pris en charge à 60 % par l’Assurance Maladie, le complément par votre mutuelle. Pour les actes à honoraires libres, le devis remis indique le tarif, la base de remboursement et le code CCAM à transmettre à votre mutuelle. Voir la page <a href='/honoraires'>Honoraires</a>.",
+  },
+  {
+    q: 'Un devis est-il remis avant les soins ?',
+    reponse: "Systématiquement, pour tout acte à honoraires libres : un devis détaillé, expliqué en consultation, jamais engagé sans votre accord. Vous pouvez l’adresser à votre mutuelle avant de décider.",
+  },
+  {
+    q: 'Prenez-vous les urgences dentaires ?',
+    reponse: "Oui, pendant les heures d’ouverture : appelez le 01 42 42 94 69, la situation est priorisée selon l’urgence réelle. La nuit, le dimanche et les jours fériés, le 15 (Samu) oriente vers le service de garde. Les bons gestes en attendant sont décrits sur la page <a href='/urgences'>Urgences</a>.",
+  },
+  {
+    q: "J’ai peur du dentiste — comment ça se passe ?",
+    reponse: "Dites-le simplement à la prise de rendez-vous : le déroulé s’adapte. Chaque étape est expliquée avant d’être réalisée, et rien n’est engagé sans votre accord. Beaucoup de patients anxieux retrouvent une relation sereine avec les soins une fois qu’ils comprennent ce qui se passe.",
+  },
+  {
+    q: "La pose d’un implant est-elle douloureuse ?",
+    reponse: "L’intervention se fait sous anesthésie locale. Les suites — gonflement et gêne pendant quelques jours — sont habituellement bien contrôlées par l’ordonnance et les consignes remises après l’intervention.",
+  },
+  {
+    q: 'Combien de temps dure un blanchiment, et combien de temps dure le résultat ?',
+    reponse: "Le protocole dure 4 à 6 semaines, avec des gouttières sur mesure portées au minimum 2 heures par jour à domicile. Le résultat se maintient en général entre 3 et 5 ans, selon l’hygiène et les habitudes (café, thé, tabac).",
+  },
+  {
+    q: 'Peut-on venir pour un second avis sur un devis ou un plan de traitement ?',
+    reponse: "Oui, c’est une démarche légitime et fréquente. Apportez votre devis et vos radiographies récentes : la consultation sert à relire le plan proposé et à expliquer les options. Le détail est sur la page <a href='/second-avis'>Second avis</a>.",
+  },
+  {
+    q: 'Les consultations sont-elles possibles en anglais ?',
+    reponse: "Oui — consultations en français et en anglais. An English summary of the practice is available on the <a href='/en'>English page</a>.",
+  },
+];
+
+// Version texte (sans HTML) pour le JSON-LD FAQPage
+const stripHtml = (s: string) => s.replace(/<[^>]+>/g, '');
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": stripHtml(f.reponse) },
+  })),
+};
+---
+
+<Layout
+  title="Questions fréquentes — Cabinet dentaire Dr Sohaïb Kebieche, Colombes"
+  description="Les réponses aux questions fréquentes des patients du cabinet : première consultation, remboursements, devis, urgences, implants, blanchiment, second avis."
+>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+  <section class="container-wide pt-12 md:pt-20 pb-10 md:pb-14">
+    <div class="max-w-3xl" data-reveal>
+      <span class="eyebrow mb-5">Questions fréquentes</span>
+      <h1 class="text-[34px] md:text-[48px] leading-[1.12] tracking-tight mb-6">
+        Les questions que l’on nous pose <span class="text-teal-600">le plus souvent</span>
+        <span class="block mt-2 text-[15px] md:text-[17px] font-semibold tracking-normal text-ink-500" style="font-family: var(--font-body)">Cabinet dentaire Dr Kebieche · Colombes (92)</span>
+      </h1>
+      <p class="text-[17px] text-ink-700 leading-[1.65]">
+        Et si la vôtre n’y figure pas : appelez le <a href="tel:+33142429469" class="font-semibold whitespace-nowrap" style="color: var(--color-teal-700)">01 42 42 94 69</a> ou <a href="/contact#ecrire" class="underline underline-offset-4" style="color: var(--color-teal-700)">écrivez au cabinet</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-wide pb-20 md:pb-24">
+    <div class="max-w-3xl space-y-3">
+      {faqs.map((f, idx) => (
+        <details class="faq-item rounded-xl overflow-hidden" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)" data-reveal data-reveal-delay={(Math.min(idx, 6) * 60).toString()}>
+          <summary class="px-6 py-5 cursor-pointer select-none list-none flex items-center justify-between gap-4">
+            <span class="text-[16px] md:text-[17px] font-medium" style="font-family: var(--font-display)">{f.q}</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-chevron flex-shrink-0 transition-transform" style="color: var(--color-copper-500)"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <div class="px-6 pb-6 -mt-1">
+            <p class="text-[15px] text-ink-700 leading-[1.75] faq-reponse" set:html={f.reponse}></p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="container-wide pb-24">
+    <div class="card p-10 md:p-14 text-center" style="background: var(--color-cream-50); border-color: var(--color-cream-300)" data-reveal>
+      <h3 class="text-[24px] md:text-[28px] font-medium mb-3" style="font-family: var(--font-display)">
+        Une question plus personnelle ?
+      </h3>
+      <p class="text-[15px] text-ink-500 mb-7 max-w-xl mx-auto">
+        La meilleure réponse reste celle donnée après un examen : chaque situation est unique.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile" target="_blank" rel="noopener" class="btn btn-primary">
+          Prendre rendez-vous
+        </a>
+        <a href="/contact#ecrire" class="btn btn-secondary">
+          Écrire au cabinet
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  details summary::-webkit-details-marker { display: none; }
+  details[open] .faq-chevron { transform: rotate(180deg); }
+  .faq-reponse :global(a) {
+    color: var(--color-teal-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

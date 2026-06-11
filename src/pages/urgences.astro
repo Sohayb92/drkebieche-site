@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Conduites à tenir par situation (gestes simples, sans jargon, sans promesse de délai)
+const situations = [
+  {
+    titre: 'Douleur dentaire forte',
+    texte: "Prenez un antalgique (paracétamol en première intention — pas d’aspirine sans avis, elle favorise les saignements). Évitez le chaud sur la joue. Une douleur calmée par un médicament ne signifie pas que le problème est réglé : appelez.",
+  },
+  {
+    titre: 'Dent cassée ou fracturée',
+    texte: "Récupérez le morceau si possible et conservez-le dans du lait ou du sérum physiologique. Plus la consultation est rapide, plus la dent a de chances d’être réparée simplement.",
+  },
+  {
+    titre: 'Dent expulsée (choc)',
+    texte: "C’est la vraie course contre la montre. Ne frottez jamais la racine. Si possible, replacez délicatement la dent dans son logement ; sinon, conservez-la dans du lait ou dans votre salive — et consultez immédiatement, idéalement dans l’heure.",
+  },
+  {
+    titre: 'Abcès, gonflement',
+    texte: "Ne percez jamais un abcès vous-même et n’appliquez pas de chaud. Du froid à travers un linge peut soulager. Appelez le cabinet rapidement — une infection prise tôt épargne souvent la dent.",
+  },
+  {
+    titre: 'Saignement qui ne s’arrête pas',
+    texte: "Après une extraction ou une blessure : mordez fermement une compresse pliée pendant 20 minutes, sans cracher ni rincer. Renouvelez si besoin. Si le saignement reste actif malgré tout, appelez.",
+  },
+  {
+    titre: 'Couronne ou prothèse descellée',
+    texte: "Conservez la pièce et appelez le cabinet — ne tentez pas de la recoller vous-même (les colles du commerce compromettent le rescellement). Évitez de mastiquer sur la dent concernée.",
+  },
+];
+---
+
+<Layout
+  title="Urgence dentaire à Colombes — Cabinet Dr Sohaïb Kebieche"
+  description="Urgence dentaire à Colombes (92700) : douleur, dent cassée, dent expulsée, abcès. Conduite à tenir en attendant, et quand appeler le cabinet ou le 15."
+>
+
+  <!-- HERO urgence : le téléphone d’abord -->
+  <section class="container-wide pt-12 md:pt-20 pb-10 md:pb-14">
+    <div class="max-w-3xl" data-reveal>
+      <span class="eyebrow mb-5">Urgences dentaires</span>
+      <h1 class="text-[34px] md:text-[48px] leading-[1.12] tracking-tight mb-6">
+        Urgence dentaire <span class="text-teal-600">à Colombes.</span>
+      </h1>
+      <p class="text-[18px] text-ink-700 leading-[1.65] mb-8">
+        Douleur vive, dent cassée, abcès, traumatisme : le cabinet s’organise pour recevoir les urgences au plus vite pendant les heures d’ouverture. La priorité est de soulager et de mettre la dent en sécurité — le traitement définitif se planifie ensuite, au calme.
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="card !p-6">
+          <div class="text-[11px] uppercase tracking-[0.16em] font-semibold mb-2" style="color: var(--color-teal-700)">Heures d’ouverture (lun–ven, 9h–13h / 15h–18h30)</div>
+          <a href="tel:+33142429469" class="block text-[26px] md:text-[30px] font-display tracking-tight whitespace-nowrap" style="color: var(--color-teal-800)">01 42 42 94 69</a>
+          <p class="mt-1.5 text-[13.5px] text-ink-500">Expliquez la situation : elle est priorisée selon l’urgence réelle.</p>
+        </div>
+        <div class="card !p-6">
+          <div class="text-[11px] uppercase tracking-[0.16em] font-semibold mb-2" style="color: var(--color-copper-600)">Nuit, dimanche, jours fériés</div>
+          <div class="text-[26px] md:text-[30px] font-display tracking-tight" style="color: var(--color-ink-900)">15 <span class="text-[16px] text-ink-500">(Samu)</span></div>
+          <p class="mt-1.5 text-[13.5px] text-ink-500">Le 15 oriente vers le service de garde dentaire de votre secteur.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Urgence vitale -->
+  <section class="container-wide pb-12">
+    <div class="max-w-3xl flex gap-4 items-start rounded-2xl p-5 md:p-6" style="background: var(--color-cream-200); border-left: 3px solid var(--color-copper-500)" data-reveal>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0 mt-0.5" style="color: var(--color-copper-600)"><path d="M12 3 L22 20 L2 20 Z"/><line x1="12" y1="10" x2="12" y2="14.5"/><circle cx="12" cy="17.2" r="0.5" fill="currentColor"/></svg>
+      <p class="text-[14px] text-ink-700 leading-[1.65]">
+        <strong>Appelez le 15 sans attendre</strong>, à toute heure, en cas de gonflement du cou ou du plancher de la bouche, de difficulté à avaler ou à respirer, ou de fièvre élevée associée : ces signes ne relèvent pas du cabinet mais d’une prise en charge immédiate.
+      </p>
+    </div>
+  </section>
+
+  <!-- Conduites à tenir -->
+  <section class="container-wide pb-20 md:pb-24">
+    <div class="max-w-2xl mb-10" data-reveal>
+      <span class="eyebrow mb-4">En attendant la consultation</span>
+      <h2 class="text-[28px] md:text-[36px] leading-[1.15] tracking-tight">
+        Les bons gestes, situation par situation.
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      {situations.map((s, idx) => (
+        <div class="card !p-6 md:!p-7" data-reveal data-reveal-delay={(idx * 70).toString()}>
+          <h3 class="text-[18px] md:text-[19px] font-medium mb-2.5" style="font-family: var(--font-display)">{s.titre}</h3>
+          <p class="text-[14.5px] text-ink-700 leading-[1.7]">{s.texte}</p>
+        </div>
+      ))}
+    </div>
+    <p class="mt-8 text-[14px] text-ink-500 max-w-3xl" data-reveal>
+      Ces gestes ne remplacent pas une consultation : ils protègent la dent et vous soulagent en attendant. Dans tous les cas, appelez — même pour demander conseil.
+    </p>
+  </section>
+
+  <!-- CTA -->
+  <section class="container-wide pb-24">
+    <div class="rounded-3xl px-8 md:px-14 py-12 md:py-16 text-center" style="background: var(--color-teal-50); border: 1px solid var(--color-cream-300)" data-reveal>
+      <h3 class="text-[26px] md:text-[32px] font-medium mb-3" style="font-family: var(--font-display)">
+        Une urgence maintenant ?
+      </h3>
+      <p class="text-[15px] text-ink-700 mb-7 max-w-xl mx-auto">
+        Pendant les heures d’ouverture, le téléphone est le moyen le plus rapide.
+      </p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="tel:+33142429469" class="btn btn-primary whitespace-nowrap">
+          Appeler : 01 42 42 94 69
+        </a>
+        <a href="/contact" class="btn btn-secondary">
+          Adresse & accès
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

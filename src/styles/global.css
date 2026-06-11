@@ -371,6 +371,37 @@
   view-transition-name: site-header;
 }
 
+/* ── Impression (fiches conseils notamment) : contenu seul, lisible en noir ── */
+@media print {
+  header, footer, nav, .skip-link,
+  .btn, a.btn,
+  [id="mobile-menu"],
+  details:not([open]) {
+    display: none !important;
+  }
+  body, html {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  main {
+    max-width: 100% !important;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .card, .section-dark {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] {
     opacity: 1;
