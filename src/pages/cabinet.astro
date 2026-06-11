@@ -3,89 +3,108 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Le cabinet — Dr Sohaïb Kebieche, chirurgien-dentiste à Colombes"
-  description="Parcours du Dr Sohaïb Kebieche : formé à Paris-Descartes, ancien praticien attaché en chirurgie orale (AP-HP), D.U. d'implantologie (Université d'Évry Paris-Saclay, 2024) et de parodontologie avancée (Côte d'Azur, 2025)."
+  title="Le cabinet — Cabinet Dentaire La Cabane, Colombes (quartier des Vallées)"
+  description="Le cabinet dentaire du Dr Kebieche à Colombes : 31 rue Félix Faure, quartier des Vallées. Accès en train (lignes J et L), ascenseur, plateau technique moderne."
 >
 
   <!-- HERO -->
-  <section class="container-wide pt-16 md:pt-24 pb-12 md:pb-16">
-    <div class="max-w-3xl">
-      <span class="eyebrow mb-5">À propos</span>
-      <h1 class="text-[40px] md:text-[56px] leading-[1.1] tracking-tight mb-6">
-        Le parcours d'un chirurgien-dentiste,<br>
-        <span class="text-teal-600">formé à l'hôpital.</span>
+  <section class="container-wide pt-12 md:pt-20 pb-12 md:pb-16">
+    <div class="max-w-3xl" data-reveal>
+      <span class="eyebrow mb-5">Le cabinet</span>
+      <h1 class="text-[28px] md:text-[36px] leading-[1.2] tracking-tight mb-5" style="color: var(--color-teal-800)">
+        Cabinet Dentaire La Cabane<br>
+        <span class="text-ink-700">— Colombes, quartier des Vallées</span>
       </h1>
-      <p class="text-[18px] text-ink-700 leading-[1.65]">
-        Un parcours construit entre l'université, l'hôpital public et le cabinet de ville — avec une conviction : une bonne dentisterie commence par un examen sérieux et une explication claire, pas par un planning serré.
+      <p class="text-[22px] md:text-[26px] leading-[1.25] mb-6" style="font-family: var(--font-display); color: var(--color-ink-900); font-weight: 500;">
+        Un cabinet de quartier, un plateau technique de chirurgie.
+      </p>
+      <p class="text-[16px] text-ink-700 leading-[1.7]">
+        Au cœur du quartier résidentiel des Vallées, le cabinet associe la proximité d'un cabinet de ville et l'équipement nécessaire aux soins complexes — imagerie 3D, chirurgie sous digue, flux de travail moderne.
       </p>
     </div>
   </section>
 
 
-  <!-- PORTRAIT + INFO RAPIDE -->
-  <section class="container-wide pb-20 md:pb-28">
-    <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+  <!-- PHOTO + INFOS PRATIQUES -->
+  <section class="container-wide pb-16 md:pb-24">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-      <!-- Portrait placeholder -->
-      <div class="md:col-span-5">
-        <div class="aspect-[3/4] rounded-2xl overflow-hidden" style="background: var(--color-cream-200)">
-          <!-- Placeholder pendant le shoot. Remplacer par <img src="/portrait.jpg" /> quand dispo -->
-          <div class="w-full h-full flex items-center justify-center text-ink-400 text-sm">
-            Portrait à venir
-          </div>
+      <!-- Photo cabinet (placeholder jusqu'au shooting) -->
+      <div class="relative aspect-[4/3] rounded-2xl overflow-hidden section-dark" data-reveal>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="text-[14px] opacity-65" style="font-family: var(--font-display)">Photographies du cabinet à venir</span>
         </div>
-        <p class="text-[12px] text-ink-500 mt-3 text-center italic">Dr Sohaïb Kebieche</p>
       </div>
 
-      <!-- Bio -->
-      <div class="md:col-span-7 prose-soin">
-        <h2 style="margin-top: 0">La philosophie</h2>
-        <p>
-          Chaque bouche raconte une histoire — un héritage génétique, des choix passés, des contraintes du présent. La traiter correctement demande d'écouter cette histoire avant d'agir.
-        </p>
-        <p>
-          Le cabinet est organisé autour de cette idée : <strong>un patient à la fois</strong>, des plans de traitement expliqués, un suivi qui continue après le soin — au rythme qui permet de bien faire les choses.
-        </p>
+      <!-- Infos -->
+      <div class="space-y-6" data-reveal data-reveal-delay="140">
 
-        <h2>Le parcours</h2>
-        <p>
-          Diplômé de la <strong>Faculté de chirurgie dentaire Paris-Descartes</strong>, le Dr Kebieche a soutenu en 2022 une thèse sur <em>l'efficacité du sablage sur surface dentaire</em>, distinguée par la mention Très Honorable et les Félicitations du jury.
-        </p>
-        <p>
-          Ses premières années se sont construites <strong>en parallèle entre le cabinet et l'hôpital</strong> : d'abord à Paris 8<sup>e</sup>, aux côtés d'un implantologiste expérimenté — un compagnonnage qui a profondément marqué sa pratique chirurgicale —, puis à Clichy, tout en exerçant comme <strong>praticien attaché en chirurgie orale</strong> en milieu hospitalier.
-        </p>
-        <p>
-          Installé aujourd'hui à <strong>Colombes</strong>, il consacre sa pratique à la dentisterie conservatrice, l'implantologie et la parodontologie — avec la rigueur des cas complexes apprise au bloc, appliquée au quotidien du cabinet.
-        </p>
+        <div class="card !p-6">
+          <div class="eyebrow mb-3">Adresse</div>
+          <div class="text-[17px] font-medium mb-1" style="font-family: var(--font-display)">31 Rue Félix Faure, 92700 Colombes</div>
+          <div class="text-[14px] text-ink-500">Premier étage — ascenseur</div>
+        </div>
 
-        <h2>Diplômes</h2>
-        <ul>
-          <li><strong>Diplôme d'État de docteur en chirurgie dentaire</strong> — Université Paris-Descartes</li>
-          <li><strong>D.U. d'implantologie et d'esthétique dentaire</strong> — Université d'Évry Paris-Saclay (2024)</li>
-          <li><strong>D.U. de parodontologie avancée</strong> — Université Côte d'Azur (2025)</li>
-        </ul>
+        <div class="card !p-6">
+          <div class="eyebrow mb-3">Horaires</div>
+          <div class="text-[15px] text-ink-700">Lundi – vendredi · 9h–13h et 15h–18h30</div>
+        </div>
 
-        <h2>Travaux</h2>
-        <p>
-          Thèse 2022 : <em>« Étude de l'efficacité du sablage sur surface dentaire »</em>. Prix de thèse, mention Très Honorable et Félicitations du jury, Université Paris-Descartes.
-        </p>
+        <div class="card !p-6">
+          <div class="eyebrow mb-3">Accès</div>
+          <ul class="text-[14px] space-y-1.5 text-ink-700">
+            <li><strong>Train</strong> · Gare de Colombes (ligne J) et gare Les Vallées (ligne L) à proximité</li>
+            <li><strong>Bus</strong> · Arrêts « Les Vallées » et « Félix Faure »</li>
+            <li><strong>Voiture</strong> · Stationnement à proximité</li>
+          </ul>
+        </div>
 
-        <h2>Langues parlées</h2>
-        <p>Français · English (consultations possibles en anglais pour la patientèle internationale).</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/contact" class="btn btn-secondary">Contact & plan d'accès</a>
+          <a href="/praticien" class="btn btn-ghost">Le praticien →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PLATEAU TECHNIQUE -->
+  <section class="py-16 md:py-24" style="background: var(--color-cream-50)">
+    <div class="container-wide">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <span class="eyebrow mb-4">Le plateau technique</span>
+        <h2 class="text-[30px] md:text-[40px] leading-[1.12] tracking-tight">
+          L'équipement au service de la précision.
+        </h2>
       </div>
 
+      <div class="grid md:grid-cols-3 gap-5" data-reveal data-reveal-delay="120">
+        <div class="card">
+          <h3 class="text-[18px] font-medium mb-2.5" style="font-family: var(--font-display)">Imagerie 3D</h3>
+          <p class="text-[14px] text-ink-500 leading-[1.65]">Cone beam (scanner volumique) pour la planification implantaire et la chirurgie : chaque geste est préparé avant d'être réalisé.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-[18px] font-medium mb-2.5" style="font-family: var(--font-display)">Travail sous digue</h3>
+          <p class="text-[14px] text-ink-500 leading-[1.65]">Champ opératoire étanche systématique pour les collages : la condition d'une dentisterie adhésive fiable et durable.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-[18px] font-medium mb-2.5" style="font-family: var(--font-display)">Laboratoire français</h3>
+          <p class="text-[14px] text-ink-500 leading-[1.65]">Les restaurations céramiques et prothèses sont conçues en collaboration étroite avec un laboratoire de prothèse français.</p>
+        </div>
+      </div>
     </div>
   </section>
 
 
   <!-- CTA -->
-  <section class="container-wide pb-24">
+  <section class="container-wide py-16 md:py-24">
     <div class="rounded-3xl px-8 md:px-14 py-12 md:py-16" style="background: var(--color-teal-50); border: 1px solid var(--color-cream-300)">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
         <div>
-          <h3 class="text-[28px] md:text-[32px] font-display tracking-tight mb-2">Une première consultation ?</h3>
+          <h3 class="text-[26px] md:text-[32px] font-medium mb-2" style="font-family: var(--font-display)">Une première consultation ?</h3>
           <p class="text-[15px] text-ink-700">
-            Examen, radiographies si nécessaire, plan de traitement détaillé. Pas d'engagement.
+            Examen, radiographies si nécessaire, plan de traitement détaillé. Sans engagement.
           </p>
         </div>
         <a href="https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile" target="_blank" rel="noopener" class="btn btn-primary flex-shrink-0">

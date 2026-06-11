@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+import fs from 'node:fs';
+
+// Le portrait s'affiche automatiquement dès que public/portrait.jpg existe
+const hasPortrait = fs.existsSync(new URL('../../public/portrait.jpg', import.meta.url));
+
+// Parcours chronologique (validé par le praticien)
+const etapes = [
+  {
+    periode: 'Formation',
+    titre: 'Faculté de chirurgie dentaire Paris-Descartes',
+    texte: "Diplôme d'État de docteur en chirurgie dentaire. Thèse soutenue en 2022 — « Étude de l'efficacité du sablage sur surface dentaire » — distinguée par le prix de thèse, mention Très Honorable et Félicitations du jury.",
+  },
+  {
+    periode: 'Premières années',
+    titre: 'Cabinet à Clichy',
+    texte: "Les premières années d'exercice en cabinet de ville : l'omnipratique dans toute sa variété, et le goût du soin bien fait qui prend le temps qu'il faut.",
+  },
+  {
+    periode: 'Le compagnonnage',
+    titre: "Paris 8e, auprès d'un implantologiste expérimenté",
+    texte: "Une étape déterminante : exercer aux côtés d'un mentor implantologiste de grande expérience. C'est là que se sont forgées la rigueur chirurgicale et la vision du remplacement dentaire bien fait — planifié, précis, durable.",
+  },
+  {
+    periode: 'Aujourd\'hui',
+    titre: 'Colombes — et la chirurgie orale hospitalière en parallèle',
+    texte: "Installation au Cabinet Dentaire La Cabane, dans le quartier des Vallées. En parallèle du cabinet, un an et demi comme praticien attaché hospitalier en chirurgie orale : chirurgie complexe, dents de sagesse, implantologie et chirurgie pré-implantaire — l'habitude des cas difficiles, acquise au bloc, appliquée chaque jour au fauteuil.",
+  },
+  {
+    periode: 'Formation continue',
+    titre: 'Deux D.U. et une pratique qui ne cesse d\'évoluer',
+    texte: "D.U. d'Implantologie et d'esthétique dentaire (Université d'Évry Paris-Saclay, 2024), D.U. de Parodontologie avancée (Université Côte d'Azur, 2025), formation en chirurgie plastique parodontale mini-invasive (Tunneling Academy). La dentisterie avance vite — le cabinet avec elle.",
+  },
+];
+---
+
+<Layout
+  title="Dr Sohaïb Kebieche — Chirurgien-dentiste à Colombes, D.U. d'implantologie et de parodontologie"
+  description="Le parcours du Dr Sohaïb Kebieche : formé à Paris-Descartes, compagnonnage en implantologie à Paris 8e, chirurgie orale hospitalière, D.U. d'implantologie (Évry Paris-Saclay) et de parodontologie avancée (Côte d'Azur). Chirurgien-dentiste à Colombes."
+>
+
+  <!-- HERO -->
+  <section class="container-wide pt-12 md:pt-20 pb-12 md:pb-16">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <div data-reveal>
+        <span class="eyebrow mb-5">Le praticien</span>
+        <h1 class="text-[28px] md:text-[36px] leading-[1.2] tracking-tight mb-5" style="color: var(--color-teal-800)">
+          Dr Sohaïb Kebieche<br>
+          <span class="text-ink-700">— chirurgien-dentiste à Colombes (92)</span>
+        </h1>
+        <p class="text-[22px] md:text-[26px] leading-[1.25] mb-6" style="font-family: var(--font-display); color: var(--color-ink-900); font-weight: 500;">
+          Conserver d'abord, remplacer durablement, expliquer toujours.
+        </p>
+        <p class="text-[16px] text-ink-700 leading-[1.7] mb-7">
+          Un parcours construit entre le cabinet et l'hôpital — toujours les deux en parallèle — avec une orientation forte vers la dentisterie conservatrice, l'implantologie et la parodontologie.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="badge-expertise">Paris-Descartes · Prix de thèse</span>
+          <span class="badge-expertise">D.U. Implantologie · Évry Paris-Saclay 2024</span>
+          <span class="badge-expertise">D.U. Parodontologie · Côte d'Azur 2025</span>
+          <span class="badge-expertise">Chirurgie orale hospitalière</span>
+        </div>
+      </div>
+
+      <!-- Portrait -->
+      <div class="relative" data-reveal data-reveal-delay="140">
+        {hasPortrait ? (
+          <img src="/portrait.jpg" alt="Dr Sohaïb Kebieche, chirurgien-dentiste à Colombes" class="w-full max-w-[420px] mx-auto rounded-2xl" style="box-shadow: 0 24px 60px -24px rgba(31,58,61,0.35)" />
+        ) : (
+          <div class="aspect-[3/4] max-w-[420px] mx-auto rounded-2xl overflow-hidden flex items-center justify-center" style="background: var(--color-copper-300)">
+            <span class="text-[14px]" style="color: rgba(255,255,255,0.7); font-family: var(--font-display)">Portrait à venir</span>
+          </div>
+        )}
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PARCOURS — timeline -->
+  <section class="py-16 md:py-24" style="background: var(--color-cream-50)">
+    <div class="container-wide">
+      <div class="max-w-2xl mb-12" data-reveal>
+        <span class="eyebrow mb-4">Le parcours</span>
+        <h2 class="text-[30px] md:text-[40px] leading-[1.12] tracking-tight">
+          Du cabinet à l'hôpital — et toujours les deux à la fois.
+        </h2>
+      </div>
+
+      <div class="max-w-3xl">
+        {etapes.map((e, idx) => (
+          <div class="relative pl-10 pb-12 last:pb-0" data-reveal data-reveal-delay={(idx * 90).toString()}>
+            <!-- Ligne verticale -->
+            {idx < etapes.length - 1 && (
+              <span class="absolute left-[7px] top-5 bottom-0 w-px" style="background: var(--color-cream-300)"></span>
+            )}
+            <!-- Point cuivré -->
+            <span class="absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full" style="background: var(--color-copper-400); border: 3px solid var(--color-cream-50); box-shadow: 0 0 0 1px var(--color-copper-500)"></span>
+
+            <div class="text-[11px] uppercase tracking-[0.16em] font-semibold mb-1.5" style="color: var(--color-copper-600)">{e.periode}</div>
+            <h3 class="text-[20px] md:text-[22px] font-medium mb-2.5" style="font-family: var(--font-display)">{e.titre}</h3>
+            <p class="text-[15px] text-ink-700 leading-[1.7]">{e.texte}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PHILOSOPHIE courte -->
+  <section class="py-16 md:py-24">
+    <div class="container-prose text-center" data-reveal>
+      <span class="eyebrow mb-5 justify-center">La philosophie</span>
+      <p class="text-[24px] md:text-[30px] leading-[1.35]" style="font-family: var(--font-display); color: var(--color-ink-900)">
+        Chaque bouche raconte une histoire. La traiter correctement demande d'écouter cette histoire avant d'agir — puis d'expliquer, schémas à l'appui, ce qui est proposé et pourquoi.
+      </p>
+      <div class="divider-copper"></div>
+      <p class="text-[15px] text-ink-500">
+        Consultations en français et en anglais.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="container-wide pb-24">
+    <div class="rounded-3xl px-8 md:px-14 py-12 md:py-16 text-center" style="background: var(--color-teal-50); border: 1px solid var(--color-cream-300)">
+      <h3 class="text-[26px] md:text-[32px] font-medium mb-3" style="font-family: var(--font-display)">
+        Une première consultation ?
+      </h3>
+      <p class="text-[15px] text-ink-700 mb-7 max-w-xl mx-auto">
+        Examen complet, radiographies si nécessaire, plan de traitement écrit et expliqué. Sans engagement.
+      </p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile" target="_blank" rel="noopener" class="btn btn-primary">
+          Prendre rendez-vous
+        </a>
+        <a href="/soins" class="btn btn-secondary">
+          Découvrir les soins
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,51 @@
+---
+import FamilySoinsPage from '../../components/FamilySoinsPage.astro';
+
+const sections = [
+  {
+    id: 'premieres-heures',
+    titre: 'Les premières 24 heures',
+    description: `
+      <ul>
+        <li><strong>Saignement léger</strong> : normal pendant quelques heures. Mordre fermement une compresse 20 minutes, renouveler si besoin. Ne pas cracher, ne pas rincer le premier jour — cela déloge le caillot qui protège la plaie.</li>
+        <li><strong>Gonflement</strong> : habituel, maximal vers 48-72h. Poche de froid à travers un linge, 10 minutes par heure le premier jour.</li>
+        <li><strong>Douleur</strong> : prenez les antalgiques de l'ordonnance <em>avant</em> la fin de l'anesthésie, sans attendre que la douleur s'installe. Pas d'aspirine (elle favorise le saignement) sauf si elle fait partie de votre traitement habituel.</li>
+        <li><strong>Anesthésie</strong> : tant que la zone est endormie (2-4h), attention à ne pas se mordre la joue ou la lèvre — vigilance particulière chez les enfants.</li>
+        <li><strong>Repos</strong> : pas de sport, pas de port de charges, tête légèrement surélevée pour dormir.</li>
+      </ul>
+    `,
+  },
+  {
+    id: 'alimentation-hygiene',
+    titre: 'Alimentation & hygiène les jours suivants',
+    description: `
+      <ul>
+        <li><strong>Manger</strong> : tiède et mou les 48 premières heures (rien de brûlant), puis reprise progressive. Mastiquer du côté opposé à l'intervention.</li>
+        <li><strong>Boire</strong> : normalement, mais sans paille — l'aspiration peut déloger le caillot.</li>
+        <li><strong>Tabac et alcool</strong> : à éviter absolument pendant au moins 72h (idéalement toute la cicatrisation). Le tabac est la première cause de complications de cicatrisation.</li>
+        <li><strong>Brossage</strong> : continuer normalement partout, en évitant délicatement la zone opérée les premiers jours. Si un bain de bouche a été prescrit, commencer à partir du lendemain, jamais le jour même.</li>
+        <li><strong>Points de suture</strong> : selon le fil utilisé, ils se résorbent seuls ou sont retirés au rendez-vous de contrôle — c'est précisé sur vos consignes.</li>
+      </ul>
+    `,
+  },
+  {
+    id: 'quand-appeler',
+    titre: 'Ce qui est normal — et ce qui doit alerter',
+    description: `
+      <p><strong>Normal</strong> : gêne et gonflement pendant 2 à 5 jours, petit saignotement le premier jour, hématome qui « descend » sur la joue ou le cou, difficulté passagère à ouvrir grand la bouche après une dent de sagesse.</p>
+      <p><strong>Appelez le cabinet</strong> (<a href="tel:+33142429469">01 42 42 94 69</a>) si : la douleur <em>augmente</em> à partir du 3<sup>e</sup>-4<sup>e</sup> jour au lieu de diminuer, le saignement reste actif malgré les compresses, de la fièvre apparaît, ou un goût/écoulement inhabituel persiste.</p>
+      <p><strong>Appelez le 15 sans attendre</strong> en cas de gonflement du cou ou du plancher de la bouche, de difficulté à avaler ou à respirer.</p>
+    `,
+  },
+];
+---
+
+<FamilySoinsPage
+  pageTitle="Après une intervention — consignes post-opératoires, cabinet Dr Kebieche Colombes"
+  pageDescription="Consignes post-opératoires du cabinet dentaire Dr Kebieche (Colombes) : saignement, gonflement, douleur, alimentation, hygiène — ce qui est normal et ce qui doit alerter."
+  eyebrow="Comprendre vos soins"
+  h1="Après une intervention — consignes post-opératoires"
+  baseline="Des suites bien gérées, c'est une cicatrisation sereine."
+  intro="Ces consignes valent pour la plupart des interventions — extractions, dents de sagesse, implants, greffes, chirurgie parodontale. Les consignes écrites remises après <em>votre</em> intervention priment toujours : elles sont adaptées à votre cas."
+  sections={sections}
+/>

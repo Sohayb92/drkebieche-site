@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Page introuvable — Dr Sohaïb Kebieche, Colombes" description="Cette page n'existe pas ou plus." noindex={true}>
+  <section class="container-wide py-24 md:py-36 text-center">
+    <span class="eyebrow mb-6 justify-center">Erreur 404</span>
+    <h1 class="text-[36px] md:text-[52px] leading-[1.1] tracking-tight mb-5" style="font-family: var(--font-display)">
+      Cette page n'existe pas.
+    </h1>
+    <p class="text-[16px] text-ink-500 mb-9 max-w-lg mx-auto">
+      Le lien que vous avez suivi est peut-être ancien, ou l'adresse contient une erreur.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+      <a href="/soins" class="btn btn-secondary">Voir les soins</a>
+    </div>
+  </section>
+</Layout>
