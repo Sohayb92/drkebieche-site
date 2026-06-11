@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+/**
+ * Page d’accompagnement des devis envoyés par mail (via Mélyia).
+ * URL : /comprendre-mon-devis?soins=implant,rte,overlay
+ * → seules les cartes des soins listés s’affichent (les autres sont masquées).
+ * Sans paramètre : toutes les cartes, groupées par famille.
+ *
+ * CLÉS RECONNUES (à utiliser dans les mails Mélyia) :
+ *  implant · greffe-osseuse · chirurgie-orale · dds · paro · greffe-gencive ·
+ *  maintenance-paro · overlay (alias inlay, onlay) · composite · couronne ·
+ *  bridge · couronne-implant · carie · te (alias devitalisation) · rte ·
+ *  detartrage · blanchiment
+ */
+const soins = [
+  // Implantologie & chirurgie
+  { key: 'implant', famille: 'Implantologie & chirurgie', titre: "Pose d’implant dentaire", href: '/soins/implantologie-chirurgie#implants', resume: "Une racine artificielle en titane placée dans l’os, planifiée en 3D, sur laquelle une couronne est fixée après cicatrisation." },
+  { key: 'greffe-osseuse', famille: 'Implantologie & chirurgie', titre: 'Reconstruction osseuse pré-implantaire', href: '/soins/implantologie-chirurgie#greffes-osseuses', resume: "Quand l’os manque, une greffe prépare le terrain de l’implant — uniquement si nécessaire, sur décision du scanner 3D." },
+  { key: 'chirurgie-orale', famille: 'Implantologie & chirurgie', titre: 'Chirurgie orale, extraction complexe', href: '/soins/implantologie-chirurgie#chirurgie-orale', resume: "Extractions difficiles, kystes, racines fracturées — sous anesthésie locale, avec l’expérience hospitalière en chirurgie orale." },
+  { key: 'dds', famille: 'Implantologie & chirurgie', titre: 'Dents de sagesse', href: '/soins/implantologie-chirurgie#dents-de-sagesse', resume: "Extraction quand elles posent ou vont poser un vrai problème — décision sur examen et radiographie panoramique." },
+  // Parodontologie
+  { key: 'paro', famille: 'Parodontologie', titre: 'Traitement parodontal (gencives)', href: '/soins/parodontologie#soin-gencives', resume: "Débridement et désinfection pour stopper la parodontite — l’infection qui détruit silencieusement le support des dents." },
+  { key: 'greffe-gencive', famille: 'Parodontologie', titre: 'Greffe de gencive (récessions)', href: '/soins/parodontologie#recessions-gingivales', resume: "Recouvrir les racines exposées par une chirurgie plastique mini-invasive (technique du tunnel)." },
+  { key: 'maintenance-paro', famille: 'Parodontologie', titre: 'Maintenance parodontale', href: '/soins/parodontologie#maintenance', resume: "Le suivi régulier (tous les 6 mois) qui stabilise les résultats du traitement parodontal dans le temps." },
+  // Dentisterie adhésive & prothèses
+  { key: 'overlay', famille: 'Dentisterie adhésive & prothèses', titre: 'Inlay, onlay, overlay céramique', href: '/soins/dentisterie-adhesive-protheses#inlay-onlay-overlay', resume: "Une pièce de céramique sur mesure, collée sous digue, qui répare la dent en préservant un maximum de tissu sain." },
+  { key: 'composite', famille: 'Dentisterie adhésive & prothèses', titre: 'Composite stratifié', href: '/soins/dentisterie-adhesive-protheses#composites', resume: "La dent reconstruite couche par couche, sous digue, en une séance — pour les caries petites à moyennes." },
+  { key: 'couronne', famille: 'Dentisterie adhésive & prothèses', titre: 'Couronne', href: '/soins/dentisterie-adhesive-protheses#couronnes-bridges', resume: "Un « casque » sur mesure qui coiffe la dent quand le collage ne suffit plus — céramo-métallique, céramo-céramique ou zircone, précisé sur le devis." },
+  { key: 'bridge', famille: 'Dentisterie adhésive & prothèses', titre: 'Bridge', href: '/soins/dentisterie-adhesive-protheses#couronnes-bridges', resume: "Un « pont » qui remplace une dent absente en prenant appui sur les dents voisines couronnées." },
+  { key: 'couronne-implant', famille: 'Dentisterie adhésive & prothèses', titre: 'Couronne sur implant', href: '/soins/dentisterie-adhesive-protheses#protheses-implants', resume: "La dent remplacée sans toucher aux dents voisines : une couronne fixée sur la racine artificielle." },
+  // Soins du quotidien
+  { key: 'carie', famille: 'Soins du quotidien', titre: 'Soin de carie', href: '/soins/soins-quotidiens#caries', resume: "Traitée tôt, une carie reste une petite réparation — elle progresse de l’émail vers le nerf si on attend." },
+  { key: 'te', famille: 'Soins du quotidien', titre: 'Traitement de racine (dévitalisation)', href: '/soins/soins-quotidiens#endodontie', resume: "Quand la carie atteint le nerf : canaux nettoyés, désinfectés et obturés sous digue — puis la dent est protégée." },
+  { key: 'rte', famille: 'Soins du quotidien', titre: 'Retraitement de racine', href: '/soins/soins-quotidiens#retraitement', resume: "La reprise d’un ancien traitement devenu non étanche, avec une lésion au bout de la racine — et ses deux suites possibles." },
+  { key: 'detartrage', famille: 'Soins du quotidien', titre: 'Détartrage & contrôle', href: '/soins/soins-quotidiens#detartrage', resume: "Le rendez-vous annuel qui enlève le tartre et dépiste tôt — caries débutantes, déchaussement, usure." },
+  { key: 'blanchiment', famille: 'Soins du quotidien', titre: 'Blanchiment dentaire', href: '/soins/soins-quotidiens#blanchiment', resume: "Gouttières sur mesure portées 2 h par jour pendant 4 à 6 semaines — résultat qui tient en général 3 à 5 ans." },
+];
+
+const familles = [...new Set(soins.map((s) => s.famille))];
+---
+
+<Layout
+  title="Comprendre mon devis — les soins expliqués — Cabinet Dr Kebieche, Colombes"
+  description="La page qui accompagne votre devis : chaque soin proposé expliqué simplement, avec le lien vers l’explication complète, schémas à l’appui."
+>
+
+  <section class="container-wide pt-12 md:pt-20 pb-10 md:pb-14">
+    <div class="max-w-3xl" data-reveal>
+      <span class="eyebrow mb-5">Votre devis, expliqué</span>
+      <h1 class="text-[34px] md:text-[46px] leading-[1.12] tracking-tight mb-6">
+        Comprendre les soins de votre devis.
+      </h1>
+      <p class="text-[17px] text-ink-700 leading-[1.7]" id="devis-intro">
+        Cette page accompagne le devis remis en consultation. Chaque soin proposé y est résumé en quelques lignes, avec le lien vers l’explication complète — schémas à l’appui, à relire à tête reposée. Pour toute question, le plus simple reste d’appeler : <a href="tel:+33142429469" class="font-semibold whitespace-nowrap" style="color: var(--color-teal-700)">01 42 42 94 69</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-wide pb-16 md:pb-20">
+    <div class="max-w-4xl" id="devis-liste">
+      {familles.map((f) => (
+        <div class="devis-groupe mb-10 last:mb-0" data-famille={f}>
+          <div class="text-[12px] uppercase tracking-[0.18em] font-semibold mb-5" style="color: var(--color-copper-600)">{f}</div>
+          <div class="grid md:grid-cols-2 gap-5">
+            {soins.filter((s) => s.famille === f).map((s) => (
+              <a href={s.href} class="card !p-6 block devis-soin" data-soin={s.key}>
+                <h2 class="text-[18px] font-medium mb-2" style="font-family: var(--font-display)">{s.titre}</h2>
+                <p class="text-[14px] text-ink-700 leading-[1.65] mb-3">{s.resume}</p>
+                <span class="text-[13.5px] font-medium inline-flex items-center gap-1.5" style="color: var(--color-teal-700)">
+                  Lire l’explication complète <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="max-w-4xl mt-10 flex gap-4 items-start rounded-2xl p-5 md:p-6" style="background: var(--color-cream-200); border-left: 3px solid var(--color-copper-400)" data-reveal>
+      <p class="text-[13.5px] text-ink-700 leading-[1.65]">
+        <strong>Votre devis fait référence.</strong> Ces explications sont générales : c’est le devis et les échanges en consultation qui décrivent précisément <em>votre</em> plan de traitement. Rien n’est engagé sans votre accord.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="container-wide pb-24">
+    <div class="card p-10 md:p-14 text-center" style="background: var(--color-cream-50); border-color: var(--color-cream-300)" data-reveal>
+      <h3 class="text-[24px] md:text-[28px] font-medium mb-3" style="font-family: var(--font-display)">
+        Une question sur votre devis ?
+      </h3>
+      <p class="text-[15px] text-ink-500 mb-7 max-w-xl mx-auto">
+        Un appel suffit souvent à lever un doute — et le devis peut être adressé à votre mutuelle avant de décider.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="tel:+33142429469" class="btn btn-primary whitespace-nowrap">01 42 42 94 69</a>
+        <a href="/contact#ecrire" class="btn btn-secondary">Écrire au cabinet</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script is:inline>
+  // Filtrage par paramètre d’URL : ?soins=implant,rte,overlay
+  // Alias acceptés pour tolérer les variantes côté Mélyia.
+  (function () {
+    var ALIAS = {
+      implants: 'implant',
+      inlay: 'overlay', onlay: 'overlay', 'inlay-onlay-overlay': 'overlay',
+      devitalisation: 'te', endodontie: 'te',
+      retraitement: 'rte',
+      gencives: 'paro', parodontologie: 'paro', debridement: 'paro',
+      recession: 'greffe-gencive', recessions: 'greffe-gencive', tunneling: 'greffe-gencive',
+      maintenance: 'maintenance-paro',
+      couronnes: 'couronne', 'couronne-sur-implant': 'couronne-implant',
+      caries: 'carie', greffe: 'greffe-osseuse',
+      'dents-de-sagesse': 'dds', extraction: 'chirurgie-orale',
+    };
+    var params = new URLSearchParams(window.location.search);
+    var brut = (params.get('soins') || '').toLowerCase().split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+    if (!brut.length) return; // pas de paramètre : tout afficher
+
+    var demandes = brut.map(function (k) { return ALIAS[k] || k; });
+    var cartes = document.querySelectorAll('.devis-soin');
+    var trouves = 0;
+    cartes.forEach(function (c) {
+      var ok = demandes.indexOf(c.dataset.soin) !== -1;
+      c.style.display = ok ? '' : 'none';
+      if (ok) trouves++;
+    });
+    if (!trouves) return; // aucune clé reconnue : tout laisser visible
+
+    // Masquer les groupes vides
+    document.querySelectorAll('.devis-groupe').forEach(function (g) {
+      var visibles = g.querySelectorAll('.devis-soin:not([style*="none"])');
+      if (!visibles.length) g.style.display = 'none';
+    });
+    // Adapter l’intro
+    var intro = document.getElementById('devis-intro');
+    if (intro) {
+      var n = trouves;
+      intro.insertAdjacentHTML('afterbegin',
+        '<strong>' + (n > 1 ? 'Les ' + n + ' soins de votre devis' : 'Le soin de votre devis') + ' :</strong> ');
+    }
+  })();
+</script>
