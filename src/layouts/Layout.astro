@@ -129,7 +129,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
     })();
   </script>
 
-  <!-- Schémas pédagogiques : dessin progressif au trait à l'entrée dans le viewport.
+  <!-- Schémas pédagogiques : dessin progressif au trait à l’entrée dans le viewport.
        Générique (tous les <figure svg>), état final identique au rendu statique,
        désactivé si prefers-reduced-motion. -->
   <script is:inline>
@@ -145,7 +145,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
         const els = svg.querySelectorAll('path, line, polyline, polygon, rect, circle');
         els.forEach((el) => {
           const cs = getComputedStyle(el);
-          el.dataset.fo = cs.fillOpacity;          // fill-opacity d'origine (0.5 translucide, etc.)
+          el.dataset.fo = cs.fillOpacity;          // fill-opacity d’origine (0.5 translucide, etc.)
           el.style.fillOpacity = '0';
           if (cs.strokeDasharray === 'none' && el.getTotalLength) {
             try {
@@ -155,9 +155,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
                 el.style.strokeDasharray = String(L);
                 el.style.strokeDashoffset = String(L);
               }
-            } catch (e) { /* élément non géométrique : fondu seul */ }
+            } catch (e) { /* élément non géométrique : fondu seul */ }
           } else {
-            el.dataset.op = cs.opacity;            // déjà en pointillés : fondu simple
+            el.dataset.op = cs.opacity;            // déjà en pointillés : fondu simple
             el.style.opacity = '0';
           }
         });
@@ -174,7 +174,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
               'fill-opacity 0.55s ease ' + (d + 250) + 'ms, ' +
               'opacity 0.55s ease ' + (d + 250) + 'ms';
             if (el.dataset.draw) el.style.strokeDashoffset = '0';
-            if (el.dataset.op !== undefined) el.style.opacity = el.dataset.op;
+            if (el.dataset.op !== undefined) el.style.opacity = el.dataset.op;
             el.style.fillOpacity = el.dataset.fo || '1';
           });
           io.unobserve(entry.target);

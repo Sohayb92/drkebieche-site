@@ -1,0 +1,130 @@
+---
+/**
+ * Retraitement endodontique (RTE) en 3 temps :
+ * ancien traitement non étanche + lésion au bout de la racine →
+ * canaux repris/désinfectés → cicatrisation osseuse contrôlée + protection.
+ * Même molaire en coupe que SchemaEndodontie.
+ */
+const steps = [
+  {
+    num: '1',
+    titre: 'Un ancien traitement fuit',
+    duree: 'Le constat',
+    ligne: "L’obturation n’est plus étanche : une lésion s’installe au bout de la racine — souvent sans douleur, découverte à la radio.",
+  },
+  {
+    num: '2',
+    titre: 'Les canaux repris',
+    duree: '1 à 2 séances',
+    ligne: "L’ancienne obturation est retirée, les canaux désinfectés puis réobturés — sous digue, comme un traitement initial.",
+  },
+  {
+    num: '3',
+    titre: 'Cicatrisation contrôlée',
+    duree: 'Jusqu’à 6 mois',
+    ligne: "Selon la lésion : nouvelle couronne ou overlay sans attendre, ou provisoire le temps que l’os cicatrise — vérifié à la radio.",
+  },
+];
+
+// Molaire en coupe avec 2 racines (identique à SchemaEndodontie)
+const DENT = `M 62 108
+  C 58 70 64 44 100 44
+  C 136 44 142 70 138 108
+  C 139 130 132 150 124 168
+  C 120 178 112 176 112 164
+  C 112 146 110 132 106 124
+  C 103 118 97 118 94 124
+  C 90 132 88 146 88 164
+  C 88 176 80 178 76 168
+  C 68 150 61 130 62 108 Z`;
+
+const CHAMBRE = `M 90 92 C 90 76 94 70 100 70 C 106 70 110 76 110 92 C 110 98 106 102 100 102 C 94 102 90 98 90 92 Z`;
+const CANAL_G = 'M 96 100 C 93 124 89 142 86 158';
+const CANAL_D = 'M 104 100 C 107 124 111 142 114 158';
+---
+
+<figure class="my-10 md:my-12">
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+    {steps.map((s) => (
+      <div class="rounded-2xl p-4 md:p-5 text-center relative" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full text-[12px] font-semibold" style="background: var(--color-teal-800); color: var(--color-cream-50)">{s.num}</span>
+          <span class="text-[11px] uppercase tracking-[0.14em] font-semibold" style="color: var(--color-copper-600)">{s.duree}</span>
+        </div>
+
+        <svg viewBox="0 0 200 200" role="img" aria-label={s.titre} class="w-full max-w-[180px] mx-auto">
+          <!-- Os -->
+          <rect x="12" y="120" width="176" height="68" rx="6" style="fill: var(--color-cream-200); stroke: var(--color-ink-300); stroke-width: 1.5" />
+          <!-- Gencive -->
+          <rect x="12" y="106" width="176" height="18" rx="6" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
+
+          {s.num === '1' && (
+            <g>
+              <!-- Lésion au bout de la racine gauche (halo dans l’os) -->
+              <circle cx="84" cy="164" r="14" style="fill: var(--color-copper-400); fill-opacity: 0.35" />
+              <circle cx="84" cy="164" r="14" style="fill: none; stroke: var(--color-copper-600); stroke-width: 1.5; stroke-dasharray: 4 3" />
+            </g>
+          )}
+          {s.num === '2' && (
+            <circle cx="84" cy="164" r="11" style="fill: var(--color-copper-400); fill-opacity: 0.18; stroke: var(--color-copper-500); stroke-width: 1.2; stroke-dasharray: 4 3" />
+          )}
+
+          <!-- Dent (coupe, 2 racines) -->
+          <path d={DENT} style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2" stroke-linejoin="round" />
+
+          {s.num === '1' && (
+            <g>
+              <!-- Ancienne obturation grise, incomplète (ne va pas au bout) -->
+              <path d={CHAMBRE} style="fill: var(--color-ink-400); fill-opacity: 0.55" />
+              <path d="M 96 100 C 94 116 92 128 90 138" style="stroke: var(--color-ink-400); stroke-width: 4.5; fill: none; opacity: 0.55" stroke-linecap="round" />
+              <path d={CANAL_D} style="stroke: var(--color-ink-400); stroke-width: 4.5; fill: none; opacity: 0.55" stroke-linecap="round" />
+              <!-- Zone non scellée au bout du canal gauche -->
+              <path d="M 89 142 C 88 148 87 153 86 158" style="stroke: var(--color-copper-600); stroke-width: 4.5; fill: none; stroke-dasharray: 2.5 2.5" stroke-linecap="round" />
+            </g>
+          )}
+
+          {s.num === '2' && (
+            <g>
+              <!-- Canaux vidés -->
+              <path d={CHAMBRE} style="fill: var(--color-cream-50); stroke: var(--color-teal-600); stroke-width: 1.5; stroke-dasharray: 3 3" />
+              <path d={CANAL_G} style="stroke: var(--color-teal-600); stroke-width: 4.5; fill: none; stroke-dasharray: 3 3; opacity: 0.55" stroke-linecap="round" />
+              <path d={CANAL_D} style="stroke: var(--color-teal-600); stroke-width: 4.5; fill: none; stroke-dasharray: 3 3; opacity: 0.55" stroke-linecap="round" />
+              <!-- Lime -->
+              <line x1="104" y1="26" x2="87" y2="152" style="stroke: var(--color-teal-700); stroke-width: 2.2" stroke-linecap="round" />
+              <rect x="99" y="18" width="10" height="12" rx="2" style="fill: var(--color-teal-700)" />
+            </g>
+          )}
+
+          {s.num === '3' && (
+            <g>
+              <!-- Canaux réobturés au bout -->
+              <path d={CHAMBRE} style="fill: var(--color-teal-400)" />
+              <path d={CANAL_G} style="stroke: var(--color-teal-400); stroke-width: 4.5; fill: none" stroke-linecap="round" />
+              <path d={CANAL_D} style="stroke: var(--color-teal-400); stroke-width: 4.5; fill: none" stroke-linecap="round" />
+              <!-- Os cicatrisé : traits de regain osseux autour de l’ancien site -->
+              <g style="stroke: var(--color-teal-500); stroke-width: 1.8" stroke-linecap="round">
+                <line x1="72" y1="160" x2="78" y2="158" />
+                <line x1="74" y1="170" x2="80" y2="167" />
+                <line x1="92" y1="170" x2="87" y2="166" />
+              </g>
+              <!-- Nouvelle protection -->
+              <path d="M 62 100 C 58 64 66 40 100 40 C 134 40 142 64 138 100 L 130 94 C 133 66 126 48 100 48 C 74 48 67 66 70 94 Z" style="fill: var(--color-teal-400); stroke: var(--color-teal-700); stroke-width: 1.6" stroke-linejoin="round" />
+            </g>
+          )}
+        </svg>
+
+        <div class="mt-3 text-[17px] md:text-[18px] font-medium" style="font-family: var(--font-display)">{s.titre}</div>
+        <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">{s.ligne}</p>
+      </div>
+    ))}
+  </div>
+
+  <figcaption class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-ink-500">
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-ink-400); opacity: 0.55"></span> Ancienne obturation</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded-full" style="background: var(--color-copper-400); opacity: 0.5"></span> Lésion au bout de la racine</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-teal-400); border: 1px solid var(--color-teal-700)"></span> Nouvelle obturation & protection</span>
+  </figcaption>
+
+</figure>
