@@ -36,6 +36,11 @@ interface Section {
   schema?: string;      // nom d'un schéma pédagogique à afficher après le texte
 }
 
+interface RelatedLink {
+  href: string;
+  label: string;
+}
+
 interface Props {
   pageTitle: string;       // <title> + meta
   pageDescription: string; // meta description
@@ -44,9 +49,12 @@ interface Props {
   baseline: string;        // accroche tonale en sous-titre
   intro: string;           // paragraphe intro (HTML autorisé)
   sections: Section[];     // sections ancrées (TOC + contenu)
+  cta?: 'rdv' | 'conseil'; // 'conseil' : fiche post-soin → contact cabinet au lieu de prospection Doctolib
+  urgenceNote?: string;    // si présent : encadré "quand appeler" affiché EN HAUT de page (HTML autorisé)
+  related?: RelatedLink[]; // maillage soins ↔ conseils ("À lire aussi")
 }
 
-const { pageTitle, pageDescription, eyebrow, h1, baseline, intro, sections } = Astro.props;
+const { pageTitle, pageDescription, eyebrow, h1, baseline, intro, sections, cta = 'rdv', urgenceNote, related = [] } = Astro.props;
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -65,18 +73,44 @@ const { pageTitle, pageDescription, eyebrow, h1, baseline, intro, sections } = A
     </div>
   </section>
 
+  <!-- Encadré urgence (fiches post-soin) : EN HAUT, avant le contenu -->
+  {urgenceNote && (
+    <section class="container-wide pb-10">
+      <div class="max-w-3xl flex gap-4 items-start rounded-2xl p-5 md:p-6" style="background: var(--color-teal-50); border-left: 3px solid var(--color-teal-600)" data-reveal>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="flex-shrink-0 mt-0.5" style="color: var(--color-teal-700)"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <p class="text-[14px] text-ink-700 leading-[1.65]" set:html={urgenceNote}></p>
+      </div>
+    </section>
+  )}
+
   <!-- Layout 2 colonnes : TOC sticky + sections -->
   <section class="container-wide pb-24 md:pb-32">
+
+    <!-- TOC mobile : repliable -->
+    <details class="lg:hidden mb-10 rounded-xl overflow-hidden" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+      <summary class="px-5 py-4 cursor-pointer select-none text-[12px] uppercase tracking-[0.18em] font-semibold list-none flex items-center justify-between" style="color: var(--color-teal-700)">
+        Sur cette page
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="toc-chevron transition-transform"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <nav class="px-5 pb-4 space-y-0.5 border-t border-cream-300 pt-3">
+        {sections.map(s => (
+          <a href={`#${s.id}`} class="block text-[14.5px] py-2" style="color: var(--color-ink-700)">
+            {s.titre}
+          </a>
+        ))}
+      </nav>
+    </details>
+
     <div class="grid lg:grid-cols-[240px_1fr] gap-12 lg:gap-20">
 
-      <!-- TOC sticky (desktop) -->
+      <!-- TOC sticky (desktop) avec scrollspy -->
       <aside class="lg:sticky lg:top-28 lg:self-start hidden lg:block">
         <div class="text-[11px] uppercase tracking-[0.18em] font-semibold mb-4" style="color: var(--color-teal-700)">
           Sur cette page
         </div>
-        <nav class="space-y-1.5">
+        <nav class="space-y-0.5">
           {sections.map(s => (
-            <a href={`#${s.id}`} class="block text-[14px] py-1.5 transition-colors hover:text-teal-800" style="color: var(--color-ink-500)">
+            <a href={`#${s.id}`} class="toc-link block text-[14px] py-1.5" data-toc-link={s.id}>
               {s.titre}
             </a>
           ))}
@@ -88,7 +122,7 @@ const { pageTitle, pageDescription, eyebrow, h1, baseline, intro, sections } = A
         {sections.map((s, idx) => {
           const Schema = s.schema ? SCHEMAS[s.schema] : null;
           return (
-            <section id={s.id} class="scroll-mt-28" data-reveal data-reveal-delay={(idx * 80).toString()}>
+            <section id={s.id} class="scroll-mt-28" data-toc-section data-reveal data-reveal-delay={(idx * 80).toString()}>
               <h2 class="text-[26px] md:text-[32px] font-medium mb-5 leading-[1.2]" style="font-family: var(--font-display); color: var(--color-ink-900)">
                 {s.titre}
               </h2>
@@ -102,6 +136,24 @@ const { pageTitle, pageDescription, eyebrow, h1, baseline, intro, sections } = A
     </div>
   </section>
 
+  <!-- Maillage soins ↔ conseils -->
+  {related.length > 0 && (
+    <section class="container-wide pb-12">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-[11px] uppercase tracking-[0.18em] font-semibold mb-4" style="color: var(--color-teal-700)">
+          À lire aussi
+        </div>
+        <div class="flex flex-wrap gap-2.5">
+          {related.map(r => (
+            <a href={r.href} class="badge-expertise !text-[13px] !py-2 !px-4 transition-colors hover:!border-teal-300">
+              {r.label} →
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- Encadré : info générale vs diagnostic personnalisé -->
   <section class="container-wide pb-12">
     <div class="max-w-3xl mx-auto flex gap-4 items-start rounded-2xl p-5 md:p-6" style="background: var(--color-cream-200); border-left: 3px solid var(--color-copper-400)">
@@ -112,32 +164,85 @@ const { pageTitle, pageDescription, eyebrow, h1, baseline, intro, sections } = A
     </div>
   </section>
 
-  <!-- CTA RDV -->
-  <section class="container-wide pb-24 md:pb-32">
-    <div class="card p-10 md:p-14 text-center" style="background: var(--color-cream-50); border-color: var(--color-cream-300)">
-      <h3 class="text-[24px] md:text-[28px] font-medium mb-3" style="font-family: var(--font-display)">
-        Une question sur l'un de ces soins ?
-      </h3>
-      <p class="text-[15px] text-ink-500 mb-7 max-w-xl mx-auto">
-        Chaque consultation commence par une discussion : votre histoire, vos attentes, le plan de traitement écrit qui s'ensuit.
-      </p>
-      <div class="flex flex-wrap justify-center gap-3">
-        <a href="https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile" target="_blank" rel="noopener" class="btn btn-primary">
-          Prendre rendez-vous
-        </a>
-        <a href="/soins" class="btn btn-secondary">
-          Voir tous les soins
-        </a>
+  <!-- CTA final : RDV (pages soins) ou contact cabinet (fiches post-soin) -->
+  {cta === 'conseil' ? (
+    <section class="container-wide pb-24 md:pb-32">
+      <div class="card p-10 md:p-14 text-center" style="background: var(--color-cream-50); border-color: var(--color-cream-300)">
+        <h3 class="text-[24px] md:text-[28px] font-medium mb-3" style="font-family: var(--font-display)">
+          Un doute, une question sur vos consignes ?
+        </h3>
+        <p class="text-[15px] text-ink-500 mb-7 max-w-xl mx-auto">
+          Mieux vaut un appel pour rien qu'une inquiétude qui dure. L'équipe a l'habitude de ces questions — n'hésitez jamais à appeler.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="tel:+33142429469" class="btn btn-primary whitespace-nowrap">
+            01 42 42 94 69
+          </a>
+          <a href="/contact#ecrire" class="btn btn-secondary">
+            Écrire au cabinet
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  ) : (
+    <section class="container-wide pb-24 md:pb-32">
+      <div class="card p-10 md:p-14 text-center" style="background: var(--color-cream-50); border-color: var(--color-cream-300)">
+        <h3 class="text-[24px] md:text-[28px] font-medium mb-3" style="font-family: var(--font-display)">
+          Une question sur l'un de ces soins ?
+        </h3>
+        <p class="text-[15px] text-ink-500 mb-7 max-w-xl mx-auto">
+          Chaque consultation commence par une discussion : votre histoire, vos attentes, le plan de traitement écrit qui s'ensuit.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile" target="_blank" rel="noopener" class="btn btn-primary">
+            Prendre rendez-vous
+          </a>
+          <a href="/soins" class="btn btn-secondary">
+            Voir tous les soins
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
 
 </Layout>
 
 <style>
-  /* TOC link actif au scroll (highlight via :target) */
-  aside nav a:hover {
-    color: var(--color-teal-800) !important;
-    font-weight: 500;
+  /* TOC desktop : repos discret, hover teal, actif (scrollspy) teal + filet cuivré */
+  .toc-link {
+    color: var(--color-ink-500);
+    border-left: 2px solid transparent;
+    padding-left: 12px;
+    margin-left: -14px;
+    transition: color 0.2s ease, border-color 0.2s ease;
   }
+  .toc-link:hover {
+    color: var(--color-teal-800);
+  }
+  .toc-link.active {
+    color: var(--color-teal-800);
+    font-weight: 600;
+    border-left-color: var(--color-copper-400);
+  }
+
+  /* TOC mobile : chevron qui pivote à l'ouverture */
+  details summary::-webkit-details-marker { display: none; }
+  details[open] .toc-chevron { transform: rotate(180deg); }
 </style>
+
+<script>
+  // Scrollspy : surligne dans le TOC desktop la section visible
+  const tocLinks = document.querySelectorAll('[data-toc-link]');
+  if (tocLinks.length && 'IntersectionObserver' in window) {
+    const byId = new Map<string, Element>();
+    tocLinks.forEach((l) => byId.set(l.getAttribute('data-toc-link') || '', l));
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        tocLinks.forEach((l) => l.classList.remove('active'));
+        byId.get(entry.target.id)?.classList.add('active');
+      });
+    }, { rootMargin: '-25% 0px -65% 0px' });
+    document.querySelectorAll('[data-toc-section]').forEach((s) => spy.observe(s));
+  }
+</script>
