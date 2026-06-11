@@ -26,6 +26,7 @@ const etapes = [
     periode: "Aujourd’hui",
     titre: 'Colombes — avec, en parallèle, la chirurgie orale hospitalière',
     texte: "Installation au Cabinet Dentaire La Cabane, dans le quartier des Vallées. En parallèle du cabinet, un an et demi passé comme praticien attaché hospitalier en chirurgie orale — cas complexes, dents de sagesse, implantologie et chirurgie pré-implantaire, sous anesthésie locale. Cette habitude des cas difficiles reste appliquée chaque jour au fauteuil.",
+    citation: "Je me suis installé à dix minutes de Courbevoie, où j’ai grandi. Les Vallées, c’est un village dans Colombes : on s’y salue, on s’y connaît. Quand un confrère rencontré à l’hôpital pendant ma formation a repris le cabinet et m’a proposé de le rejoindre, je n’ai pas hésité.",
   },
   {
     periode: 'Formation continue',
@@ -102,6 +103,11 @@ const etapes = [
             <div class="text-[11px] uppercase tracking-[0.16em] font-semibold mb-1.5" style="color: var(--color-copper-600)">{e.periode}</div>
             <h3 class="text-[20px] md:text-[22px] font-medium mb-2.5" style="font-family: var(--font-display)">{e.titre}</h3>
             <p class="text-[15px] text-ink-700 leading-[1.7]">{e.texte}</p>
+            {e.citation && (
+              <p class="mt-4 pl-4 text-[14.5px] leading-[1.75] text-ink-700" style="border-left: 2px solid var(--color-copper-400); font-family: var(--font-display)">
+                « {e.citation} »
+              </p>
+            )}
           </div>
         ))}
       </div>
@@ -109,12 +115,17 @@ const etapes = [
   </section>
 
 
-  <!-- PHILOSOPHIE courte -->
+  <!-- EN SES MOTS — voix du praticien (session d’écriture avec le user, 2026-06-11) -->
   <section class="py-16 md:py-24">
     <div class="container-prose text-center" data-reveal>
-      <span class="eyebrow mb-5 justify-center">La philosophie</span>
-      <p class="text-[24px] md:text-[30px] leading-[1.35]" style="font-family: var(--font-display); color: var(--color-ink-900)">
-        Chaque bouche raconte une histoire. La traiter correctement demande d’écouter cette histoire avant d’agir — puis d’expliquer, schémas à l’appui, ce qui est proposé et pourquoi.
+      <span class="eyebrow mb-6 justify-center">En ses mots</span>
+      <p class="text-[22px] md:text-[27px] leading-[1.45]" style="font-family: var(--font-display); color: var(--color-ink-900)">
+        « J’ai toujours voulu faire un métier de soin. Et ce qui me porte, au fond, ce sont les relations : le patient arrivé sur la réserve — un dentiste reste un dentiste — et qui finit par venir avec plaisir ; la personne âgée pour qui la consultation est aussi un moment de lien ; le sourire rendu à quelqu’un qui n’osait plus sourire, et qui retrouve sa place. La technique est exigeante, et je l’aime pour ça. Mais c’est pour ces moments-là que je fais ce métier. »
+      </p>
+      <p class="mt-5 text-[14px] font-semibold tracking-wide" style="color: var(--color-copper-600)">— Dr Sohaïb Kebieche</p>
+      <div class="divider-copper"></div>
+      <p class="text-[16px] md:text-[17px] leading-[1.75] text-ink-700 max-w-xl mx-auto">
+        « Nous travaillons comme on nous l’a appris à la faculté : protocoles respectés, sans raccourci. Une exigence que je mets dans chaque soin, pour chaque patient — c’est d’ailleurs ici que je soigne ma propre famille. Et si l’esthétique fait partie du soin — un blanchiment, une céramique bien faite —, je refuse de tailler des dents saines pour des facettes purement cosmétiques : préserver une dent saine passera toujours en premier. »
       </p>
       <div class="divider-copper"></div>
       <p class="text-[15px] text-ink-500">
