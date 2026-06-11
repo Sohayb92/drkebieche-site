@@ -1,9 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import fs from 'node:fs';
-
-// Le portrait s’affiche automatiquement dès que public/portrait.jpg existe
-const hasPortrait = fs.existsSync(new URL('../../public/portrait.jpg', import.meta.url));
 
 // Parcours chronologique (validé par le praticien)
 const etapes = [
@@ -24,7 +20,7 @@ const etapes = [
   },
   {
     periode: "Aujourd’hui",
-    titre: 'Colombes — avec, en parallèle, la chirurgie orale hospitalière',
+    titre: 'Colombes — avec, un temps, la chirurgie orale hospitalière en parallèle',
     texte: "Installation au Cabinet Dentaire La Cabane, dans le quartier des Vallées. En parallèle du cabinet, un an et demi passé comme praticien attaché hospitalier en chirurgie orale — cas complexes, dents de sagesse, implantologie et chirurgie pré-implantaire, sous anesthésie locale. Cette habitude des cas difficiles reste appliquée chaque jour au fauteuil.",
     citation: "Je me suis installé à dix minutes de Courbevoie, où j’ai grandi. Les Vallées, c’est un village dans Colombes : on s’y salue, on s’y connaît. Quand un confrère rencontré à l’hôpital pendant ma formation a repris le cabinet et m’a proposé de le rejoindre, je n’ai pas hésité.",
   },
@@ -67,13 +63,7 @@ const etapes = [
 
       <!-- Portrait -->
       <div class="relative" data-reveal data-reveal-delay="140">
-        {hasPortrait ? (
-          <img src="/portrait.jpg" alt="Dr Sohaïb Kebieche, chirurgien-dentiste à Colombes" class="w-full max-w-[420px] mx-auto rounded-2xl" style="box-shadow: 0 24px 60px -24px rgba(31,58,61,0.35)" />
-        ) : (
-          <div class="aspect-[3/4] max-w-[420px] mx-auto rounded-2xl overflow-hidden flex items-center justify-center" style="background: var(--color-copper-300)">
-            <span class="text-[14px]" style="color: rgba(255,255,255,0.7); font-family: var(--font-display)">Portrait à venir</span>
-          </div>
-        )}
+        <img src="/portrait.jpg" alt="Dr Sohaïb Kebieche, chirurgien-dentiste à Colombes" width="680" height="1020" loading="eager" class="w-full max-w-[420px] mx-auto rounded-2xl" style="box-shadow: 0 24px 60px -24px rgba(31,58,61,0.35)" />
       </div>
 
     </div>
