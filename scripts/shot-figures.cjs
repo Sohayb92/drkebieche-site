@@ -7,6 +7,7 @@ const PAGES = [
   { route: '/soins/parodontologie', slug: 'paro' },
   { route: '/soins/soins-quotidiens', slug: 'quotidien' },
   { route: '/soins/dentisterie-adhesive-protheses', slug: 'adhesive' },
+  { route: '/conseils/hygiene', slug: 'hygiene' },
 ];
 
 (async () => {

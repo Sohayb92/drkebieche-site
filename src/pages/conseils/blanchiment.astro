@@ -1,0 +1,53 @@
+---
+import FamilySoinsPage from '../../components/FamilySoinsPage.astro';
+
+const sections = [
+  {
+    id: 'le-port',
+    titre: 'Bien utiliser vos gouttières',
+    description: `
+      <ul>
+        <li><strong>Une goutte de gel par dent</strong>, déposée dans la gouttière — pas plus : l'excès déborde sur la gencive sans blanchir davantage.</li>
+        <li><strong>Essuyez le surplus</strong> qui déborde sur la gencive avec un coton-tige ou un doigt propre : le gel peut l'irriter temporairement.</li>
+        <li><strong>2 heures par jour minimum</strong>, pendant 4 à 6 semaines. C'est la <strong>régularité</strong> qui fait le résultat — mieux vaut 2h chaque jour que 6h le week-end.</li>
+        <li><strong>Avant le port</strong> : dents brossées. <strong>Pendant</strong> : ni manger, ni boire, ni fumer.</li>
+        <li><strong>Après chaque usage</strong> : rincer la gouttière à l'eau froide (jamais chaude — elle se déformerait) et la brosser doucement.</li>
+      </ul>
+    `,
+  },
+  {
+    id: 'pendant-le-traitement',
+    titre: 'Pendant les 4 à 6 semaines',
+    description: `
+      <ul>
+        <li><strong>Limitez ce qui colore</strong> : café, thé, vin rouge, curry, sodas foncés, tabac. Pendant le traitement, les dents sont temporairement plus réceptives aux colorants — chaque tache reprise ralentit le résultat.</li>
+        <li><strong>Sensibilités au froid</strong> : fréquentes et passagères. Si elles deviennent gênantes, <strong>sautez un jour ou deux</strong> et utilisez un dentifrice désensibilisant — puis reprenez. Elles disparaissent à l'arrêt du traitement.</li>
+        <li><strong>Gencive qui blanchit ponctuellement</strong> au contact du gel : sans gravité, cela disparaît en quelques heures — mais c'est le signe qu'il y avait trop de gel.</li>
+        <li><strong>Le résultat s'installe progressivement</strong> : il est normal de ne rien voir la première semaine. La teinte se stabilise en fin de traitement et se maintient en général 3 à 5 ans.</li>
+      </ul>
+    `,
+  },
+  {
+    id: 'questions-blanchiment',
+    titre: 'Questions fréquentes',
+    description: `
+      <h3>Les anciennes restaurations vont-elles blanchir aussi ?</h3>
+      <p>Non — composites, couronnes et facettes ne changent pas de teinte. Si une restauration visible devient plus foncée que les dents éclaircies, son remplacement peut être discuté <em>après</em> le traitement, une fois la teinte stabilisée.</p>
+      <h3>Puis-je prolonger pour un résultat plus blanc ?</h3>
+      <p>La teinte finale dépend de votre teinte de départ : prolonger au-delà du protocole n'apporte pas grand-chose et augmente les sensibilités. Le protocole remis correspond à ce qui est efficace et raisonnable pour vos dents.</p>
+      <h3>Et dans quelques années ?</h3>
+      <p>Vos gouttières se conservent : une <strong>retouche de quelques jours</strong> avec une seringue de gel suffit généralement à raviver le résultat — inutile de tout recommencer.</p>
+    `,
+  },
+];
+---
+
+<FamilySoinsPage
+  pageTitle="Conseils blanchiment dentaire — gouttières et suivi, cabinet Dr Kebieche Colombes"
+  pageDescription="Bien utiliser vos gouttières de blanchiment : dose de gel, port 2h/jour, aliments à limiter, sensibilités — conseils du cabinet Dr Kebieche, Colombes."
+  eyebrow="Conseils patient"
+  h1="Pendant votre blanchiment — gouttières, gel et suivi"
+  baseline="La régularité fait le résultat."
+  intro="Vous avez reçu vos gouttières sur mesure et votre gel : voici l'essentiel pour un traitement efficace et confortable pendant les 4 à 6 semaines — et un résultat qui dure 3 à 5 ans."
+  sections={sections}
+/>

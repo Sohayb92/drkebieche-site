@@ -1,0 +1,52 @@
+---
+import FamilySoinsPage from '../../components/FamilySoinsPage.astro';
+
+const sections = [
+  {
+    id: 'apres-greffe',
+    titre: 'Après une greffe de gencive (tunneling)',
+    description: `
+      <ul>
+        <li><strong>Ne touchez pas à la zone opérée</strong> : ni brossage, ni doigt, ni langue insistante — et surtout, <strong>ne tirez pas sur la lèvre ou la joue pour regarder</strong> : c'est le geste qui compromet le plus souvent un greffon. La durée de protection exacte (généralement 3 à 4 semaines) figure sur vos consignes.</li>
+        <li><strong>Brossage normal partout ailleurs</strong> ; sur la zone opérée, le bain de bouche prescrit prend le relais à partir du lendemain.</li>
+        <li><strong>Froid et repos</strong> les premières 48h : poche de glace par intermittence, pas de sport, tête surélevée la nuit.</li>
+        <li><strong>Alimentation</strong> tiède et molle, en mastiquant du côté opposé. Évitez ce qui est dur, croquant ou brûlant tant que la zone est fragile.</li>
+        <li><strong>Si le greffon vient du palais</strong> : la zone de prélèvement peut être sensible quelques jours — une plaque de protection est parfois remise, et les aliments doux sont vos alliés. Cette gêne est normale et disparaît avec la cicatrisation.</li>
+        <li><strong>Tabac : à proscrire</strong> pendant toute la cicatrisation — c'est le premier facteur d'échec d'une greffe.</li>
+      </ul>
+    `,
+  },
+  {
+    id: 'apres-debridement',
+    titre: 'Après un débridement (traitement de la parodontite)',
+    description: `
+      <ul>
+        <li><strong>Reprenez le brossage dès le soir même</strong>, doux mais complet — c'est lui qui consolide le résultat du traitement. Les brossettes calibrées remises en séance s'utilisent dès que la sensibilité le permet.</li>
+        <li><strong>Sensibilité au froid</strong> pendant quelques jours à quelques semaines : normale. Les racines nettoyées sont temporairement plus exposées ; un dentifrice désensibilisant aide.</li>
+        <li><strong>Un saignement léger au brossage</strong> les premiers jours est normal — il doit diminuer de jour en jour. C'est le signe que l'inflammation régresse.</li>
+        <li><strong>Les gencives peuvent « se replacer »</strong> en dégonflant : de petits espaces entre les dents peuvent apparaître. Ce n'est pas un effet indésirable — c'est la gencive qui retrouve sa place saine, sur un os assaini.</li>
+        <li><strong>Anesthésie</strong> : attendre la fin complète de l'engourdissement avant de manger.</li>
+      </ul>
+      <p>La <strong>réévaluation à 2-3 mois</strong> mesure les résultats — c'est elle qui fixe le rythme de votre maintenance (tous les 6 mois).</p>
+    `,
+  },
+  {
+    id: 'alerte-paro',
+    titre: 'Quand appeler le cabinet',
+    description: `
+      <p><strong>Normal</strong> : gêne et sensibilité quelques jours, léger saignement décroissant, gonflement modéré après une chirurgie, gêne au palais après prélèvement.</p>
+      <p><strong>Appelez</strong> (<a href="tel:+33142429469">01 42 42 94 69</a>) si : un saignement actif persiste malgré une compresse, la douleur augmente après le 3<sup>e</sup> jour, de la fièvre apparaît, ou si le pansement/la protection se décroche précocement sur une zone greffée.</p>
+    `,
+  },
+];
+---
+
+<FamilySoinsPage
+  pageTitle="Après un soin parodontal — consignes post-opératoires, cabinet Dr Kebieche Colombes"
+  pageDescription="Consignes après une greffe de gencive (tunneling) ou un débridement parodontal : protection du greffon, brossage, sensibilités — cabinet Dr Kebieche, Colombes."
+  eyebrow="Conseils patient"
+  h1="Après un soin parodontal — greffe de gencive ou débridement"
+  baseline="Protéger la zone opérée, entretenir tout le reste."
+  intro="Les suites d'un soin parodontal sont généralement simples — à condition de respecter deux principes opposés : <strong>ne pas toucher</strong> la zone opérée après une greffe, et au contraire <strong>nettoyer activement</strong> après un débridement. Vos consignes écrites précisent ce qui s'applique à votre cas."
+  sections={sections}
+/>

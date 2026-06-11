@@ -218,37 +218,43 @@ function iconSvg(name: string) {
   </section>
 
 
-  <!-- COMPRENDRE VOS SOINS — 3 cards -->
+  <!-- CONSEILS PATIENT — 3 cards + lien hub -->
   <section class="py-20 md:py-28">
     <div class="container-wide">
 
       <div class="max-w-2xl mb-14" data-reveal>
-        <span class="eyebrow mb-4">Comprendre vos soins</span>
+        <span class="eyebrow mb-4">Conseils patient</span>
         <h2 class="text-[32px] md:text-[42px] leading-[1.12] tracking-tight mb-4">
-          Un dossier patient, accessible à tout moment.
+          Vos fiches conseils, accessibles à tout moment.
         </h2>
         <p class="text-[15px] text-ink-500 leading-[1.7]">
-          Après chaque consultation, un plan de traitement écrit vous est transmis, accompagné des liens vers cette section du site. Vous y retrouvez, soin par soin, les explications, les schémas, les consignes pré et post-opératoires, et les conseils d'hygiène quotidienne.
+          Après chaque consultation, un plan de traitement écrit vous est transmis, accompagné des liens vers ces fiches. Vous y retrouvez les consignes avant et après vos soins — chirurgie, parodontologie, blanchiment — et les bons gestes d'hygiène au quotidien, schémas à l'appui.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-5">
-        <a href="/comprendre/avant" class="card hover:border-teal-300 transition-colors" data-reveal data-reveal-delay="0">
-          <h3 class="text-[18px] font-medium mb-3">Avant l'intervention</h3>
-          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Conseils pré-opératoires pour les extractions, implants, greffes osseuses et chirurgies parodontales.</p>
+        <a href="/conseils/avant" class="card hover:border-teal-300 transition-colors" data-reveal data-reveal-delay="0">
+          <h3 class="text-[18px] font-medium mb-3">Avant une intervention</h3>
+          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Bien se préparer à une extraction, un implant, une greffe ou une chirurgie : médicaments, repas, organisation.</p>
           <span class="text-[13px] font-medium" style="color: var(--color-teal-700)">Consulter →</span>
         </a>
 
-        <a href="/comprendre/apres" class="card hover:border-teal-300 transition-colors" data-reveal data-reveal-delay="140">
-          <h3 class="text-[18px] font-medium mb-3">Après l'intervention</h3>
-          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Consignes post-opératoires détaillées : douleur, gonflement, alimentation, hygiène, suites normales.</p>
+        <a href="/conseils/apres-chirurgie" class="card hover:border-teal-300 transition-colors" data-reveal data-reveal-delay="140">
+          <h3 class="text-[18px] font-medium mb-3">Après une chirurgie</h3>
+          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Consignes post-opératoires détaillées : douleur, gonflement, alimentation, suites normales et signes d'alerte.</p>
           <span class="text-[13px] font-medium" style="color: var(--color-teal-700)">Consulter →</span>
         </a>
 
-        <a href="/comprendre/hygiene" class="card hover:border-teal-300 transition-colors" data-reveal data-reveal-delay="280">
+        <a href="/conseils/hygiene" class="card hover:border-teal-300 transition-colors" data-reveal data-reveal-delay="280">
           <h3 class="text-[18px] font-medium mb-3">Hygiène au quotidien</h3>
-          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Brossage, brossettes interdentaires, bains de bouche, alimentation : tout ce qui se joue à la maison.</p>
+          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Brossage à 45° vers la gencive, brosse électrique, brossettes calibrées : tout ce qui se joue à la maison.</p>
           <span class="text-[13px] font-medium" style="color: var(--color-teal-700)">Consulter →</span>
+        </a>
+      </div>
+
+      <div class="mt-8" data-reveal>
+        <a href="/conseils" class="text-[14px] font-medium inline-flex items-center gap-1.5 hover:gap-2.5 transition-all" style="color: var(--color-teal-700)">
+          Toutes les fiches conseils <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
       </div>
 

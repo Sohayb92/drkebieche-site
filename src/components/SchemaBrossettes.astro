@@ -1,0 +1,73 @@
+---
+/**
+ * Brossettes interdentaires — pourquoi et comment.
+ * P1 : la zone que la brosse n'atteint pas (entre les dents) · P2 : la brossette calibrée qui la nettoie.
+ */
+---
+
+<figure class="my-10 md:my-12">
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <pattern id="hatch-brossettes" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="6" height="6" style="fill: var(--color-cream-100)"></rect>
+        <line x1="0" y1="0" x2="0" y2="6" style="stroke: var(--color-copper-500); stroke-width: 1.6"></line>
+      </pattern>
+    </defs>
+  </svg>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+
+    <!-- 1. La zone inaccessible -->
+    <div class="rounded-2xl p-4 md:p-5 text-center" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+      <svg viewBox="0 0 220 190" role="img" aria-label="La zone entre les dents, inaccessible à la brosse" class="w-full max-w-[190px] mx-auto">
+        <!-- Gencive en bas + papille montante entre les dents -->
+        <rect x="14" y="138" width="192" height="44" rx="8" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
+        <path d="M 96 142 C 100 116 104 102 110 102 C 116 102 120 116 124 142 Z" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" stroke-linejoin="round" />
+        <!-- 2 dents (contact en haut) -->
+        <path d="M 38 144 C 36 92 44 52 62 44 C 80 36 100 44 106 58 L 108 80 C 104 110 102 128 100 144 Z" style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
+        <path d="M 182 144 C 184 92 176 52 158 44 C 140 36 120 44 114 58 L 112 80 C 116 110 118 128 120 144 Z" style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
+        <!-- Zone interdentaire inaccessible : triangle hachuré entre contact et papille -->
+        <path d="M 108 64 L 112 64 C 116 96 118 102 119 106 C 113 100 107 100 101 106 C 103 102 105 96 108 64 Z" fill="url(#hatch-brossettes)" style="stroke: var(--color-copper-500); stroke-width: 1.4" stroke-linejoin="round" />
+        <!-- Brosse barrée au-dessus -->
+        <g opacity="0.9">
+          <rect x="70" y="12" width="80" height="13" rx="6.5" style="fill: var(--color-cream-200); stroke: var(--color-ink-400); stroke-width: 1.6" />
+          <line x1="62" y1="32" x2="158" y2="6" style="stroke: var(--color-copper-600); stroke-width: 2.6; stroke-linecap: round" />
+        </g>
+      </svg>
+      <div class="mt-3 text-[16.5px] font-medium" style="font-family: var(--font-display)">Là où la brosse ne passe pas</div>
+      <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">La brosse nettoie 3 faces sur 5. Entre les dents (zone hachurée), la plaque s'accumule — c'est là que naissent caries et inflammation.</p>
+    </div>
+
+    <!-- 2. La brossette -->
+    <div class="rounded-2xl p-4 md:p-5 text-center" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+      <svg viewBox="0 0 220 190" role="img" aria-label="La brossette interdentaire nettoie entre les dents" class="w-full max-w-[190px] mx-auto">
+        <rect x="14" y="138" width="192" height="44" rx="8" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
+        <path d="M 96 142 C 100 116 104 102 110 102 C 116 102 120 116 124 142 Z" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" stroke-linejoin="round" />
+        <path d="M 38 144 C 36 92 44 52 62 44 C 80 36 100 44 106 58 L 108 80 C 104 110 102 128 100 144 Z" style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
+        <path d="M 182 144 C 184 92 176 52 158 44 C 140 36 120 44 114 58 L 112 80 C 116 110 118 128 120 144 Z" style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
+        <!-- Brossette : fil traversant au ras de la papille + poils radiaux + manche -->
+        <line x1="20" y1="92" x2="172" y2="92" style="stroke: var(--color-teal-700); stroke-width: 2.6; stroke-linecap: round" />
+        <g style="stroke: var(--color-teal-500); stroke-width: 1.8" stroke-linecap="round">
+          <line x1="96" y1="83" x2="96" y2="101" /><line x1="102" y1="81" x2="102" y2="103" />
+          <line x1="108" y1="80" x2="108" y2="104" /><line x1="114" y1="80" x2="114" y2="104" />
+          <line x1="120" y1="81" x2="120" y2="103" /><line x1="126" y1="83" x2="126" y2="101" />
+          <line x1="90" y1="85" x2="90" y2="99" /><line x1="84" y1="87" x2="84" y2="97" />
+        </g>
+        <rect x="172" y="84" width="34" height="16" rx="8" style="fill: var(--color-teal-500); stroke: var(--color-teal-700); stroke-width: 1.6" />
+        <!-- Coche -->
+        <circle cx="194" cy="32" r="15" style="fill: var(--color-teal-400); stroke: var(--color-teal-700); stroke-width: 1.6" />
+        <polyline points="186,32 192,38 202,26" style="fill: none; stroke: var(--color-cream-50); stroke-width: 3" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <div class="mt-3 text-[16.5px] font-medium" style="font-family: var(--font-display)">La brossette, à la bonne taille</div>
+      <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">Passée <strong>au ras de la gencive</strong>, une fois par jour. La bonne taille compte autant que le geste — d'où le <strong>calibrage au cabinet</strong>, brossettes remises en fin de séance.</p>
+    </div>
+
+  </div>
+
+  <figcaption class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-ink-500">
+    <span class="inline-flex items-center gap-2"><svg width="14" height="14" class="rounded overflow-hidden"><rect width="14" height="14" fill="url(#hatch-brossettes)" style="stroke: var(--color-copper-500); stroke-width: 1"/></svg> Plaque inaccessible à la brosse</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-teal-500); border: 1px solid var(--color-teal-700)"></span> Brossette interdentaire</span>
+  </figcaption>
+
+</figure>

@@ -10,6 +10,8 @@ import SchemaGreffe from './SchemaGreffe.astro';
 import SchemaDDS from './SchemaDDS.astro';
 import SchemaBlanchiment from './SchemaBlanchiment.astro';
 import SchemaCouronneImplant from './SchemaCouronneImplant.astro';
+import SchemaBrossage from './SchemaBrossage.astro';
+import SchemaBrossettes from './SchemaBrossettes.astro';
 
 // Registre des schémas pédagogiques (prop `schema` des sections)
 const SCHEMAS: Record<string, any> = {
@@ -23,6 +25,8 @@ const SCHEMAS: Record<string, any> = {
   dds: SchemaDDS,
   blanchiment: SchemaBlanchiment,
   'couronne-implant': SchemaCouronneImplant,
+  brossage: SchemaBrossage,
+  brossettes: SchemaBrossettes,
 };
 
 interface Section {

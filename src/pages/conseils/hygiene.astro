@@ -4,12 +4,15 @@ import FamilySoinsPage from '../../components/FamilySoinsPage.astro';
 const sections = [
   {
     id: 'brossage',
-    titre: 'Le brossage',
+    titre: 'Le brossage : le bon geste',
+    schema: 'brossage',
     description: `
       <p><strong>Deux fois par jour, deux minutes</strong>, matin et soir — le brossage du soir est le plus important : c'est lui qui protège pendant la nuit.</p>
+      <p>Le point clé, quel que soit l'outil : <strong>la zone entre la gencive et la dent</strong> (le sillon gingival). C'est là que la plaque s'accumule et que tout se joue.</p>
       <ul>
-        <li>Une <strong>brosse à dents électrique</strong> est recommandée (la référence conseillée en consultation utilise une technologie ultrasonique) : elle fait le travail mieux et plus régulièrement qu'une brosse manuelle.</li>
-        <li><strong>Sans appuyer</strong> : c'est le passage répété qui nettoie, pas la force. Un brossage trop appuyé use l'émail et fait reculer la gencive.</li>
+        <li><strong>À la brosse manuelle</strong> (méthode de Stillman modifiée) : poils inclinés à <strong>45° vers la gencive</strong>, au contact du sillon, puis un mouvement de <strong>rouleau de la gencive vers la dent</strong> — « du rose vers le blanc ». Jamais de va-et-vient horizontal en sciant : il use le collet et fait reculer la gencive.</li>
+        <li><strong>À la brosse électrique</strong> — recommandée (la référence conseillée en consultation utilise une technologie ultrasonique) : ne pas frotter. <strong>Poser la tête à cheval sur le collet</strong>, quelques secondes par dent, face par face : la brosse fait le travail.</li>
+        <li><strong>Sans appuyer</strong> dans les deux cas : c'est le passage répété qui nettoie, pas la force.</li>
         <li>Un <strong>dentifrice fluoré</strong> classique suffit. Recracher sans rincer abondamment : le fluor continue d'agir après le brossage.</li>
       </ul>
     `,
@@ -17,6 +20,7 @@ const sections = [
   {
     id: 'interdentaire',
     titre: "L'interdentaire : là où la brosse ne passe pas",
+    schema: 'brossettes',
     description: `
       <p>La brosse ne nettoie que 3 faces sur 5. Les espaces entre les dents — là où naissent la plupart des caries et l'inflammation des gencives — demandent un outil dédié, <strong>une fois par jour</strong> :</p>
       <ul>
@@ -45,7 +49,7 @@ const sections = [
 <FamilySoinsPage
   pageTitle="Hygiène dentaire au quotidien — conseils du cabinet Dr Kebieche, Colombes"
   pageDescription="Les conseils d'hygiène du cabinet Dr Kebieche (Colombes) : brossage efficace, brossettes interdentaires calibrées, alimentation — tout ce qui se joue à la maison."
-  eyebrow="Comprendre vos soins"
+  eyebrow="Conseils patient"
   h1="Hygiène au quotidien — brossage, brossettes, alimentation"
   baseline="L'essentiel de votre santé dentaire se joue à la maison."
   intro="Les soins réalisés au cabinet ne tiennent dans le temps que s'ils sont entretenus au quotidien. Trois piliers, simples mais décisifs : le brossage, l'interdentaire, et quelques habitudes alimentaires."

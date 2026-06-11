@@ -1,27 +1,22 @@
 ---
 /**
- * Blanchiment : le protocole en 3 temps (empreinte → gouttières + gel à J+7 → port 2h/j pendant 4-6 sem).
+ * Blanchiment v2 — protocole en 3 temps, vue de face simplifiée (3 dents + gencive).
+ * P1 : empreinte (porte-empreinte qui descend) · P2 : gouttière + gel · P3 : gouttière portée + 2h/j.
  */
 const steps = [
-  {
-    num: '1',
-    duree: '1re séance',
-    titre: 'Empreinte au cabinet',
-    ligne: 'Une empreinte des dents est réalisée pour fabriquer vos gouttières sur mesure.',
-  },
-  {
-    num: '2',
-    duree: 'Une semaine après',
-    titre: 'Remise des gouttières + gel',
-    ligne: 'Les gouttières ajustées et le produit de blanchiment sont remis, avec les explications d\'utilisation.',
-  },
-  {
-    num: '3',
-    duree: '4 à 6 semaines',
-    titre: 'Port quotidien à domicile',
-    ligne: 'Minimum 2 heures par jour. Le résultat se maintient en général 3 à 5 ans.',
-  },
+  { num: '1', duree: '1re séance', titre: 'Empreinte au cabinet', ligne: 'Une empreinte des dents permet de fabriquer vos gouttières sur mesure.' },
+  { num: '2', duree: 'Une semaine après', titre: 'Gouttières + gel remis', ligne: 'Une goutte de gel par dent, dans la gouttière — les explications sont données au cabinet.' },
+  { num: '3', duree: '4 à 6 semaines', titre: 'Port : 2h par jour minimum', ligne: 'Chaque jour, pendant 4 à 6 semaines. Le résultat se maintient en général 3 à 5 ans.' },
 ];
+
+// Dents de face (3 incisives, bas arrondi) — base commune
+const TEETH = [
+  'M 44 42 L 44 80 C 44 94 76 94 76 80 L 76 42 Z',
+  'M 84 42 L 84 84 C 84 98 116 98 116 84 L 116 42 Z',
+  'M 124 42 L 124 80 C 124 94 156 94 156 80 L 156 42 Z',
+];
+// Silhouette de la gouttière (englobe les 3 dents, bord ondulé)
+const TRAY = 'M 38 38 L 162 38 L 162 80 C 162 99 148 101 140 92 C 134 102 122 103 100 103 C 78 103 66 102 60 92 C 52 101 38 99 38 80 Z';
 ---
 
 <figure class="my-10 md:my-12">
@@ -35,44 +30,59 @@ const steps = [
         </div>
 
         <svg viewBox="0 0 200 150" role="img" aria-label={s.titre} class="w-full max-w-[180px] mx-auto">
-          <!-- Arcade : 5 dents en arc -->
-          {[0, 1, 2, 3, 4].map((i) => {
-            const cx = 40 + i * 30;
-            const cy = 78 + Math.abs(i - 2) * -10 + 20;
-            return (
-              <path d={`M ${cx - 11} ${cy + 22} C ${cx - 12} ${cy + 2} ${cx - 9} ${cy - 8} ${cx} ${cy - 10} C ${cx + 9} ${cy - 8} ${cx + 12} ${cy + 2} ${cx + 11} ${cy + 22} Z`}
-                    style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 1.8" stroke-linejoin="round" />
-            );
-          })}
+          <!-- Gencive (bande + festons) -->
+          <rect x="26" y="22" width="148" height="22" rx="8" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
+          <circle cx="60" cy="44" r="11" style="fill: var(--color-copper-300)" />
+          <circle cx="100" cy="44" r="11" style="fill: var(--color-copper-300)" />
+          <circle cx="140" cy="44" r="11" style="fill: var(--color-copper-300)" />
 
           {s.num === '1' && (
-            <!-- Porte-empreinte au-dessus, qui descend -->
             <g>
-              <path d="M 22 38 C 22 24 178 24 178 38 L 172 52 C 130 42 70 42 28 52 Z" style="fill: var(--color-teal-200); stroke: var(--color-teal-600); stroke-width: 1.8" stroke-linejoin="round" />
-              <line x1="100" y1="14" x2="100" y2="26" style="stroke: var(--color-copper-500); stroke-width: 2.4" stroke-linecap="round" />
-              <polygon points="100,32 94,22 106,22" style="fill: var(--color-copper-500)" />
+              <!-- Dents nues -->
+              {TEETH.map(d => <path d={d} style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2" stroke-linejoin="round" />)}
+              <!-- Porte-empreinte qui descend -->
+              <rect x="30" y="116" width="140" height="18" rx="9" style="fill: var(--color-teal-200); stroke: var(--color-teal-600); stroke-width: 1.8" />
+              <line x1="100" y1="134" x2="100" y2="144" style="stroke: var(--color-teal-600); stroke-width: 3; stroke-linecap: round" />
+              <line x1="100" y1="112" x2="100" y2="104" style="stroke: var(--color-copper-500); stroke-width: 2.4; stroke-linecap: round" />
+              <polygon points="100,100 94,110 106,110" style="fill: var(--color-copper-500)" />
             </g>
           )}
 
           {s.num === '2' && (
-            <!-- Gouttière transparente épousant l'arcade + seringue de gel -->
             <g>
-              <path d="M 24 92 C 28 56 60 38 100 38 C 140 38 172 56 176 92 L 162 96 C 156 66 132 52 100 52 C 68 52 44 66 38 96 Z"
-                    style="fill: var(--color-teal-200); fill-opacity: 0.55; stroke: var(--color-teal-600); stroke-width: 1.8" stroke-linejoin="round" />
-              <rect x="142" y="112" width="40" height="11" rx="5" style="fill: var(--color-cream-100); stroke: var(--color-teal-700); stroke-width: 1.6" />
-              <rect x="132" y="114" width="12" height="7" rx="2" style="fill: var(--color-teal-500)" />
-              <line x1="182" y1="117.5" x2="192" y2="117.5" style="stroke: var(--color-teal-700); stroke-width: 3; stroke-linecap: round" />
+              <!-- Dents en fantôme (la gouttière est montrée seule) -->
+              {TEETH.map(d => <path d={d} style="fill: none; stroke: var(--color-ink-300); stroke-width: 1.6; stroke-dasharray: 3 3" stroke-linejoin="round" />)}
+              <!-- Gouttière -->
+              <path d={TRAY} style="fill: var(--color-teal-200); fill-opacity: 0.5; stroke: var(--color-teal-600); stroke-width: 2" stroke-linejoin="round" />
+              <!-- 3 gouttes de gel (forme goutte : pointe en haut, ronde en bas) -->
+              {[
+                { x: 60, y: 64 },
+                { x: 100, y: 66 },
+                { x: 140, y: 64 },
+              ].map(p => (
+                <path
+                  d="M 0 -8.5 C 3.6 -2.6 5.2 0.4 5.2 2.8 A 5.2 5.2 0 1 1 -5.2 2.8 C -5.2 0.4 -3.6 -2.6 0 -8.5 Z"
+                  transform={`translate(${p.x} ${p.y})`}
+                  style="fill: var(--color-teal-600)"
+                />
+              ))}
+              <!-- Seringue -->
+              <rect x="138" y="124" width="44" height="11" rx="5" style="fill: var(--color-cream-100); stroke: var(--color-teal-700); stroke-width: 1.6" />
+              <rect x="128" y="126.5" width="12" height="6" rx="2" style="fill: var(--color-teal-500)" />
+              <line x1="182" y1="129.5" x2="192" y2="129.5" style="stroke: var(--color-teal-700); stroke-width: 3; stroke-linecap: round" />
             </g>
           )}
 
           {s.num === '3' && (
-            <!-- Gouttière portée (sur les dents) + horloge 2h -->
             <g>
-              <path d="M 26 100 C 30 62 62 44 100 44 C 138 44 170 62 174 100 L 160 103 C 154 72 130 58 100 58 C 70 58 46 72 40 103 Z"
-                    style="fill: var(--color-teal-300); fill-opacity: 0.6; stroke: var(--color-teal-600); stroke-width: 1.8" stroke-linejoin="round" />
-              <circle cx="168" cy="28" r="17" style="fill: var(--color-cream-50); stroke: var(--color-copper-500); stroke-width: 2" />
-              <line x1="168" y1="28" x2="168" y2="18" style="stroke: var(--color-copper-600); stroke-width: 2; stroke-linecap: round" />
-              <line x1="168" y1="28" x2="176" y2="32" style="stroke: var(--color-copper-600); stroke-width: 2; stroke-linecap: round" />
+              <!-- Dents -->
+              {TEETH.map(d => <path d={d} style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2" stroke-linejoin="round" />)}
+              <!-- Gouttière PORTÉE par-dessus les dents -->
+              <path d={TRAY} style="fill: var(--color-teal-300); fill-opacity: 0.45; stroke: var(--color-teal-600); stroke-width: 2.2" stroke-linejoin="round" />
+              <!-- Horloge 2h -->
+              <circle cx="172" cy="124" r="17" style="fill: var(--color-cream-50); stroke: var(--color-copper-500); stroke-width: 2" />
+              <line x1="172" y1="124" x2="172" y2="113" style="stroke: var(--color-copper-600); stroke-width: 2; stroke-linecap: round" />
+              <line x1="172" y1="124" x2="181" y2="128" style="stroke: var(--color-copper-600); stroke-width: 2; stroke-linecap: round" />
             </g>
           )}
         </svg>
@@ -85,6 +95,7 @@ const steps = [
 
   <figcaption class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-ink-500">
     <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-teal-200); border: 1px solid var(--color-teal-600)"></span> Gouttière sur mesure</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded-full" style="background: var(--color-teal-600)"></span> Gel de blanchiment</span>
     <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-cream-100); border: 1px solid var(--color-ink-400)"></span> Dents</span>
   </figcaption>
 
