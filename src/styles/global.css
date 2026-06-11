@@ -248,7 +248,7 @@
     @apply my-8 pl-6 text-[18px];
     border-left: 2px solid var(--color-copper-400);
     color: var(--color-ink-700);
-    font-style: italic; /* italique RÉSERVÉ aux citations */
+    /* pas d'italique : réservé au prénom du logo (vrai axe Newsreader) */
   }
   .prose-soin table {
     @apply w-full my-7 text-[14.5px];

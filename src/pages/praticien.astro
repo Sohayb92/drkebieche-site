@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import fs from 'node:fs';
 
-// Le portrait s'affiche automatiquement dès que public/portrait.jpg existe
+// Le portrait s’affiche automatiquement dès que public/portrait.jpg existe
 const hasPortrait = fs.existsSync(new URL('../../public/portrait.jpg', import.meta.url));
 
 // Parcours chronologique (validé par le praticien)
@@ -10,34 +10,34 @@ const etapes = [
   {
     periode: 'Formation',
     titre: 'Faculté de chirurgie dentaire Paris-Descartes',
-    texte: "Diplôme d'État de docteur en chirurgie dentaire. Thèse soutenue en 2022 — « Étude de l'efficacité du sablage sur surface dentaire » — distinguée par le prix de thèse, mention Très Honorable et Félicitations du jury.",
+    texte: "Diplôme d’État de docteur en chirurgie dentaire. Thèse soutenue en 2022 — « Étude de l’efficacité du sablage sur surface dentaire » — distinguée par le prix de thèse, mention Très Honorable et Félicitations du jury.",
   },
   {
     periode: 'Premières années',
     titre: 'Cabinet à Clichy',
-    texte: "Les premières années d'exercice en cabinet de ville : l'omnipratique dans toute sa variété, et le goût du soin bien fait qui prend le temps qu'il faut.",
+    texte: "Les premières années d’exercice en cabinet de ville : l’omnipratique dans toute sa variété, et le goût du soin bien fait qui prend le temps qu’il faut.",
   },
   {
     periode: 'Le compagnonnage',
-    titre: "Paris 8e, auprès d'un implantologiste expérimenté",
-    texte: "Une étape déterminante : exercer aux côtés d'un mentor implantologiste de grande expérience. C'est là que se sont forgées la rigueur chirurgicale et la vision du remplacement dentaire bien fait — planifié, précis, durable.",
+    titre: "Paris 8e, auprès d’un implantologiste expérimenté",
+    texte: "Une étape déterminante : exercer aux côtés d’un mentor implantologiste de grande expérience. C’est là que se sont forgées la rigueur chirurgicale et la vision du remplacement dentaire bien fait — planifié, précis, durable.",
   },
   {
-    periode: 'Aujourd\'hui',
+    periode: "Aujourd’hui",
     titre: 'Colombes — avec, en parallèle, la chirurgie orale hospitalière',
-    texte: "Installation au Cabinet Dentaire La Cabane, dans le quartier des Vallées. En parallèle du cabinet, un an et demi passé comme praticien attaché hospitalier en chirurgie orale — chirurgie complexe, dents de sagesse, implantologie et chirurgie pré-implantaire. L'habitude des cas difficiles, acquise au bloc, reste appliquée chaque jour au fauteuil.",
+    texte: "Installation au Cabinet Dentaire La Cabane, dans le quartier des Vallées. En parallèle du cabinet, un an et demi passé comme praticien attaché hospitalier en chirurgie orale — chirurgie complexe, dents de sagesse, implantologie et chirurgie pré-implantaire. L’habitude des cas difficiles, acquise au bloc, reste appliquée chaque jour au fauteuil.",
   },
   {
     periode: 'Formation continue',
-    titre: 'Deux D.U. et une pratique qui ne cesse d\'évoluer',
-    texte: "D.U. d'implantologie (Université d'Évry Paris-Saclay, 2024), D.U. de parodontologie avancée (Université Côte d'Azur, 2025), formation en chirurgie plastique parodontale mini-invasive (Tunneling Academy). La dentisterie avance vite — le cabinet avec elle.",
+    titre: "Deux D.U. et une pratique qui ne cesse d’évoluer",
+    texte: "D.U. d’implantologie (Université d’Évry Paris-Saclay, 2024), D.U. de parodontologie avancée (Université Côte d’Azur, 2025), formation en chirurgie plastique parodontale mini-invasive (Tunneling Academy). La dentisterie avance vite — le cabinet avec elle.",
   },
 ];
 ---
 
 <Layout
-  title="Dr Sohaïb Kebieche — Chirurgien-dentiste à Colombes, D.U. d'implantologie et de parodontologie"
-  description="Le parcours du Dr Sohaïb Kebieche : formé à Paris-Descartes, compagnonnage en implantologie à Paris 8e, chirurgie orale hospitalière, D.U. d'implantologie (Évry Paris-Saclay) et de parodontologie avancée (Côte d'Azur). Chirurgien-dentiste à Colombes."
+  title="Dr Sohaïb Kebieche — Chirurgien-dentiste à Colombes, D.U. d’implantologie et de parodontologie"
+  description="Le parcours du Dr Sohaïb Kebieche : formé à Paris-Descartes, compagnonnage en implantologie à Paris 8e, chirurgie orale hospitalière, D.U. d’implantologie (Évry Paris-Saclay) et de parodontologie avancée (Côte d’Azur). Chirurgien-dentiste à Colombes."
 >
 
   <!-- HERO -->
@@ -51,22 +51,22 @@ const etapes = [
           <span class="block mt-2 text-[15px] md:text-[17px] font-semibold tracking-normal text-ink-500" style="font-family: var(--font-body)">Chirurgien-dentiste à Colombes (92)</span>
         </h1>
         <p class="text-[22px] md:text-[26px] leading-[1.25] mb-6" style="font-family: var(--font-display); color: var(--color-ink-900); font-weight: 500;">
-          Conserver d'abord, remplacer durablement, expliquer toujours.
+          Conserver d’abord, remplacer durablement, expliquer toujours.
         </p>
         <p class="text-[16px] text-ink-700 leading-[1.7] mb-7">
-          Un parcours construit entre le cabinet et l'hôpital — longtemps les deux en parallèle — avec une orientation forte vers la dentisterie conservatrice, l'implantologie et la parodontologie.
+          Un parcours construit entre le cabinet et l’hôpital — longtemps les deux en parallèle — avec une orientation forte vers la dentisterie conservatrice, l’implantologie et la parodontologie.
         </p>
         <div class="flex flex-wrap gap-2">
           <span class="badge-expertise">Paris-Descartes · Prix de thèse</span>
           <span class="badge-expertise">D.U. Implantologie · Évry Paris-Saclay 2024</span>
-          <span class="badge-expertise">D.U. Parodontologie · Côte d'Azur 2025</span>
+          <span class="badge-expertise">D.U. Parodontologie · Côte d’Azur 2025</span>
           <span class="badge-expertise">Chirurgie orale hospitalière</span>
         </div>
       </div>
 
       <!-- Portrait -->
       <div class="relative" data-reveal data-reveal-delay="140">
-        {hasPortrait ? (
+        {hasPortrait ? (
           <img src="/portrait.jpg" alt="Dr Sohaïb Kebieche, chirurgien-dentiste à Colombes" class="w-full max-w-[420px] mx-auto rounded-2xl" style="box-shadow: 0 24px 60px -24px rgba(31,58,61,0.35)" />
         ) : (
           <div class="aspect-[3/4] max-w-[420px] mx-auto rounded-2xl overflow-hidden flex items-center justify-center" style="background: var(--color-copper-300)">
@@ -85,7 +85,7 @@ const etapes = [
       <div class="max-w-2xl mb-12" data-reveal>
         <span class="eyebrow mb-4">Le parcours</span>
         <h2 class="text-[30px] md:text-[40px] leading-[1.12] tracking-tight">
-          Du cabinet à l'hôpital — longtemps les deux à la fois.
+          Du cabinet à l’hôpital — longtemps les deux à la fois.
         </h2>
       </div>
 
@@ -114,14 +114,14 @@ const etapes = [
     <div class="container-prose text-center" data-reveal>
       <span class="eyebrow mb-5 justify-center">La philosophie</span>
       <p class="text-[24px] md:text-[30px] leading-[1.35]" style="font-family: var(--font-display); color: var(--color-ink-900)">
-        Chaque bouche raconte une histoire. La traiter correctement demande d'écouter cette histoire avant d'agir — puis d'expliquer, schémas à l'appui, ce qui est proposé et pourquoi.
+        Chaque bouche raconte une histoire. La traiter correctement demande d’écouter cette histoire avant d’agir — puis d’expliquer, schémas à l’appui, ce qui est proposé et pourquoi.
       </p>
       <div class="divider-copper"></div>
       <p class="text-[15px] text-ink-500">
         Consultations en français et en anglais.
       </p>
       <p class="mt-3 text-[13px] text-ink-400">
-        N° RPPS 10102308110 · Inscrit au Conseil de l'Ordre des chirurgiens-dentistes des Hauts-de-Seine.
+        N° RPPS 10102308110 · Inscrit au Conseil de l’Ordre des chirurgiens-dentistes des Hauts-de-Seine.
       </p>
     </div>
   </section>
@@ -131,7 +131,7 @@ const etapes = [
   <section class="container-wide pb-24">
     <div class="rounded-3xl px-8 md:px-14 py-12 md:py-16 text-center" style="background: var(--color-teal-50); border: 1px solid var(--color-cream-300)">
       <h3 class="text-[26px] md:text-[32px] font-medium mb-3" style="font-family: var(--font-display)">
-        Une première consultation ?
+        Une première consultation ?
       </h3>
       <p class="text-[15px] text-ink-700 mb-7 max-w-xl mx-auto">
         Examen complet, radiographies si nécessaire, plan de traitement écrit et expliqué. Sans engagement.

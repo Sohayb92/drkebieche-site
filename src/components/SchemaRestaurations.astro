@@ -1,30 +1,30 @@
 ---
 /**
  * Schéma comparatif Inlay · Onlay · Overlay · Couronne.
- * Message : plus on va vers la couronne, moins on conserve de tissu naturel.
- * Codes couleur : teal = céramique collée · crème = dent naturelle · hachuré = tissu préparé (retiré).
+ * Message : plus on va vers la couronne, moins on conserve de tissu naturel.
+ * Codes couleur : teal = céramique collée · crème = dent naturelle · hachuré = tissu préparé (retiré).
  */
 
 // Proportion de dent naturelle conservée (qualitatif, pour la jauge)
 const panels = [
   {
     nom: 'Inlay',
-    ligne: "Une pièce de céramique collée à l'intérieur de la dent, quand la carie est trop volumineuse pour un simple composite.",
+    ligne: "Une pièce de céramique collée à l’intérieur de la dent, quand la carie est trop volumineuse pour un simple composite.",
     conserve: 0.93,
   },
   {
     nom: 'Onlay',
-    ligne: "La pièce recouvre aussi une pointe fragilisée de la dent, qu'elle protège.",
+    ligne: "La pièce recouvre aussi une pointe fragilisée de la dent, qu’elle protège.",
     conserve: 0.84,
   },
   {
     nom: 'Overlay',
-    ligne: "Une « demi-couronne » collée qui coiffe toute la surface : protège des fêlures en préservant la dent.",
+    ligne: "Une « demi-couronne » collée qui coiffe toute la surface : protège des fêlures en préservant la dent.",
     conserve: 0.74,
   },
   {
     nom: 'Couronne',
-    ligne: "Quand il reste trop peu de dent : on taille ce qui reste pour poser une coiffe complète.",
+    ligne: "Quand il reste trop peu de dent : on taille ce qui reste pour poser une coiffe complète.",
     conserve: 0.45,
   },
 ];
@@ -78,7 +78,7 @@ const GAUGE_W = 140;
     </defs>
   </svg>
 
-  <!-- Axe de lecture : du plus conservateur au plus couvrant -->
+  <!-- Axe de lecture : du plus conservateur au plus couvrant -->
   <div class="flex items-center gap-3 mb-6 px-1" aria-hidden="true">
     <span class="text-[11px] uppercase tracking-[0.14em] font-semibold whitespace-nowrap" style="color: var(--color-teal-700)">Le plus conservateur</span>
     <div class="flex-1 h-px relative" style="background: var(--color-copper-400)">
@@ -123,7 +123,7 @@ const GAUGE_W = 140;
     </span>
     <span class="inline-flex items-center gap-2">
       <svg width="14" height="14" class="rounded overflow-hidden"><rect width="14" height="14" fill="url(#hatch-restaurations)" style="stroke: var(--color-ink-300); stroke-width: 1"/></svg>
-      Tissu préparé (jauge : part de dent conservée)
+      Tissu préparé (jauge : part de dent conservée)
     </span>
   </figcaption>
 

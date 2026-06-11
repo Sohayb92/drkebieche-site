@@ -1,12 +1,12 @@
 ---
 /**
  * Blanchiment v2 — protocole en 3 temps, vue de face simplifiée (3 dents + gencive).
- * P1 : empreinte (porte-empreinte qui descend) · P2 : gouttière + gel · P3 : gouttière portée + 2h/j.
+ * P1 : empreinte (porte-empreinte qui descend) · P2 : gouttière + gel · P3 : gouttière portée + 2h/j.
  */
 const steps = [
   { num: '1', duree: '1re séance', titre: 'Empreinte au cabinet', ligne: 'Une empreinte des dents permet de fabriquer vos gouttières sur mesure.' },
   { num: '2', duree: 'Une semaine après', titre: 'Gouttières + gel remis', ligne: 'Une goutte de gel par dent, dans la gouttière — les explications sont données au cabinet.' },
-  { num: '3', duree: '4 à 6 semaines', titre: 'Port : 2h par jour minimum', ligne: 'Chaque jour, pendant 4 à 6 semaines. Le résultat se maintient en général 3 à 5 ans.' },
+  { num: '3', duree: '4 à 6 semaines', titre: 'Port : 2h par jour minimum', ligne: 'Chaque jour, pendant 4 à 6 semaines. Le résultat se maintient en général 3 à 5 ans.' },
 ];
 
 // Dents de face (3 incisives, bas arrondi) — base commune
@@ -54,7 +54,7 @@ const TRAY = 'M 38 38 L 162 38 L 162 80 C 162 99 148 101 140 92 C 134 102 122 10
               {TEETH.map(d => <path d={d} style="fill: none; stroke: var(--color-ink-300); stroke-width: 1.6; stroke-dasharray: 3 3" stroke-linejoin="round" />)}
               <!-- Gouttière -->
               <path d={TRAY} style="fill: var(--color-teal-200); fill-opacity: 0.5; stroke: var(--color-teal-600); stroke-width: 2" stroke-linejoin="round" />
-              <!-- 3 gouttes de gel (forme goutte : pointe en haut, ronde en bas) -->
+              <!-- 3 gouttes de gel (forme goutte : pointe en haut, ronde en bas) -->
               {[
                 { x: 60, y: 64 },
                 { x: 100, y: 66 },

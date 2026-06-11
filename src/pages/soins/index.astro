@@ -8,10 +8,10 @@ const familles = [
   {
     slug: 'implantologie-chirurgie',
     titre: 'Implantologie & chirurgie',
-    intro: "Pose d'implants, reconstruction osseuse pré-implantaire et chirurgie orale. Une expérience hospitalière en chirurgie orale couplée à un D.U. récent (implantologie, Université d'Évry Paris-Saclay, 2024) au service des cas complexes.",
+    intro: "Pose d’implants, reconstruction osseuse pré-implantaire et chirurgie orale. Une expérience hospitalière en chirurgie orale couplée à un D.U. récent (implantologie, Université d’Évry Paris-Saclay, 2024) au service des cas complexes.",
     icon: 'circle',
     soins: [
-      { titre: "Pose d'implants dentaires", hash: 'implants' },
+      { titre: "Pose d’implants dentaires", hash: 'implants' },
       { titre: "Reconstruction osseuse pré-implantaire", hash: 'greffes-osseuses' },
       { titre: "Chirurgie orale & extractions complexes", hash: 'chirurgie-orale' },
       { titre: "Dents de sagesse", hash: 'dents-de-sagesse' },
@@ -20,7 +20,7 @@ const familles = [
   {
     slug: 'parodontologie',
     titre: 'Parodontologie',
-    intro: "La parodontite est une infection bactérienne qui détruit les tissus de soutien de la dent (gencive et os alvéolaire) et peut mener à la perte des dents sans traitement. Une prise en charge qui s'appuie sur un D.U. de Parodontologie avancée (2025) et la formation Tunneling Academy.",
+    intro: "La parodontite est une infection bactérienne qui détruit les tissus de soutien de la dent (gencive et os alvéolaire) et peut mener à la perte des dents sans traitement. Une prise en charge qui s’appuie sur un D.U. de Parodontologie avancée (2025) et la formation Tunneling Academy.",
     icon: 'wave',
     soins: [
       { titre: "Soin médical des gencives", hash: 'soin-gencives' },
@@ -31,7 +31,7 @@ const familles = [
   {
     slug: 'dentisterie-adhesive-protheses',
     titre: 'Dentisterie adhésive & prothèses',
-    intro: "Restaurer en préservant le maximum de tissu dentaire sain. La dentisterie adhésive moderne (inlays, onlays, overlays céramiques, composites stratifiés sous digue) prolonge la vie d'une dent. Les prothèses fixes (couronnes, bridges) sont conçues avec un laboratoire de prothèse français.",
+    intro: "Restaurer en préservant le maximum de tissu dentaire sain. La dentisterie adhésive moderne (inlays, onlays, overlays céramiques, composites stratifiés sous digue) prolonge la vie d’une dent. Les prothèses fixes (couronnes, bridges) sont conçues avec un laboratoire de prothèse français.",
     icon: 'diamond',
     soins: [
       { titre: "Inlays, onlays, overlays céramiques", hash: 'inlay-onlay-overlay' },
@@ -43,7 +43,7 @@ const familles = [
   {
     slug: 'soins-quotidiens',
     titre: 'Soins du quotidien',
-    intro: "Toute la dentisterie courante au même endroit, dans la continuité des soins complexes. Caries, détartrage, urgences, suivi régulier — la base d'une bouche en bonne santé sur le long terme. Le blanchiment dentaire est également proposé.",
+    intro: "Toute la dentisterie courante au même endroit, dans la continuité des soins complexes. Caries, détartrage, urgences, suivi régulier — la base d’une bouche en bonne santé sur le long terme. Le blanchiment dentaire est également proposé.",
     icon: 'plus',
     soins: [
       { titre: "Soins des caries", hash: 'caries' },
@@ -54,11 +54,11 @@ const familles = [
   },
 ];
 
-// Vignettes mini-schémas : dessin au trait par famille (cohérent avec les schémas pédagogiques)
+// Vignettes mini-schémas : dessin au trait par famille (cohérent avec les schémas pédagogiques)
 function iconSvg(name: string) {
   const c = 'fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
   switch (name) {
-    case 'circle': // implant : couronne + pilier + vis
+    case 'circle': // implant : couronne + pilier + vis
       return `<svg width="44" height="44" viewBox="0 0 48 48" ${c}>
         <path d="M16 15 q8 -8 16 0 l-1.5 6 h-13 z"/>
         <path d="M21 21 h6 v3.5 h-6 z"/>
@@ -66,19 +66,19 @@ function iconSvg(name: string) {
         <line x1="20.6" y1="29" x2="27.4" y2="29"/>
         <line x1="21" y1="33" x2="27" y2="33"/>
       </svg>`;
-    case 'wave': // paro : dent + ligne de gencive
+    case 'wave': // paro : dent + ligne de gencive
       return `<svg width="44" height="44" viewBox="0 0 48 48" ${c}>
         <path d="M17 14 q7 -6 14 0 q3.5 3 2.5 9 q-1 7 -3.5 12 q-1.8 3.5 -3.4 -1.5 q-1.2 -4 -2.6 -4 q-1.4 0 -2.6 4 q-1.6 5 -3.4 1.5 q-2.5 -5 -3.5 -12 q-1 -6 2.5 -9 z"/>
         <path d="M8 22 q5 -4 10 -1.5" />
         <path d="M30 20.5 q5 -2.5 10 1.5" />
       </svg>`;
-    case 'diamond': // adhésif : dent + pièce céramique (vue éclatée)
+    case 'diamond': // adhésif : dent + pièce céramique (vue éclatée)
       return `<svg width="44" height="44" viewBox="0 0 48 48" ${c}>
         <path d="M17 22 q7 -5 14 0 q3.5 3 2.5 8 q-1 6 -3.5 10 q-1.8 3 -3.4 -1.2 q-1.2 -3.5 -2.6 -3.5 q-1.4 0 -2.6 3.5 q-1.6 4.2 -3.4 1.2 q-2.5 -4 -3.5 -10 q-1 -5 2.5 -8 z"/>
         <polygon points="24 6 29 11 24 16 19 11"/>
         <line x1="24" y1="17.5" x2="24" y2="20.5"/>
       </svg>`;
-    case 'plus': // quotidien : dent + croix de soin
+    case 'plus': // quotidien : dent + croix de soin
       return `<svg width="44" height="44" viewBox="0 0 48 48" ${c}>
         <path d="M15 18 q8 -7 16 0 q4 3.5 3 10 q-1.2 8 -4 13.5 q-2 4 -3.8 -1.5 q-1.4 -4.5 -3.2 -4.5 q-1.8 0 -3.2 4.5 q-1.8 5.5 -3.8 1.5 q-2.8 -5.5 -4 -13.5 q-1 -6.5 3 -10 z"/>
         <line x1="37" y1="7" x2="37" y2="15"/>
@@ -106,7 +106,7 @@ function iconSvg(name: string) {
         Une dentisterie complète, précise et durable.
       </p>
       <p class="text-[16px] text-ink-700 leading-[1.7]">
-        Du soin courant aux interventions complexes — quatre domaines d'expertise qui couvrent l'essentiel de la dentisterie moderne. Chaque soin est expliqué en détail avant d'être réalisé.
+        Du soin courant aux interventions complexes — quatre domaines d’expertise qui couvrent l’essentiel de la dentisterie moderne. Chaque soin est expliqué en détail avant d’être réalisé.
       </p>
     </div>
   </section>
@@ -116,12 +116,12 @@ function iconSvg(name: string) {
   <section class="container-wide pb-24 md:pb-32">
     <div class="space-y-6 md:space-y-8">
       {familles.map((f, idx) => (
-        <article class="card p-7 md:p-10" style={idx % 2 === 1 ? 'background: var(--color-teal-50)' : undefined} data-reveal data-reveal-delay={(idx * 120).toString()}>
+        <article class="card p-7 md:p-10" style={idx % 2 === 1 ? 'background: var(--color-teal-50)' : undefined} data-reveal data-reveal-delay={(idx * 120).toString()}>
           <div class="grid md:grid-cols-[1fr_1.4fr] gap-8 md:gap-12 items-start">
 
-            <!-- Colonne gauche : vignette + titre + intro -->
+            <!-- Colonne gauche : vignette + titre + intro -->
             <div>
-              <div class="w-16 h-16 rounded-xl flex items-center justify-center mb-6" style={`background: ${idx % 2 === 1 ? 'var(--color-cream-50)' : 'var(--color-cream-200)'}; color: var(--color-teal-800)`}>
+              <div class="w-16 h-16 rounded-xl flex items-center justify-center mb-6" style={`background: ${idx % 2 === 1 ? 'var(--color-cream-50)' : 'var(--color-cream-200)'}; color: var(--color-teal-800)`}>
                 <Fragment set:html={iconSvg(f.icon)} />
               </div>
               <h2 class="text-[24px] md:text-[28px] font-medium mb-4" style="font-family: var(--font-display)">{f.titre}</h2>
@@ -131,7 +131,7 @@ function iconSvg(name: string) {
               </a>
             </div>
 
-            <!-- Colonne droite : liste des soins individuels -->
+            <!-- Colonne droite : liste des soins individuels -->
             <div>
               <div class="text-[11px] uppercase tracking-[0.18em] font-semibold mb-4" style="color: var(--color-teal-700)">
                 Soins individuels

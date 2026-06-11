@@ -1,13 +1,13 @@
 ---
 /**
- * Évolution d'une carie en 4 stades : émail → dentine → nerf → dent délabrée.
+ * Évolution d’une carie en 4 stades : émail → dentine → nerf → dent délabrée.
  * Coupe de molaire avec couches visibles (émail, dentine, nerf).
  * Plus on attend, plus la réparation est lourde.
  */
 const panels = [
   {
     nom: 'Stade 1 — Émail',
-    ligne: "Une tache sur l'émail. Invisible, indolore. Réparation minime, une séance.",
+    ligne: "Une tache sur l’émail. Invisible, indolore. Réparation minime, une séance.",
     reparation: 'Composite simple',
   },
   {
@@ -17,7 +17,7 @@ const panels = [
   },
   {
     nom: 'Stade 3 — Nerf',
-    ligne: 'Le nerf est touché : douleur. La dent doit être dévitalisée.',
+    ligne: 'Le nerf est touché : douleur. La dent doit être dévitalisée.',
     reparation: 'Dévitalisation + overlay',
   },
   {
@@ -65,11 +65,11 @@ const CARIES: Record<number, string> = {
 
   <!-- Axe de lecture -->
   <div class="flex items-center gap-3 mb-6 px-1" aria-hidden="true">
-    <span class="text-[11px] uppercase tracking-[0.14em] font-semibold whitespace-nowrap" style="color: var(--color-teal-700)">Traitée tôt : simple</span>
+    <span class="text-[11px] uppercase tracking-[0.14em] font-semibold whitespace-nowrap" style="color: var(--color-teal-700)">Traitée tôt : simple</span>
     <div class="flex-1 h-px relative" style="background: var(--color-copper-400)">
       <span class="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0" style="border-left: 6px solid var(--color-copper-400); border-top: 4px solid transparent; border-bottom: 4px solid transparent"></span>
     </div>
-    <span class="text-[11px] uppercase tracking-[0.14em] font-semibold whitespace-nowrap" style="color: var(--color-copper-600)">Traitée tard : lourde</span>
+    <span class="text-[11px] uppercase tracking-[0.14em] font-semibold whitespace-nowrap" style="color: var(--color-copper-600)">Traitée tard : lourde</span>
   </div>
 
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">

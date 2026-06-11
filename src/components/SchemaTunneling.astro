@@ -1,6 +1,6 @@
 ---
 /**
- * Récession gingivale traitée par tunneling : racine exposée → greffon glissé → racine recouverte.
+ * Récession gingivale traitée par tunneling : racine exposée → greffon glissé → racine recouverte.
  * Dent antérieure (incisive), gencive en cuivré, greffon en cuivré foncé.
  */
 const CROWN_PATH = `M 72 30 C 72 22 128 22 128 30 L 126 95 L 74 95 Z`;
@@ -16,17 +16,17 @@ const ROOT_PATH  = `M 74 95 L 126 95 C 125 130 114 158 100 158 C 86 158 75 130 7
       <svg viewBox="0 0 200 185" role="img" aria-label="Racine exposée" class="w-full max-w-[160px] mx-auto">
         <!-- Gencive abaissée (récession) -->
         <path d="M 14 122 L 186 122 L 186 178 L 14 178 Z" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
-        <!-- Racine (pas d'émail : teinte plus soutenue) -->
+        <!-- Racine (pas d’émail : teinte plus soutenue) -->
         <path d={ROOT_PATH} style="fill: var(--color-cream-300); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
         <!-- Couronne (émail) -->
         <path d={CROWN_PATH} style="fill: var(--color-cream-50); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
-        <!-- Annotation : racine à nu entre y=95 et y=122 -->
+        <!-- Annotation : racine à nu entre y=95 et y=122 -->
         <line x1="146" y1="95" x2="146" y2="122" style="stroke: var(--color-copper-600); stroke-width: 1.6" />
         <line x1="140" y1="95" x2="152" y2="95" style="stroke: var(--color-copper-600); stroke-width: 1.6" />
         <line x1="140" y1="122" x2="152" y2="122" style="stroke: var(--color-copper-600); stroke-width: 1.6" />
       </svg>
       <div class="mt-3 text-[17px] font-medium" style="font-family: var(--font-display)">Racine exposée</div>
-      <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">La gencive s'est rétractée : la racine, non protégée par l'émail, est à nu — sensibilité, usure.</p>
+      <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">La gencive s’est rétractée : la racine, non protégée par l’émail, est à nu — sensibilité, usure.</p>
     </div>
 
     <!-- 2. Greffon glissé par le tunnel -->
@@ -35,7 +35,7 @@ const ROOT_PATH  = `M 74 95 L 126 95 C 125 130 114 158 100 158 C 86 158 75 130 7
         <path d="M 14 122 L 186 122 L 186 178 L 14 178 Z" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
         <path d={ROOT_PATH} style="fill: var(--color-cream-300); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
         <path d={CROWN_PATH} style="fill: var(--color-cream-50); stroke: var(--color-ink-400); stroke-width: 2.2" stroke-linejoin="round" />
-        <!-- Greffon : croissant glissé sous le bord gingival -->
+        <!-- Greffon : croissant glissé sous le bord gingival -->
         <path d="M 70 118 C 80 108 120 108 130 118 C 120 126 80 126 70 118 Z" style="fill: var(--color-copper-500); stroke: var(--color-copper-600); stroke-width: 1.6" />
         <!-- Flèche du tunnel (le greffon entre par le côté, sous la gencive) -->
         <path d="M 178 96 C 160 98 146 104 136 112" style="fill: none; stroke: var(--color-teal-600); stroke-width: 2.4" stroke-linecap="round" stroke-dasharray="5 4" />

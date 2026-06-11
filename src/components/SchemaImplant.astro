@@ -1,26 +1,26 @@
 ---
 /**
- * Frise temporelle de l'implant : pose → ostéo-intégration (3-6 mois) → couronne.
- * Vocabulaire visuel commun : os = crème-200, gencive = cuivré-300, implant/céramique = teal.
+ * Frise temporelle de l’implant : pose → ostéo-intégration (3-6 mois) → couronne.
+ * Vocabulaire visuel commun : os = crème-200, gencive = cuivré-300, implant/céramique = teal.
  */
 const steps = [
   {
     num: '1',
-    titre: "Pose de l'implant",
+    titre: "Pose de l’implant",
     duree: 'Jour J',
-    ligne: "La racine artificielle en titane est placée dans l'os, sous anesthésie locale, selon la planification 3D.",
+    ligne: "La racine artificielle en titane est placée dans l’os, sous anesthésie locale, selon la planification 3D.",
   },
   {
     num: '2',
     titre: 'Ostéo-intégration',
     duree: '3 à 6 mois',
-    ligne: "L'os s'attache progressivement à la surface de l'implant — c'est ce qui fait sa solidité à vie.",
+    ligne: "L’os s’attache progressivement à la surface de l’implant — c’est ce qui fait sa solidité à vie.",
   },
   {
     num: '3',
     titre: 'Pose de la couronne',
     duree: 'Dernière étape',
-    ligne: 'Une couronne céramique est fixée sur l\'implant : la dent retrouve sa fonction et son esthétique.',
+    ligne: "Une couronne céramique est fixée sur l’implant : la dent retrouve sa fonction et son esthétique.",
   },
 ];
 ---
@@ -55,7 +55,7 @@ const steps = [
           <line x1="94" y1="166" x2="106" y2="166" style="stroke: var(--color-teal-700); stroke-width: 1.4" />
 
           {s.num === '1' && (
-            <!-- Flèche d'insertion -->
+            <!-- Flèche d’insertion -->
             <g>
               <line x1="100" y1="58" x2="100" y2="88" style="stroke: var(--color-copper-500); stroke-width: 2.5" stroke-linecap="round" />
               <polygon points="100,98 93,86 107,86" style="fill: var(--color-copper-500)" />
@@ -63,7 +63,7 @@ const steps = [
           )}
 
           {s.num === '2' && (
-            <!-- Traits d'ancrage osseux autour de l'implant -->
+            <!-- Traits d’ancrage osseux autour de l’implant -->
             <g style="stroke: var(--color-teal-500); stroke-width: 2" stroke-linecap="round">
               <line x1="80" y1="128" x2="88" y2="126" />
               <line x1="78" y1="146" x2="87" y2="144" />

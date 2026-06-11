@@ -2,23 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import fs from 'node:fs';
 
-// Le portrait s'affiche automatiquement dès que public/portrait.jpg existe (même logique que /praticien)
+// Le portrait s’affiche automatiquement dès que public/portrait.jpg existe (même logique que /praticien)
 const hasPortrait = fs.existsSync(new URL('../../public/portrait.jpg', import.meta.url));
 
-// 4 familles médicales (architecture validée : pattern dentistes premium internationaux)
+// 4 familles médicales (architecture validée : pattern dentistes premium internationaux)
 // Le détail des soins individuels est sur la page /soins, chaque section ancrée
 // permet à Mélyia de pointer vers la bonne info via URL hash (#greffes-osseuses etc.)
 const familles = [
   {
     slug: 'implantologie-chirurgie',
     titre: 'Implantologie & chirurgie',
-    desc: "Pose d'implants, reconstruction osseuse pré-implantaire, chirurgie orale et avulsions complexes — savoir-faire issu d'une formation hospitalière.",
+    desc: "Pose d’implants, reconstruction osseuse pré-implantaire, chirurgie orale et avulsions complexes — savoir-faire issu d’une formation hospitalière.",
     icon: 'circle'
   },
   {
     slug: 'parodontologie',
     titre: 'Parodontologie',
-    desc: "Soin médical des gencives et de l'os de soutien, traitement des récessions gingivales par techniques mini-invasives. D.U. de parodontologie avancée 2025.",
+    desc: "Soin médical des gencives et de l’os de soutien, traitement des récessions gingivales par techniques mini-invasives. D.U. de parodontologie avancée 2025.",
     icon: 'wave'
   },
   {
@@ -56,12 +56,12 @@ function iconSvg(name: string) {
   description="Cabinet dentaire à Colombes (92700). Implantologie, parodontologie, dentisterie adhésive. Une dentisterie qui prend le temps de vous expliquer."
 >
 
-  <!-- HERO : texte + mockup photo -->
+  <!-- HERO : texte + mockup photo -->
   <section class="relative">
     <div class="container-wide pt-12 md:pt-20 pb-16 md:pb-24">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-        <!-- Texte hero : accroche dominante (Newsreader), H1 SEO en strapline -->
+        <!-- Texte hero : accroche dominante (Newsreader), H1 SEO en strapline -->
         <div>
           <span class="eyebrow mb-6 fade-up-1">Chirurgien-dentiste · Colombes (92)</span>
 
@@ -74,13 +74,13 @@ function iconSvg(name: string) {
           </p>
 
           <p class="text-[16px] md:text-[17px] text-ink-700 leading-[1.65] max-w-xl mb-7 fade-up-3">
-            Conserver vos dents quand c'est possible, les remplacer mieux quand ce ne l'est plus. Implantologie, parodontologie et dentisterie adhésive, à Colombes — quartier des Vallées.
+            Conserver vos dents quand c’est possible, les remplacer mieux quand ce ne l’est plus. Implantologie, parodontologie et dentisterie adhésive, à Colombes — quartier des Vallées.
           </p>
 
           <!-- Badges expertise above-the-fold, cliquables vers les pages liées -->
           <div class="flex flex-wrap gap-2 mb-8 fade-up-4">
             <a href="/soins/implantologie-chirurgie" class="badge-expertise hover:border-teal-300 transition-colors">D.U. Implantologie · Évry Paris-Saclay 2024</a>
-            <a href="/soins/parodontologie" class="badge-expertise hover:border-teal-300 transition-colors">D.U. Parodontologie · Côte d'Azur 2025</a>
+            <a href="/soins/parodontologie" class="badge-expertise hover:border-teal-300 transition-colors">D.U. Parodontologie · Côte d’Azur 2025</a>
             <a href="/praticien" class="badge-expertise hover:border-teal-300 transition-colors">Expérience hospitalière · chirurgie orale</a>
             <a href="/praticien" class="badge-expertise hover:border-teal-300 transition-colors">Prix de thèse · Très Honorable</a>
           </div>
@@ -105,7 +105,7 @@ function iconSvg(name: string) {
         </div>
 
         <!-- Portrait (auto dès dépôt de public/portrait.jpg) ou composition de marque -->
-        {hasPortrait ? (
+        {hasPortrait ? (
           <div class="relative aspect-[4/3] md:aspect-[4/5] rounded-2xl overflow-hidden fade-up-3">
             <img src="/portrait.jpg" alt="Dr Sohaïb Kebieche, chirurgien-dentiste à Colombes" class="absolute inset-0 w-full h-full object-cover" />
           </div>
@@ -123,7 +123,7 @@ function iconSvg(name: string) {
               <span class="text-[64px] md:text-[84px] leading-none" style="font-family: var(--font-display); color: var(--color-cream-50)">K</span>
               <span class="block w-12 h-px" style="background: var(--color-copper-400)"></span>
               <p class="text-[18px] md:text-[21px] leading-[1.45] max-w-[300px]" style="font-family: var(--font-display); color: var(--color-cream-100)">
-                Conserver d'abord.<br>Remplacer durablement.<br>Expliquer toujours.
+                Conserver d’abord.<br>Remplacer durablement.<br>Expliquer toujours.
               </p>
             </div>
           </div>
@@ -134,12 +134,12 @@ function iconSvg(name: string) {
   </section>
 
 
-  <!-- L'APPROCHE — 3 piliers -->
+  <!-- L’APPROCHE — 3 piliers -->
   <section class="py-20 md:py-28" style="background: var(--color-cream-50)">
     <div class="container-wide">
 
       <div class="max-w-2xl mb-14" data-reveal>
-        <span class="eyebrow mb-4">L'approche</span>
+        <span class="eyebrow mb-4">L’approche</span>
         <h2 class="text-[32px] md:text-[42px] leading-[1.12] tracking-tight">
           Trois principes qui guident chaque consultation.
         </h2>
@@ -148,23 +148,23 @@ function iconSvg(name: string) {
       <div class="grid md:grid-cols-3 gap-10 md:gap-12">
 
         <div class="border-l pl-6" style="border-color: var(--color-copper-400)" data-reveal data-reveal-delay="0">
-          <h3 class="text-[22px] md:text-[24px] font-medium mb-4">Conserver d'abord</h3>
+          <h3 class="text-[22px] md:text-[24px] font-medium mb-4">Conserver d’abord</h3>
           <p class="text-[15px] text-ink-700 leading-[1.7]">
-            La dentisterie moderne permet souvent de préserver une dent qu'on aurait sacrifiée hier. Onlays et overlays céramiques, soins endodontiques, maintenance parodontale : la priorité est toujours donnée à ce qui est <em>votre</em> tissu.
+            La dentisterie moderne permet souvent de préserver une dent qu’on aurait sacrifiée hier. Onlays et overlays céramiques, soins endodontiques, maintenance parodontale : la priorité est toujours donnée à ce qui est <em>votre</em> tissu.
           </p>
         </div>
 
         <div class="border-l pl-6" style="border-color: var(--color-copper-400)" data-reveal data-reveal-delay="140">
           <h3 class="text-[22px] md:text-[24px] font-medium mb-4">Remplacer durablement</h3>
           <p class="text-[15px] text-ink-700 leading-[1.7]">
-            Lorsque la conservation n'est plus possible, l'implantologie permet de retrouver une fonction et une esthétique stables sur le long terme. <em>Si nécessaire</em>, elle s'appuie sur une chirurgie pré-implantaire (greffes osseuses, aménagements tissulaires) pour préparer le site.
+            Lorsque la conservation n’est plus possible, l’implantologie permet de retrouver une fonction et une esthétique stables sur le long terme. <em>Si nécessaire</em>, elle s’appuie sur une chirurgie pré-implantaire (greffes osseuses, aménagements tissulaires) pour préparer le site.
           </p>
         </div>
 
         <div class="border-l pl-6" style="border-color: var(--color-copper-400)" data-reveal data-reveal-delay="280">
           <h3 class="text-[22px] md:text-[24px] font-medium mb-4">Expliquer toujours</h3>
           <p class="text-[15px] text-ink-700 leading-[1.7]">
-            Comprendre son traitement transforme l'expérience du patient. Chaque consultation se conclut par un plan de traitement écrit et un dossier de soins personnalisé que vous retrouvez sur ce site — schémas, conseils pré-opératoires, consignes post-opératoires.
+            Comprendre son traitement transforme l’expérience du patient. Chaque consultation se conclut par un plan de traitement écrit et un dossier de soins personnalisé que vous retrouvez sur ce site — schémas, conseils pré-opératoires, consignes post-opératoires.
           </p>
         </div>
 
@@ -183,7 +183,7 @@ function iconSvg(name: string) {
           Une expertise centrée sur la conservation et la chirurgie.
         </h2>
         <p class="text-[15px] text-ink-500 leading-[1.7]">
-          Omnipratique complète, avec une orientation marquée vers la chirurgie orale, l'implantologie et la parodontologie.
+          Omnipratique complète, avec une orientation marquée vers la chirurgie orale, l’implantologie et la parodontologie.
         </p>
       </div>
 
@@ -229,10 +229,10 @@ function iconSvg(name: string) {
 
         <div data-reveal data-reveal-delay="160">
           <p class="text-[16px] leading-[1.75] opacity-90 mb-5">
-            Diplômé de la Faculté de chirurgie dentaire Paris-Descartes, lauréat du prix de thèse mention Très Honorable et Félicitations du jury. Un parcours qui a associé pratique en cabinet et expérience hospitalière en chirurgie orale — et qui structure aujourd'hui une approche centrée sur les cas complexes : conservation, implantologie et parodontologie.
+            Diplômé de la Faculté de chirurgie dentaire Paris-Descartes, lauréat du prix de thèse mention Très Honorable et Félicitations du jury. Un parcours qui a associé pratique en cabinet et expérience hospitalière en chirurgie orale — et qui structure aujourd’hui une approche centrée sur les cas complexes : conservation, implantologie et parodontologie.
           </p>
           <p class="text-[14px] leading-[1.7] opacity-75 mb-7">
-            Une formation continue régulière : D.U. d'implantologie (Université d'Évry Paris-Saclay, 2024), D.U. de parodontologie avancée (Université Côte d'Azur, 2025), formation en chirurgie plastique parodontale (Tunneling Academy).
+            Une formation continue régulière : D.U. d’implantologie (Université d’Évry Paris-Saclay, 2024), D.U. de parodontologie avancée (Université Côte d’Azur, 2025), formation en chirurgie plastique parodontale (Tunneling Academy).
           </p>
           <a href="/praticien" class="inline-flex items-center gap-2 px-5 py-2.5 text-[14px] font-medium rounded transition-colors" style="border: 1px solid rgba(255,255,255,0.3); color: var(--color-cream-50);">
             Lire le parcours détaillé →
@@ -254,26 +254,26 @@ function iconSvg(name: string) {
           Vos fiches conseils, accessibles à tout moment.
         </h2>
         <p class="text-[15px] text-ink-500 leading-[1.7]">
-          Après chaque consultation, un plan de traitement écrit vous est transmis, accompagné des liens vers ces fiches. Vous y retrouvez les consignes avant et après vos soins — chirurgie, parodontologie, blanchiment — et les bons gestes d'hygiène au quotidien, schémas à l'appui.
+          Après chaque consultation, un plan de traitement écrit vous est transmis, accompagné des liens vers ces fiches. Vous y retrouvez les consignes avant et après vos soins — chirurgie, parodontologie, blanchiment — et les bons gestes d’hygiène au quotidien, schémas à l’appui.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-5">
         <a href="/conseils/avant" class="card hover:border-teal-300 transition-colors" data-reveal data-reveal-delay="0">
           <h3 class="text-[18px] font-medium mb-3">Avant une intervention</h3>
-          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Bien se préparer à une extraction, un implant, une greffe ou une chirurgie : médicaments, repas, organisation.</p>
+          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Bien se préparer à une extraction, un implant, une greffe ou une chirurgie : médicaments, repas, organisation.</p>
           <span class="text-[13px] font-medium" style="color: var(--color-teal-700)">Consulter →</span>
         </a>
 
         <a href="/conseils/apres-chirurgie" class="card hover:border-teal-300 transition-colors" data-reveal data-reveal-delay="140">
           <h3 class="text-[18px] font-medium mb-3">Après une chirurgie</h3>
-          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Consignes post-opératoires détaillées : douleur, gonflement, alimentation, suites normales et signes d'alerte.</p>
+          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Consignes post-opératoires détaillées : douleur, gonflement, alimentation, suites normales et signes d’alerte.</p>
           <span class="text-[13px] font-medium" style="color: var(--color-teal-700)">Consulter →</span>
         </a>
 
         <a href="/conseils/hygiene" class="card hover:border-teal-300 transition-colors" data-reveal data-reveal-delay="280">
           <h3 class="text-[18px] font-medium mb-3">Hygiène au quotidien</h3>
-          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Brossage à 45° vers la gencive, brosse électrique, brossettes calibrées : tout ce qui se joue à la maison.</p>
+          <p class="text-[14px] text-ink-500 leading-[1.6] mb-4">Brossage à 45° vers la gencive, brosse électrique, brossettes calibrées : tout ce qui se joue à la maison.</p>
           <span class="text-[13px] font-medium" style="color: var(--color-teal-700)">Consulter →</span>
         </a>
       </div>
@@ -302,17 +302,17 @@ function iconSvg(name: string) {
         <div class="card" data-reveal data-reveal-delay="0">
           <div class="text-[40px] leading-none mb-4" style="font-family: var(--font-display); color: var(--color-copper-400)">1</div>
           <h3 class="text-[19px] font-medium mb-2.5">Examen complet</h3>
-          <p class="text-[14px] text-ink-700 leading-[1.65]">Votre histoire, vos attentes, l'examen clinique — et les radiographies si nécessaire. Environ 45 minutes.</p>
+          <p class="text-[14px] text-ink-700 leading-[1.65]">Votre histoire, vos attentes, l’examen clinique — et les radiographies si nécessaire. Environ 45 minutes.</p>
         </div>
         <div class="card" data-reveal data-reveal-delay="120">
           <div class="text-[40px] leading-none mb-4" style="font-family: var(--font-display); color: var(--color-copper-400)">2</div>
-          <h3 class="text-[19px] font-medium mb-2.5">Explications, schémas à l'appui</h3>
+          <h3 class="text-[19px] font-medium mb-2.5">Explications, schémas à l’appui</h3>
           <p class="text-[14px] text-ink-700 leading-[1.65]">Ce qui a été observé, ce qui est proposé et pourquoi — avec les pages de ce site en support, à relire chez vous.</p>
         </div>
         <div class="card" data-reveal data-reveal-delay="240">
           <div class="text-[40px] leading-none mb-4" style="font-family: var(--font-display); color: var(--color-copper-400)">3</div>
           <h3 class="text-[19px] font-medium mb-2.5">Devis remis avant tout soin</h3>
-          <p class="text-[14px] text-ink-700 leading-[1.65]">Un plan de traitement écrit et chiffré. Rien n'est engagé sans votre accord — vous décidez à tête reposée.</p>
+          <p class="text-[14px] text-ink-700 leading-[1.65]">Un plan de traitement écrit et chiffré. Rien n’est engagé sans votre accord — vous décidez à tête reposée.</p>
         </div>
       </div>
 
@@ -320,7 +320,7 @@ function iconSvg(name: string) {
         <a href="/conseils/premiere-consultation" class="font-medium inline-flex items-center gap-1.5" style="color: var(--color-teal-700)">
           Comment se passe la première consultation →
         </a>
-        <span class="text-ink-500">Patient anxieux ? Dites-le simplement à la prise de rendez-vous : le déroulé s'adapte.</span>
+        <span class="text-ink-500">Patient anxieux ? Dites-le simplement à la prise de rendez-vous : le déroulé s’adapte.</span>
       </div>
     </div>
   </section>
@@ -337,17 +337,17 @@ function iconSvg(name: string) {
             À Colombes, dans le quartier des Vallées.
           </h2>
           <p class="text-[15px] text-ink-700 leading-[1.7] mb-7">
-            Le Cabinet Dentaire La Cabane est situé au cœur du quartier résidentiel des Vallées, à Colombes. Accès facile en train — gare de Colombes (ligne J) et gare Les Vallées (ligne L) à proximité —, en bus et en voiture. Le cabinet dispose d'un ascenseur jusqu'au premier étage.
+            Le Cabinet Dentaire La Cabane est situé au cœur du quartier résidentiel des Vallées, à Colombes. Accès facile en train — gare de Colombes (ligne J) et gare Les Vallées (ligne L) à proximité —, en bus et en voiture. Le cabinet dispose d’un ascenseur jusqu’au premier étage.
           </p>
 
           <div class="text-[14px] text-ink-700 leading-[1.8] mb-7">
             <div class="font-semibold">31 rue Félix Faure, 92700 Colombes</div>
-            <div>Téléphone : <a href="tel:+33142429469" style="color: var(--color-teal-700)">01 42 42 94 69</a></div>
-            <div>Horaires d'ouverture : 9h00 – 13h00 · 15h00 – 18h30</div>
+            <div>Téléphone : <a href="tel:+33142429469" style="color: var(--color-teal-700)">01 42 42 94 69</a></div>
+            <div>Horaires d’ouverture : 9h00 – 13h00 · 15h00 – 18h30</div>
           </div>
 
           <a href="/cabinet" class="btn btn-secondary">
-            Plan d'accès et informations →
+            Plan d’accès et informations →
           </a>
         </div>
 
@@ -380,12 +380,12 @@ function iconSvg(name: string) {
                 </span>
                 <div>
                   <div class="text-[15.5px] font-medium mb-0.5">Collages sous digue</div>
-                  <p class="text-[13.5px] opacity-75 leading-[1.6]">Un champ opératoire étanche, systématique : la condition d'une dentisterie adhésive durable.</p>
+                  <p class="text-[13.5px] opacity-75 leading-[1.6]">Un champ opératoire étanche, systématique : la condition d’une dentisterie adhésive durable.</p>
                 </div>
               </li>
             </ul>
             <a href="/cabinet" class="inline-flex items-center gap-2 mt-7 text-[13.5px] font-medium" style="color: var(--color-copper-300)">
-              Découvrir l'équipement du cabinet →
+              Découvrir l’équipement du cabinet →
             </a>
           </div>
         </div>

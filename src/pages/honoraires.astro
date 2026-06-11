@@ -15,13 +15,13 @@ import Layout from '../layouts/Layout.astro';
         <span class="text-teal-600">avant tout.</span>
       </h1>
       <p class="text-[18px] text-ink-700 leading-[1.65]">
-        Pour tout plan de traitement, un <strong>devis détaillé est systématiquement remis</strong> en consultation, expliqué, et accompagné des liens vers les pages de ce site qui décrivent chaque soin. Aucun soin à honoraires libres n'est engagé sans devis signé.
+        Pour tout plan de traitement, un <strong>devis détaillé est systématiquement remis</strong> en consultation, expliqué, et accompagné des liens vers les pages de ce site qui décrivent chaque soin. Aucun soin à honoraires libres n’est engagé sans devis signé.
       </p>
     </div>
   </section>
 
 
-  <!-- Deux familles d'actes : 2 cards -->
+  <!-- Deux familles d’actes : 2 cards -->
   <section class="container-wide pb-16 md:pb-20">
     <div class="max-w-4xl">
       <div data-reveal>
@@ -29,7 +29,7 @@ import Layout from '../layouts/Layout.astro';
           Comment sont fixés les honoraires
         </h2>
         <p class="text-[16px] text-ink-700 mb-8">
-          Deux familles d'actes coexistent en dentisterie :
+          Deux familles d’actes coexistent en dentisterie :
         </p>
       </div>
 
@@ -40,7 +40,7 @@ import Layout from '../layouts/Layout.astro';
             Les soins du quotidien
           </h3>
           <p class="text-[15px] text-ink-700 leading-[1.7]">
-            Consultations, soins des caries, détartrage, traitements des racines, la plupart des extractions. Ils sont facturés aux tarifs fixés par la convention avec l'Assurance Maladie.
+            Consultations, soins des caries, détartrage, traitements des racines, la plupart des extractions. Ils sont facturés aux tarifs fixés par la convention avec l’Assurance Maladie.
           </p>
         </div>
         <div class="card" data-reveal data-reveal-delay="100">
@@ -49,19 +49,19 @@ import Layout from '../layouts/Layout.astro';
             Les actes sur devis
           </h3>
           <p class="text-[15px] text-ink-700 leading-[1.7]">
-            Restaurations céramiques (inlays, onlays, overlays), couronnes et bridges, implants, greffes, chirurgie parodontale, blanchiment. Leur montant dépend du cas clinique : il est précisé sur le devis, jamais engagé sans votre accord.
+            Restaurations céramiques (inlays, onlays, overlays), couronnes et bridges, implants, greffes, chirurgie parodontale, blanchiment. Leur montant dépend du cas clinique : il est précisé sur le devis, jamais engagé sans votre accord.
           </p>
         </div>
       </div>
 
       <p class="mt-8 text-[15px] text-ink-700 leading-[1.7] max-w-3xl" data-reveal>
-        Le montant exact de chaque acte dépend de la situation clinique (nombre de faces d'une restauration, complexité d'une extraction, volume d'une greffe). C'est précisément le rôle du devis : chiffrer <em>votre</em> cas, pas un cas moyen.
+        Le montant exact de chaque acte dépend de la situation clinique (nombre de faces d’une restauration, complexité d’une extraction, volume d’une greffe). C’est précisément le rôle du devis : chiffrer <em>votre</em> cas, pas un cas moyen.
       </p>
     </div>
   </section>
 
 
-  <!-- Prise en charge : 60 % en display -->
+  <!-- Prise en charge : 60 % en display -->
   <section class="py-16 md:py-20" style="background: var(--color-cream-50)">
     <div class="container-wide">
       <div class="max-w-4xl grid md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-center" data-reveal>
@@ -78,7 +78,7 @@ import Layout from '../layouts/Layout.astro';
             Prise en charge sécurité sociale & mutuelles
           </h2>
           <p class="text-[15.5px] text-ink-700 leading-[1.75]">
-            Le cabinet est <strong>conventionné</strong> (carte vitale acceptée). Les soins aux tarifs conventionnés sont pris en charge à <strong>60%</strong> par l'Assurance Maladie, le complément par votre mutuelle. Les actes à honoraires libres sont remboursés sur une base Sécurité sociale plus faible, complétée selon votre contrat de mutuelle.
+            Le cabinet est <strong>conventionné</strong> (carte vitale acceptée). Les soins aux tarifs conventionnés sont pris en charge à <strong>60%</strong> par l’Assurance Maladie, le complément par votre mutuelle. Les actes à honoraires libres sont remboursés sur une base Sécurité sociale plus faible, complétée selon votre contrat de mutuelle.
           </p>
         </div>
       </div>
@@ -86,7 +86,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
 
-  <!-- Le devis : 3 mini-cards -->
+  <!-- Le devis : 3 mini-cards -->
   <section class="container-wide py-16 md:py-20">
     <div class="max-w-4xl">
       <h2 class="text-[26px] md:text-[32px] font-medium mb-8 leading-[1.2]" style="font-family: var(--font-display)" data-reveal>
@@ -95,10 +95,10 @@ import Layout from '../layouts/Layout.astro';
       <div class="grid sm:grid-cols-3 gap-5">
         {[
           { n: '1', titre: 'Le tarif total', texte: 'Chiffré pour votre cas précis, poste par poste.' },
-          { n: '2', titre: 'La base de remboursement', texte: "Le montant pris en compte par l'Assurance Maladie." },
+          { n: '2', titre: 'La base de remboursement', texte: "Le montant pris en compte par l’Assurance Maladie." },
           { n: '3', titre: 'Le code CCAM', texte: 'Pour transmission à votre mutuelle.' },
         ].map((item, idx) => (
-          <div class="card !p-6" data-reveal data-reveal-delay={(idx * 90).toString()}>
+          <div class="card !p-6" data-reveal data-reveal-delay={(idx * 90).toString()}>
             <div class="text-[34px] leading-none mb-3" style="font-family: var(--font-display); color: var(--color-copper-500)">{item.n}</div>
             <div class="text-[16px] font-semibold mb-1.5">{item.titre}</div>
             <p class="text-[13.5px] text-ink-500 leading-[1.6]">{item.texte}</p>
@@ -106,7 +106,7 @@ import Layout from '../layouts/Layout.astro';
         ))}
       </div>
       <p class="mt-8 text-[15px] text-ink-700 leading-[1.7] max-w-3xl" data-reveal>
-        Le devis peut être adressé à votre mutuelle pour connaître votre niveau de prise en charge avant de programmer les soins. C'est important pour décider sereinement.
+        Le devis peut être adressé à votre mutuelle pour connaître votre niveau de prise en charge avant de programmer les soins. C’est important pour décider sereinement.
       </p>
 
       <div class="mt-10 flex gap-4 items-start rounded-2xl p-5 md:p-6" style="background: var(--color-cream-200); border-left: 3px solid var(--color-copper-400)" data-reveal>
@@ -121,10 +121,10 @@ import Layout from '../layouts/Layout.astro';
   <section class="container-wide pb-24">
     <div class="rounded-3xl px-8 md:px-14 py-12 md:py-16 text-center" style="background: var(--color-teal-50); border: 1px solid var(--color-cream-300)">
       <h3 class="text-[28px] md:text-[34px] font-display tracking-tight mb-3">
-        Un devis à discuter ?
+        Un devis à discuter ?
       </h3>
       <p class="text-[15px] text-ink-700 mb-7 max-w-xl mx-auto">
-        Que vous soyez patient du cabinet ou que vous cherchiez un second avis sur un plan de traitement existant, la consultation initiale permet d'en parler en détail.
+        Que vous soyez patient du cabinet ou que vous cherchiez un second avis sur un plan de traitement existant, la consultation initiale permet d’en parler en détail.
       </p>
       <div class="flex flex-wrap gap-3 justify-center">
         <a href="https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile" target="_blank" rel="noopener" class="btn btn-primary">
