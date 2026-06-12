@@ -60,9 +60,10 @@ interface Props {
   cta?: 'rdv' | 'conseil'; // 'conseil' : fiche post-soin → contact cabinet au lieu de prospection Doctolib
   urgenceNote?: string;    // si présent : encadré "quand appeler" affiché EN HAUT de page (HTML autorisé)
   related?: RelatedLink[]; // maillage soins ↔ conseils ("À lire aussi")
+  motPraticien?: string;   // citation première personne (voix du praticien)
 }
 
-const { pageTitle, pageDescription, eyebrow, h1, baseline, intro, sections, cta = 'rdv', urgenceNote, related = [] } = Astro.props;
+const { pageTitle, pageDescription, eyebrow, h1, baseline, intro, sections, cta = 'rdv', urgenceNote, related = [], motPraticien } = Astro.props;
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -145,6 +146,17 @@ const { pageTitle, pageDescription, eyebrow, h1, baseline, intro, sections, cta 
 
     </div>
   </section>
+
+  <!-- Un mot du praticien (voix première personne) -->
+  {motPraticien && (
+    <section class="container-wide pb-12">
+      <div class="max-w-3xl mx-auto rounded-3xl px-8 md:px-12 py-9 md:py-10 text-center" style="background: var(--color-teal-50); border: 1px solid var(--color-cream-300)" data-reveal>
+        <span class="eyebrow mb-4 justify-center">Un mot du praticien</span>
+        <p class="text-[18px] md:text-[20px] leading-[1.55]" style="font-family: var(--font-display); color: var(--color-ink-900)">« {motPraticien} »</p>
+        <p class="mt-3 text-[13px] font-semibold" style="color: var(--color-copper-600)">— Dr Sohaïb Kebieche</p>
+      </div>
+    </section>
+  )}
 
   <!-- Maillage soins ↔ conseils -->
   {related.length > 0 && (

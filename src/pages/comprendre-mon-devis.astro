@@ -80,7 +80,7 @@ const familles = [...new Set(soins.map((s) => s.famille))];
 
     <div class="max-w-4xl mt-10 flex gap-4 items-start rounded-2xl p-5 md:p-6" style="background: var(--color-cream-200); border-left: 3px solid var(--color-copper-400)" data-reveal>
       <p class="text-[13.5px] text-ink-700 leading-[1.65]">
-        <strong>Votre devis fait référence.</strong> Ces explications sont générales : c’est le devis et les échanges en consultation qui décrivent précisément <em>votre</em> plan de traitement. Rien n’est engagé sans votre accord.
+        <strong>Votre devis fait référence.</strong> Ces explications sont générales : c’est le devis et les échanges en consultation qui décrivent précisément <strong>votre</strong> plan de traitement. Rien n’est engagé sans votre accord.
       </p>
     </div>
   </section>
@@ -141,10 +141,13 @@ const familles = [...new Set(soins.map((s) => s.famille))];
     });
     // Adapter l’intro
     var intro = document.getElementById('devis-intro');
+    // Compteur seulement si TOUTES les cles sont reconnues (sinon trompeur)
+    var fiable = (trouves === demandes.length);
+    var prefixe = 'Les soins de votre devis';
+    if (fiable && trouves === 1) prefixe = 'Le soin de votre devis';
+    if (fiable && trouves > 1) prefixe = 'Les ' + trouves + ' soins de votre devis';
     if (intro) {
-      var n = trouves;
-      intro.insertAdjacentHTML('afterbegin',
-        '<strong>' + (n > 1 ? 'Les ' + n + ' soins de votre devis' : 'Le soin de votre devis') + ' :</strong> ');
+      intro.insertAdjacentHTML('afterbegin', '<strong>' + prefixe + ' :</strong> ');
     }
   })();
 </script>

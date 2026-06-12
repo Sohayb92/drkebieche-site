@@ -18,12 +18,21 @@ export async function onRequestPost({ request, env }) {
     return new Response(JSON.stringify({ error: 'requête invalide' }), { status: 400 });
   }
 
+  // Honeypot : le champ caché « site » est rempli par les bots → on répond
+  // 200 sans rien envoyer (ne pas leur signaler le rejet)
+  if (String(data.site || '').trim()) {
+    return new Response(JSON.stringify({ ok: true }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  }
+
   const nom = String(data.nom || '').trim().slice(0, 200);
   const contact = String(data.contact || '').trim().slice(0, 200);
   const message = String(data.message || '').trim().slice(0, 5000);
   if (!nom || !contact || !message) {
     return new Response(JSON.stringify({ error: 'champs manquants' }), { status: 400 });
   }
+
+  // Si le patient a laissé un email, le mettre en reply_to pour répondre en un clic
+  const emailPatient = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact) ? contact : undefined;
 
   const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -37,6 +46,7 @@ export async function onRequestPost({ request, env }) {
       from: env.CONTACT_FROM || 'cabinet@drkebieche.fr',
       to: [env.CONTACT_TO || 'cabinetdentaire.lacabane@gmail.com'],
       subject: `Message via drkebieche.fr — ${nom}`,
+      reply_to: emailPatient,
       html: `<p><strong>Nom :</strong> ${esc(nom)}<br><strong>Contact :</strong> ${esc(contact)}</p><p style="white-space:pre-wrap">${esc(message)}</p>`,
     }),
   });

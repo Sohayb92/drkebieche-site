@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -107,6 +107,9 @@ import Layout from '../layouts/Layout.astro';
               <span><strong>Accessibilité</strong> · Ascenseur jusqu’au premier étage</span>
             </li>
           </ul>
+          <p class="mt-4 text-[13.5px] text-ink-500 leading-[1.6]">
+            Le cabinet accueille aussi les patients de La Garenne-Colombes, Bois-Colombes, Asnières-sur-Seine, Courbevoie et du quartier de La Défense.
+          </p>
         </div>
 
       </div>
@@ -138,20 +141,20 @@ import Layout from '../layouts/Layout.astro';
             <div>
               <label for="fc-nom" class="block text-[13px] font-semibold mb-1.5" style="color: var(--color-teal-800)">Votre nom</label>
               <input id="fc-nom" name="nom" type="text" required autocomplete="name"
-                class="w-full rounded-lg px-4 py-3 text-[15px] outline-none transition-colors"
+                class="w-full rounded-lg px-4 py-3 text-[15px] transition-colors"
                 style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)" />
             </div>
             <div>
               <label for="fc-contact" class="block text-[13px] font-semibold mb-1.5" style="color: var(--color-teal-800)">Email ou téléphone</label>
               <input id="fc-contact" name="contact" type="text" required autocomplete="email"
-                class="w-full rounded-lg px-4 py-3 text-[15px] outline-none transition-colors"
+                class="w-full rounded-lg px-4 py-3 text-[15px] transition-colors"
                 style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)" />
             </div>
           </div>
           <div>
             <label for="fc-message" class="block text-[13px] font-semibold mb-1.5" style="color: var(--color-teal-800)">Votre message</label>
             <textarea id="fc-message" name="message" rows="5" required
-              class="w-full rounded-lg px-4 py-3 text-[15px] outline-none transition-colors resize-y"
+              class="w-full rounded-lg px-4 py-3 text-[15px] transition-colors resize-y"
               style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)"></textarea>
           </div>
           <!-- Honeypot anti-spam (invisible) -->
@@ -218,7 +221,7 @@ import Layout from '../layouts/Layout.astro';
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nom, contact, message }),
+          body: JSON.stringify({ nom, contact, message, site: form.site.value }),
         });
         if (!res.ok) throw new Error('api');
         form.reset();

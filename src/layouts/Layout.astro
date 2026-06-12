@@ -49,7 +49,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:image" content={new URL(ogImage, Astro.site || 'https://drkebieche.fr').toString()} />
-  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'fr_FR'} />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -91,6 +91,16 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
       "@type": "GeoCoordinates",
       "latitude": 48.9148,
       "longitude": 2.2559
+    },
+    "areaServed": [
+      "Colombes", "La Garenne-Colombes", "Bois-Colombes",
+      "Asnières-sur-Seine", "Courbevoie", "Nanterre", "La Défense"
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Dr Sohaïb Kebieche",
+      "jobTitle": "Chirurgien-dentiste",
+      "url": "https://drkebieche.fr/praticien/"
     },
     "openingHoursSpecification": [{
       "@type": "OpeningHoursSpecification",
@@ -188,6 +198,18 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
         });
       }, { threshold: 0.35 });
       svgs.forEach((svg) => io.observe(svg));
+
+      // Impression : révéler instantanément tous les schémas non encore dessinés
+      window.addEventListener('beforeprint', () => {
+        svgs.forEach((svg) => {
+          svg.querySelectorAll('path, line, polyline, polygon, rect, circle').forEach((el) => {
+            el.style.transition = 'none';
+            if (el.dataset.draw) el.style.strokeDashoffset = '0';
+            if (el.dataset.op !== undefined) el.style.opacity = el.dataset.op;
+            el.style.fillOpacity = el.dataset.fo || '1';
+          });
+        });
+      });
     })();
   </script>
 </body>

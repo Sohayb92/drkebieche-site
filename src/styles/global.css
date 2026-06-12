@@ -43,7 +43,7 @@
   /* Texte */
   --color-ink-900: #1A1F1C;
   --color-ink-700: #3A4540;
-  --color-ink-500: #6B7570;
+  --color-ink-500: #5E6863; /* assombri pour le contraste AA (audit 2026-06-12) */
   --color-ink-400: #94999A;
   --color-ink-300: #B5BAB6;
 

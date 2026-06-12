@@ -16,5 +16,12 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [mdx(), sitemap()]
+  integrations: [mdx(), sitemap({
+    // Les pages noindex (404, légales) n'ont rien à faire dans le sitemap
+    filter: (page) =>
+      !page.includes('/404') &&
+      !page.includes('/mentions-legales') &&
+      !page.includes('/confidentialite') &&
+      !page.includes('/cookies'),
+  })]
 });
