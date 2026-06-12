@@ -16,6 +16,7 @@ import Layout from '../layouts/Layout.astro';
 const soins = [
   // Implantologie & chirurgie
   { key: 'implant', famille: 'Implantologie & chirurgie', titre: "Pose d’implant dentaire", href: '/soins/implantologie-chirurgie#implants', resume: "Une racine artificielle en titane placée dans l’os, planifiée en 3D, sur laquelle une couronne est fixée après cicatrisation." },
+  { key: 'comblement', famille: 'Implantologie & chirurgie', titre: 'Comblement osseux après extraction', href: '/soins/implantologie-chirurgie#comblement-alveolaire', resume: "L’alvéole est comblée au moment de l’extraction pour conserver le volume osseux — et poser l’implant sereinement, sans greffe dans la majorité des cas." },
   { key: 'greffe-osseuse', famille: 'Implantologie & chirurgie', titre: 'Reconstruction osseuse pré-implantaire', href: '/soins/implantologie-chirurgie#greffes-osseuses', resume: "Quand l’os manque, une greffe prépare le terrain de l’implant — uniquement si nécessaire, sur décision du scanner 3D." },
   { key: 'chirurgie-orale', famille: 'Implantologie & chirurgie', titre: 'Chirurgie orale, extraction complexe', href: '/soins/implantologie-chirurgie#chirurgie-orale', resume: "Extractions difficiles, kystes, racines fracturées — sous anesthésie locale, avec l’expérience hospitalière en chirurgie orale." },
   { key: 'dds', famille: 'Implantologie & chirurgie', titre: 'Dents de sagesse', href: '/soins/implantologie-chirurgie#dents-de-sagesse', resume: "Extraction quand elles posent ou vont poser un vrai problème — décision sur examen et radiographie panoramique." },
@@ -119,6 +120,7 @@ const familles = [...new Set(soins.map((s) => s.famille))];
       caries: 'carie',
       'dents-de-sagesse': 'dds', extraction: 'chirurgie-orale',
       pac: 'amovible', pap: 'amovible', stellite: 'amovible', appareil: 'amovible', amovibles: 'amovible',
+      'comblement-osseux': 'comblement', 'comblement-alveolaire': 'comblement', 'preservation-alveolaire': 'comblement', alveole: 'comblement',
     };
     var params = new URLSearchParams(window.location.search);
     var brut = (params.get('soins') || '').toLowerCase().split(',').map(function (s) { return s.trim(); }).filter(Boolean);

@@ -16,6 +16,7 @@ import SchemaEndodontie from './SchemaEndodontie.astro';
 import SchemaCouronnes from './SchemaCouronnes.astro';
 import SchemaRTE from './SchemaRTE.astro';
 import SchemaAmovible from './SchemaAmovible.astro';
+import SchemaComblement from './SchemaComblement.astro';
 
 // Registre des schémas pédagogiques (prop `schema` des sections)
 const SCHEMAS: Record<string, any> = {
@@ -35,6 +36,7 @@ const SCHEMAS: Record<string, any> = {
   couronnes: SchemaCouronnes,
   rte: SchemaRTE,
   amovible: SchemaAmovible,
+  comblement: SchemaComblement,
 };
 
 interface Section {
