@@ -1,0 +1,81 @@
+---
+/**
+ * Prothèses amovibles en 2 panneaux : partielle à châssis métallique (stellite)
+ * sur dents restantes vs complète sur fausse gencive.
+ * Vocabulaire visuel commun : dents naturelles = crème, prothèse = teal,
+ * châssis/crochets = gris foncé, gencive (vraie ou fausse) = cuivré.
+ */
+const panels = [
+  {
+    key: 'pap',
+    nom: 'Partielle à châssis métallique',
+    ligne: "Le « stellite » remplace les dents manquantes en s’appuyant sur les dents restantes par des crochets discrets — fin et stable.",
+  },
+  {
+    key: 'pac',
+    nom: 'Complète',
+    ligne: "Remplace l’ensemble des dents d’une arcade ; la fausse gencive assure l’appui et l’esthétique.",
+  },
+];
+
+// Dent simple posée sur la gencive (x = centre, bas de dent à y=128)
+function dent(x: number, teal = false) {
+  const fill = teal ? 'var(--color-teal-400)' : 'var(--color-cream-100)';
+  const stroke = teal ? 'var(--color-teal-700)' : 'var(--color-ink-400)';
+  return `<path d="M ${x - 12} 128 C ${x - 13} 92 ${x - 10} 78 ${x} 78 C ${x + 10} 78 ${x + 13} 92 ${x + 12} 128 Z" style="fill: ${fill}; stroke: ${stroke}; stroke-width: 1.8" stroke-linejoin="round" />`;
+}
+---
+
+<figure class="my-10 md:my-12">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 max-w-2xl mx-auto">
+    {panels.map((p) => (
+      <div class="rounded-2xl p-4 md:p-5 text-center" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+
+        <svg viewBox="0 0 200 200" role="img" aria-label={p.nom} class="w-full max-w-[200px] mx-auto">
+          {p.key === 'pap' && (
+            <g>
+              <!-- Gencive naturelle -->
+              <rect x="10" y="124" width="180" height="22" rx="8" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
+              <!-- Barre du châssis (relie les deux côtés, passe derrière les dents prothétiques) -->
+              <line x1="34" y1="138" x2="166" y2="138" style="stroke: var(--color-ink-700); stroke-width: 3.5" stroke-linecap="round" />
+              <!-- Dents naturelles restantes -->
+              <Fragment set:html={dent(34)} />
+              <Fragment set:html={dent(62)} />
+              <Fragment set:html={dent(166)} />
+              <!-- Dents prothétiques (teal) -->
+              <Fragment set:html={dent(98, true)} />
+              <Fragment set:html={dent(128, true)} />
+              <!-- Crochets sur les dents d’appui -->
+              <path d="M 52 96 C 60 90 68 90 74 96" style="fill: none; stroke: var(--color-ink-700); stroke-width: 2.5" stroke-linecap="round" />
+              <path d="M 156 96 C 162 90 170 90 176 96" style="fill: none; stroke: var(--color-ink-700); stroke-width: 2.5" stroke-linecap="round" />
+            </g>
+          )}
+          {p.key === 'pac' && (
+            <g>
+              <!-- Fausse gencive (base de la prothèse) -->
+              <path d="M 20 150 C 20 122 38 110 100 110 C 162 110 180 122 180 150 C 180 158 174 162 166 160 C 130 152 70 152 34 160 C 26 162 20 158 20 150 Z" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.8" stroke-linejoin="round" />
+              <!-- Dents prothétiques sur la base -->
+              <Fragment set:html={dent(42, true).replace('128', '124').replace('128', '124')} />
+              <Fragment set:html={dent(71, true).replace(/12[48]/g, '118')} />
+              <Fragment set:html={dent(100, true).replace(/12[48]/g, '114')} />
+              <Fragment set:html={dent(129, true).replace(/12[48]/g, '118')} />
+              <Fragment set:html={dent(158, true).replace(/12[48]/g, '124')} />
+            </g>
+          )}
+        </svg>
+
+        <div class="mt-3 text-[16px] md:text-[17px] font-medium" style="font-family: var(--font-display)">{p.nom}</div>
+        <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">{p.ligne}</p>
+      </div>
+    ))}
+  </div>
+
+  <figcaption class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-ink-500">
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-cream-100); border: 1px solid var(--color-ink-400)"></span> Dents naturelles</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-teal-400); border: 1px solid var(--color-teal-700)"></span> Prothèse</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-1 rounded" style="background: var(--color-ink-700)"></span> Châssis & crochets</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-copper-300); border: 1px solid var(--color-copper-500)"></span> Gencive / fausse gencive</span>
+  </figcaption>
+
+</figure>

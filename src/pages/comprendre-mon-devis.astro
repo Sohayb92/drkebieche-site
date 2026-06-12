@@ -29,6 +29,7 @@ const soins = [
   { key: 'couronne', famille: 'Dentisterie adhésive & prothèses', titre: 'Couronne', href: '/soins/dentisterie-adhesive-protheses#couronnes-bridges', resume: "Un « casque » sur mesure qui coiffe la dent quand le collage ne suffit plus — céramo-métallique, céramo-céramique ou zircone, précisé sur le devis." },
   { key: 'bridge', famille: 'Dentisterie adhésive & prothèses', titre: 'Bridge', href: '/soins/dentisterie-adhesive-protheses#couronnes-bridges', resume: "Un « pont » qui remplace une dent absente en prenant appui sur les dents voisines couronnées." },
   { key: 'couronne-implant', famille: 'Dentisterie adhésive & prothèses', titre: 'Couronne sur implant', href: '/soins/dentisterie-adhesive-protheses#protheses-implants', resume: "La dent remplacée sans toucher aux dents voisines : une couronne fixée sur la racine artificielle." },
+  { key: 'amovible', famille: 'Dentisterie adhésive & prothèses', titre: 'Prothèse amovible (complète ou partielle)', href: '/soins/dentisterie-adhesive-protheses#protheses-amovibles', resume: "Quand l’implant n’est pas possible ou pas souhaité : partielle à châssis métallique (stellite), complète, ou provisoire en résine." },
   // Soins du quotidien
   { key: 'carie', famille: 'Soins du quotidien', titre: 'Soin de carie', href: '/soins/soins-quotidiens#caries', resume: "Traitée tôt, une carie reste une petite réparation — elle progresse de l’émail vers le nerf si on attend." },
   { key: 'te', famille: 'Soins du quotidien', titre: 'Traitement de racine (dévitalisation)', href: '/soins/soins-quotidiens#endodontie', resume: "Quand la carie atteint le nerf : canaux nettoyés, désinfectés et obturés sous digue — puis la dent est protégée." },
@@ -115,8 +116,9 @@ const familles = [...new Set(soins.map((s) => s.famille))];
       recession: 'greffe-gencive', recessions: 'greffe-gencive', tunneling: 'greffe-gencive',
       maintenance: 'maintenance-paro',
       couronnes: 'couronne', 'couronne-sur-implant': 'couronne-implant',
-      caries: 'carie', greffe: 'greffe-osseuse',
+      caries: 'carie',
       'dents-de-sagesse': 'dds', extraction: 'chirurgie-orale',
+      pac: 'amovible', pap: 'amovible', stellite: 'amovible', appareil: 'amovible', amovibles: 'amovible',
     };
     var params = new URLSearchParams(window.location.search);
     var brut = (params.get('soins') || '').toLowerCase().split(',').map(function (s) { return s.trim(); }).filter(Boolean);
