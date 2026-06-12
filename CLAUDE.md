@@ -1,74 +1,44 @@
 # CLAUDE.md — drkebieche-site
 
-**Lis ce fichier au début de chaque session. Ne jamais le bypasser.**
+**Lis ce fichier au début de chaque session. Règles indispensables uniquement — le détail vit dans la mémoire (`~/.claude/projects/.../memory/`).**
 
 ## Projet
-Site personnel **drkebieche.fr** + **drkebieche.com** du Dr Sohaïb Kebieche (chirurgien-dentiste, Colombes 92). Positionnement "boutique chic médical" — ni wellness, ni tech-froid.
+Site vitrine **drkebieche.fr** du Dr Sohaïb Kebieche (chirurgien-dentiste, Colombes 92). **EN LIGNE** depuis 2026-06-12 (Cloudflare Pages). Double vocation : SEO local + support des devis envoyés par mail via Mélyia (`/comprendre-mon-devis?soins=a,b,c` + ancres).
 
-Stack : Astro + Tailwind + MDX + Cloudflare Pages (à connecter). Repo : `Sohayb92/drkebieche-site`.
+Stack : Astro + Tailwind, statique, repo `Sohayb92/drkebieche-site`.
 
-DA validée 2026-05-21 :
-- Palette : teal foncé #1F3A3D + crème #F8F6F1 + accent cuivré #C09A5F
-- Typo : Newsreader (serif droit, titres) + Inter (body)
-- Pas d'italique systématique
-- Animations scroll via IntersectionObserver vanilla
+## 6 règles de travail PERMANENTES
+1. **Plan avant le code** (annoncer, attendre OK — sauf autonomie accordée explicitement).
+2. **Vérifier son travail** : screenshots Puppeteer + auto-review avant de montrer. ⚠️ Vérifier AUSSI le build prod (`dist/`), pas que le dev server.
+3. **Git filet** : commit par étape qui marche.
+4. **Mémoire 2 niveaux** : ce fichier court, le détail en mémoire.
+5. **Questions si ambigu** : 2-3 options + avis.
+6. **Reste simple.**
 
-## 6 règles de travail PERMANENTES (user 2026-05-21)
+## DA FIGÉE (ne jamais y retoucher sans demande explicite)
+Teal #1F3A3D + crème #F8F6F1 + cuivré #C09A5F · Newsreader (titres) + Inter (corps), self-hosted · **italique réservé au « Sohaïb » du logo** (pas de `<em>`, pas de blockquote italique) · ni wellness, ni tech-froid · hero home = panneau K (photo d'ambiance après shooting ; portrait sur /praticien uniquement).
 
-1. **Plan avant le code.** Annoncer en français ce que je vais coder, attendre "OK".
-2. **Vérifier mon propre travail.** Screenshot via `scripts/screenshot.js`, auto-review, itérer 2-3 fois avant de montrer au user.
-3. **Git filet de sécurité.** Commit après chaque étape qui fonctionne.
-4. **Mémoire 2 niveaux.** Ce CLAUDE.md court + mémoire complète dans `~/.claude/projects/.../memory/*.md`.
-5. **Questions quand ambigu.** 2-3 options + avis + tradeoffs.
-6. **Reste simple.** Astro vanilla, pas de lib lourde. Solution simple > solution "académique".
+## Interdictions ABSOLUES (déonto/légal/factuel)
+- ONCD : jamais « spécialiste » (→ « titulaire d'un D.U. ») · pas de témoignages patients · pas d'avant/après · pas de promesse de résultat · pas de jugement de confrères.
+- CPAM : pas de grilles tarifaires · jamais « 100% santé / reste à charge 0 » · Sécu = **60 %**.
+- **Pas de discours coût/« investissement » sur les pages soins** (l'argumentaire coût = mail devis + consultation).
+- Bio : hospitalier TOUJOURS au passé, en parallèle du cabinet, **jamais « AP-HP »**, **jamais « bloc »/anesthésie générale** · 1er cabinet = Clichy-Levallois · confrère de l'hôpital (Dr Mester) **non nommé** sur le site.
+- Pas d'onglet « Esthétique » (refuse les facettes cosmétiques sur dents saines ; le blanchiment, lui, est proposé).
+- Enfants : ne PAS mettre en avant (FAQ filtrante uniquement).
+- Ne jamais inventer un fait clinique, un équipement ou un nom : demander.
 
-## Architecture validée
-- Home : 4 cards familles + CTA "Découvrir tous les soins proposés →"
-- /soins : index 4 familles avec sous-listes ancrées
-- 4 pages mères : implantologie-chirurgie, parodontologie, dentisterie-adhesive-protheses, soins-quotidiens
-- Mélyia → site : URLs avec hash style `/soins/implantologie-chirurgie#greffes-osseuses` pour mails relance
+## Garde-fous factuels (1 ligne chacun — détail en mémoire `project_kebieche_cabinet`)
+Consultation 40 min (détartrage souvent même séance) · maintenance paro 6 mois · contrôle 1×/an · blanchiment 2h/j 4-6 sem, résultat 3-5 ans · cone beam DDS PAS systématique (panoramique d'abord) · labo KF = prothèse fixe, AUTRE labo FR = amovible · implants Anthogyr · comblement post-extraction = os humain, évite la greffe le plus souvent · avis Google : home = fiche (lire), footer/fiches post-soin = /review (laisser).
 
-## Workflow release type
-1. Plan présenté + validé
-2. Code étape par étape, commit chaque étape
-3. Screenshot via `npm run dev` + Puppeteer + auto-review 2-3 fois
-4. Présenter rendu final au user
-5. "OK push" → `git push` (Cloudflare Pages déploie auto une fois connecté)
+## Pièges outillage connus
+- Codemod typo (`scripts/typo-fr.cjs`) : déjà corrigé pour ignorer les `!` Tailwind et `:` CSS — toujours lancer `scripts/fix-nnbsp-classes.cjs` après, puis builder.
+- L'outil Edit peut transformer les quotes droites du code en typographiques → vérifier le build après édition.
+- Captures de schémas : scrollIntoView + attendre ~2,5 s (animation de dessin), deviceScaleFactor 1, clips ≤ 2000 px.
+
+## Commandes
+- Dev : `npm run dev` (ajouter `-- --host` pour tester au téléphone)
+- **Déploiement prod (manuel — le push GitHub ne déploie PAS)** : `npm run build` puis `npx wrangler pages deploy dist --project-name drkebieche-site --branch main`
+- Avant tout déploiement : `node scripts/typo-fr.cjs && node scripts/fix-nnbsp-classes.cjs && npm run build && node scripts/smoke.cjs`
 
 ## Pointers mémoire
-- `feedback_regles_travail.md` — 6 règles détaillées
-- `feedback_valider_avant_push_prod.md` — workflow validation (cas site spécifique inclus)
-- `feedback_site_direction_artistique.md` — DA validée + architecture 4 familles
-- `project_kebieche_cabinet.md` — profil pro user (soins, formations, ONCD)
-- `reference_google_review_url.md` — lien GBP cabinet
-- `reference_google_oauth_setup.md` — config OAuth Mélyia (en cas de lien site ↔ Mélyia)
-
-## Incontournables factuels (validés par le user)
-- **Doctolib (tous les CTA)** : `https://www.doctolib.fr/dentiste/colombes/sohaib-kebieche-colombes/booking/motives?specialityId=1&telehealth=false&placeId=practice-494254&source=profile`
-- **Email public** : cabinetdentaire.lacabane@gmail.com · **Tél** : 01 42 42 94 69
-- **Sécu rembourse 60%** (réforme — plus jamais écrire 70%)
-- **Bio** : hospitalier TOUJOURS en parallèle du cabinet (jamais "hôpital puis cabinet") · relativiser l'hôpital ("attaché en chirurgie orale", lieu facultatif) · NE PLUS citer le GHT NOVO Pontoise · 1er cabinet = **Clichy-Levallois**, puis Paris 8e chez un implantologiste expérimenté (compagnonnage) · hospitalier toujours au passé (arrêté 2025) · **NE JAMAIS écrire « AP-HP »** (c'était probablement Max Fourestier/Nanterre — sur le site : « expérience hospitalière en chirurgie orale » sans établissement) · **PAS de « bloc » ni d'anesthésie générale** en hospitalier : cas complexes sous anesthésie locale uniquement
-- **DU implanto** : "Université d'Évry Paris-Saclay (2024)" (forme unique)
-- **Maintenance paro 6 mois · contrôle+radios+détartrage 1×/an · blanchiment 2h/j 4-6 sem, résultat 3-5 ans**
-- **Première consultation : 40 min** (pas 45) · si bilan RAS, détartrage souvent fait dans la même séance
-- **Endo/RTE** : RTE si TE non étanche + lésion apicale · 2 suites (couronne/overlay direct OU provisoire ~6 mois jusqu'à cicat vérifiée) · dépose couronne+inlay-core = risque fracture · reconstruction = faux moignon compo / tenon fibré (inlay-core rare)
-- **Cone beam DDS PAS systématique** : panoramique d'abord, 3D seulement si proximité nerveuse visible en 2D (ne pas inquiéter)
-- **Avis Google** : home = fiche GBP sans /review (lire les avis) · footer + fiches post-soin = lien /review (laisser un avis)
-- Domaine canonique : **drkebieche.fr** (.com en 301)
-- Honoraires : PAS de grilles chiffrées sur actes opposables (risque CPAM) — devis systématique · PAS de mention « 100% santé / reste à charge 0 » (retirée à la demande du user 2026-06-11)
-- **Plateau technique réel** : cone beam (scanner 3D) + **caméra optique** (empreintes numériques sans pâte) + digue systématique + labo français
-
-## Ne JAMAIS faire
-- Push sans validation visuelle screenshot + accord user
-- Inventer un nouveau soin/page sans demander
-- Repasser à du serif italique éditorial (refusé 2 fois en mai 2026)
-- Refondre la palette teal vers du bleu (refusé après analyse agent senior)
-- Mentionner APHP au présent (user a arrêté en 2025)
-- Mettre "Spécialiste en implantologie" (interdit ONCD → utiliser "Titulaire d'un DU")
-- Mettre des témoignages patients (interdit ONCD)
-- Créer un onglet "Esthétique" (user ne fait pas d'esthétique pure)
-
-## Commandes utiles
-- Dev server : `npm run dev` (http://localhost:4321)
-- Build : `npm run build`
-- Screenshot : `node scripts/screenshot.js <url>` (à créer)
+`project_kebieche_cabinet` (faits cliniques + voix du praticien) · `feedback_site_direction_artistique` (DA + architecture) · `reference_site_devis_links` (clés Mélyia↔devis) · `reference_google_review_url` · `feedback_regles_travail`
