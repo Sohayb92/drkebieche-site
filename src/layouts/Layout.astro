@@ -114,6 +114,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drkebiec
       "closes": "19:00"
     }]
   })} />
+
+  <!-- Mesure d’audience Cloudflare Web Analytics : sans cookies, sans pistage
+       individuel (exemptée de consentement CNIL). Production uniquement. -->
+  {import.meta.env.PROD && (
+    <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ce05fb03c26e4f5ea063946900e24735"}'></script>
+  )}
 </head>
 <body>
   <a href="#contenu" class="skip-link">Aller au contenu</a>
