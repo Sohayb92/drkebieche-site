@@ -31,6 +31,7 @@ Teal #1F3A3D + crème #F8F6F1 + cuivré #C09A5F · Newsreader (titres) + Inter (
 Consultation 40 min (détartrage souvent même séance) · maintenance paro 6 mois · contrôle 1×/an · blanchiment 2h/j 4-6 sem, résultat 3-5 ans · cone beam DDS PAS systématique (panoramique d'abord) · labo KF = prothèse fixe, AUTRE labo FR = amovible · implants Anthogyr · comblement post-extraction = os humain, évite la greffe le plus souvent · avis Google : home = fiche (lire), footer/fiches post-soin = /review (laisser).
 
 ## Pièges outillage connus
+- **Secrets Pages sous Windows** : `wrangler pages secret put` via pipe PowerShell ajoute un BOM invisible (clé corrompue, 502). Passer par l'API CF : `PATCH /accounts/{acc}/pages/projects/{proj}` avec `deployment_configs.production.env_vars`, puis redéployer.
 - Codemod typo (`scripts/typo-fr.cjs`) : déjà corrigé pour ignorer les `!` Tailwind et `:` CSS — toujours lancer `scripts/fix-nnbsp-classes.cjs` après, puis builder.
 - L'outil Edit peut transformer les quotes droites du code en typographiques → vérifier le build après édition.
 - Captures de schémas : scrollIntoView + attendre ~2,5 s (animation de dessin), deviceScaleFactor 1, clips ≤ 2000 px.
