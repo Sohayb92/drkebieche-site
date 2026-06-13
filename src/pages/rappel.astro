@@ -66,7 +66,9 @@ import Layout from '../layouts/Layout.astro';
       const valid = (r) => /^[A-Za-z0-9]{4,16}$/.test(r);
 
       // Le jeton est lu côté client (site statique) et placé dans l'input caché.
-      const r = new URLSearchParams(location.search).get('r') || '';
+      const params = new URLSearchParams(location.search);
+      const r = params.get('r') || '';
+      const pName = params.get('p') || '';
       document.getElementById('rp-r').value = r;
       if (!valid(r)) { btn.disabled = true; btn.classList.add('opacity-50', 'cursor-not-allowed'); hint.classList.remove('hidden'); }
 
@@ -87,7 +89,7 @@ import Layout from '../layouts/Layout.astro';
           const res = await fetch('/api/rappel', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ r: ref, site: form.site.value }),
+            body: JSON.stringify({ r: ref, p: pName, site: form.site.value }),
           });
           if (!res.ok) throw new Error('api');
           document.getElementById('rappel-card').classList.add('hidden');

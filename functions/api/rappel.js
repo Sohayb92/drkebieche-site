@@ -28,8 +28,13 @@ export async function onRequestPost({ request, env }) {
     return new Response(JSON.stringify({ error: 'référence invalide' }), { status: 400 });
   }
 
+  // Nom du patient, transmis par Mélyia dans le lien — pour que le cabinet sache
+  // immédiatement QUI demande à être rappelé (pas seulement une référence).
+  const nom = String(data.p || '').replace(/[\r\n]+/g, ' ').trim().slice(0, 120);
+
   const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const quand = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' });
+  const qui = nom || ('réf ' + r);
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -40,10 +45,10 @@ export async function onRequestPost({ request, env }) {
     body: JSON.stringify({
       from: env.CONTACT_FROM || 'cabinet@drkebieche.fr',
       to: [env.CONTACT_TO || 'cabinetdentaire.lacabane@gmail.com'],
-      subject: `[RAPPEL] réf ${r}`,
-      html: `<p><strong>Demande de rappel reçue</strong> via le bouton du devis.</p>`
-        + `<p>Référence : <strong>${esc(r)}</strong> — à retrouver dans Mélyia.</p>`
-        + `<p style="color:#5E6863">Reçue le ${esc(quand)}.</p>`,
+      subject: `[RAPPEL] ${qui}`,
+      html: `<p><strong>${esc(qui)}</strong> souhaite être rappelé(e) pour organiser ses rendez-vous.</p>`
+        + (nom ? `<p style="color:#5E6863">Réf devis : ${esc(r)}</p>` : '')
+        + `<p style="color:#5E6863">Demande reçue le ${esc(quand)}.</p>`,
     }),
   });
 
