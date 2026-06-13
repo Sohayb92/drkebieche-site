@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+// Page NEUTRE : aucune donnée de santé, aucun nom. Le jeton (?r=) est lu CÔTÉ
+// CLIENT (site statique → les query params ne sont pas traités au build).
+// Il vit dans un input caché et n'est jamais affiché.
+---
+<Layout
+  title="Prendre rendez-vous — Cabinet Dr Sohaïb Kebieche, Colombes"
+  description="Demander à être rappelé par le cabinet pour organiser vos rendez-vous."
+  noindex={true}
+>
+  <section class="container-prose pt-16 md:pt-24 pb-24 text-center">
+    <span class="eyebrow mb-5" style="justify-content:center">Cabinet Dentaire La Cabane</span>
+    <h1 class="text-[32px] md:text-[44px] leading-[1.12] tracking-tight mb-5" style="font-family: var(--font-display)">
+      Prenons rendez-vous.
+    </h1>
+    <p class="text-[17px] text-ink-700 leading-[1.7] max-w-xl mx-auto mb-2">
+      Indiquez-le-nous d’un simple geste : mon équipe vous rappellera dans les meilleurs
+      délais pour organiser vos rendez-vous, à votre rythme.
+    </p>
+    <p class="text-[14px] text-ink-500 mb-9">
+      Vous préférez appeler ? <a href="tel:+33142429469" class="font-semibold whitespace-nowrap" style="color: var(--color-teal-700)">01 42 42 94 69</a>
+    </p>
+
+    <div id="rappel-card" class="card max-w-[520px] mx-auto">
+      <form id="form-rappel" novalidate>
+        <input type="hidden" name="r" id="rp-r" value="" />
+        <!-- Honeypot anti-spam (invisible) -->
+        <div class="hidden" aria-hidden="true">
+          <label for="rp-site">Site web</label>
+          <input id="rp-site" name="site" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <button type="submit" id="rp-btn" class="btn btn-primary w-full">
+          Oui, faites-moi rappeler
+        </button>
+        <p id="rp-hint" class="mt-4 text-[13.5px] text-ink-500 leading-[1.55] hidden">
+          Ce lien semble incomplet. Appelez-nous au
+          <a href="tel:+33142429469" class="font-semibold whitespace-nowrap" style="color: var(--color-teal-700)"> 01 42 42 94 69</a>,
+          nous nous occupons de tout.
+        </p>
+        <p id="rp-status" class="mt-4 text-[14px] font-medium hidden" role="status"></p>
+      </form>
+    </div>
+
+    {/* État de confirmation — mot d’accueil chaleureux signé */}
+    <div id="rappel-done" class="card max-w-[520px] mx-auto hidden">
+      <div class="mx-auto mb-4 flex items-center justify-center" style="width:48px;height:48px;border-radius:9999px;background:var(--color-cream-200)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-copper-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <h2 class="text-[24px] mb-2" style="font-family: var(--font-display)">C’est noté, merci.</h2>
+      <p class="text-[15px] text-ink-700 leading-[1.7]">
+        Mon équipe vous rappellera dans les meilleurs délais pour organiser vos rendez-vous,
+        sereinement et à votre rythme. Si vous préférez, vous pouvez aussi nous joindre au
+        <a href="tel:+33142429469" class="font-semibold whitespace-nowrap" style="color: var(--color-teal-700)">01 42 42 94 69</a>.
+      </p>
+      <p class="mt-4 text-[14px] font-semibold" style="color: var(--color-copper-600)">— Dr Sohaïb Kebieche</p>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      const form = document.getElementById('form-rappel');
+      const btn = document.getElementById('rp-btn');
+      const hint = document.getElementById('rp-hint');
+      const status = document.getElementById('rp-status');
+      const valid = (r) => /^[A-Za-z0-9]{4,16}$/.test(r);
+
+      // Le jeton est lu côté client (site statique) et placé dans l'input caché.
+      const r = new URLSearchParams(location.search).get('r') || '';
+      document.getElementById('rp-r').value = r;
+      if (!valid(r)) { btn.disabled = true; btn.classList.add('opacity-50', 'cursor-not-allowed'); hint.classList.remove('hidden'); }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (form.site.value) return;            // honeypot
+        const ref = document.getElementById('rp-r').value.trim();
+        if (!valid(ref)) return;                 // jeton invalide : aucun envoi
+        btn.disabled = true; btn.textContent = 'Envoi en cours…';   // idempotence
+        const fail = () => {
+          status.textContent = 'Envoi impossible. Appelez-nous au 01 42 42 94 69.';
+          status.style.color = 'var(--color-copper-600)';
+          status.classList.remove('hidden');
+          btn.disabled = false; btn.textContent = 'Oui, faites-moi rappeler';
+        };
+        try {
+          // POST uniquement : un simple chargement de la page (GET) n'envoie jamais rien.
+          const res = await fetch('/api/rappel', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ r: ref, site: form.site.value }),
+          });
+          if (!res.ok) throw new Error('api');
+          document.getElementById('rappel-card').classList.add('hidden');
+          document.getElementById('rappel-done').classList.remove('hidden');
+        } catch (e) { fail(); }
+      });
+    })();
+  </script>
+</Layout>
