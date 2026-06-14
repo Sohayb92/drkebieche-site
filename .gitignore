@@ -12,3 +12,6 @@ Thumbs.db
 
 screenshots/
 audit/
+
+# captures locales de verif
+_shot*

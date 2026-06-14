@@ -43,7 +43,7 @@ import { soins, familles } from '../data/soins.js';
       <div class="text-[12px] uppercase tracking-[0.18em] font-semibold mb-2" style="color: var(--color-copper-600)">Votre participation</div>
       <div id="md-rac-montant" class="text-[30px] md:text-[34px] leading-none mb-1.5" style="font-family: var(--font-display); color: var(--color-teal-700)"></div>
       <div class="text-[13px] text-ink-500 mb-3">avant intervention de votre mutuelle</div>
-      <p class="text-[14px] text-ink-700 leading-[1.6]">Transmettez le devis ci-joint à votre mutuelle ; nous restons à votre disposition pour toute question.</p>
+      <p class="text-[14px] text-ink-700 leading-[1.6]">Transmettez votre devis à votre mutuelle pour connaître votre remboursement.</p>
     </div>
   </section>
 
@@ -98,7 +98,7 @@ import { soins, familles } from '../data/soins.js';
   <section class="container-wide pb-24">
     <div class="card p-10 md:p-14 text-center max-w-3xl" style="background: var(--color-cream-50); border-color: var(--color-cream-300)" data-reveal>
       <p id="md-cloture" class="text-[15px] text-ink-600 mb-7 max-w-xl mx-auto leading-[1.7]">
-        Lorsque vous souhaiterez avancer, indiquez-le-nous : mon équipe vous rappellera pour organiser vos rendez-vous, à votre rythme.
+        Lorsque vous souhaiterez commencer, indiquez-le-nous : le secrétariat vous rappellera pour fixer ensemble vos premiers rendez-vous. Je reste à votre entière disposition pour toute question.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/rappel" id="md-rdv" class="btn btn-primary whitespace-nowrap">Je souhaite prendre rendez-vous</a>
@@ -106,6 +106,23 @@ import { soins, familles } from '../data/soins.js';
       </div>
     </div>
   </section>
+
+  <style is:global>
+    /* Carte "soin" injectee par JS -> clairement cliquable (vers le schema anime) */
+    .soin-link { display:flex; align-items:center; gap:.8rem; margin-top:1rem; padding:.75rem 1rem; border-radius:.9rem; border:1px solid var(--color-cream-300); background:var(--color-cream-50); transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; text-decoration:none; }
+    .soin-link:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(31,58,61,.10); border-color:var(--color-copper-400); }
+    .soin-link .ico { flex:0 0 auto; display:grid; place-items:center; width:2.3rem; height:2.3rem; border-radius:9999px; background:var(--color-teal-700); color:#fff; }
+    .soin-link .lbl { flex:1 1 auto; font-size:14.5px; font-weight:600; color:var(--color-teal-800); line-height:1.3; }
+    .soin-link .arr { flex:0 0 auto; color:var(--color-copper-600); font-size:18px; font-weight:600; }
+    /* "Voir le deroule" = divulgation progressive du COMMENT */
+    .deroule { margin-top:.5rem; }
+    .deroule > summary { cursor:pointer; list-style:none; font-size:14px; font-weight:600; color:var(--color-teal-700); display:inline-flex; align-items:center; gap:.5rem; padding:.3rem 0; }
+    .deroule > summary::-webkit-details-marker { display:none; }
+    .deroule > summary .pm { display:inline-grid; place-items:center; width:1.2rem; height:1.2rem; border-radius:9999px; border:1.5px solid currentColor; font-size:12px; line-height:1; }
+    .deroule:not([open]) > summary .pm::before { content:'+'; }
+    .deroule[open] > summary .pm::before { content:'\2212'; }
+    .deroule .deroule-body { margin-top:.7rem; }
+  </style>
 
   <script type="application/json" id="soins-data" set:html={JSON.stringify(soins)} is:inline></script>
 
@@ -129,10 +146,10 @@ import { soins, familles } from '../data/soins.js';
       function carteSoin(key) {
         var s = SOINS[key];
         if (!s) return '';
-        return '<a href="' + esc(s.href) + '" class="card !p-5 block mt-4" style="background:var(--color-cream-50)">' +
-          '<div class="text-[15px] font-medium mb-1" style="font-family:var(--font-display)">' + esc(s.titre) + '</div>' +
-          '<p class="text-[13.5px] text-ink-700 leading-[1.6] mb-2">' + esc(s.resume) + '</p>' +
-          '<span class="text-[13px] font-medium" style="color:var(--color-teal-700)">Tout savoir sur ce soin →</span></a>';
+        return '<a href="' + esc(s.href) + '" class="soin-link">' +
+          '<span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>' +
+          '<span class="lbl">Voir « ' + esc(s.titre) + ' » en images</span>' +
+          '<span class="arr">&rarr;</span></a>';
       }
 
       // ---- MODE RÉCIT (KV) ----
@@ -148,8 +165,17 @@ import { soins, familles } from '../data/soins.js';
           html += '<div class="mb-10">';
           html += '<div class="text-[12px] uppercase tracking-[0.18em] font-semibold mb-2" style="color:var(--color-copper-600)">Étape ' + (i + 1) + '</div>';
           html += '<h2 class="text-[22px] md:text-[26px] mb-4" style="font-family:var(--font-display); color:var(--color-teal-800)">' + esc(ph.titre) + '</h2>';
-          (ph.paragraphes || []).forEach(function (p) { html += '<p class="text-[16px] text-ink-700 leading-[1.75] mb-4">' + esc(p) + '</p>'; });
+          var paras = ph.paragraphes || [];
+          // POURQUOI (1er paragraphe) : toujours visible
+          if (paras[0]) html += '<p class="text-[16px] text-ink-700 leading-[1.75] mb-4">' + esc(paras[0]) + '</p>';
+          // passerelle visuelle vers le(s) schema(s)
           (ph.soinsKeys || []).forEach(function (k) { html += carteSoin(k); });
+          // COMMENT (paragraphes suivants) : replie ("on range, on ne coupe pas")
+          if (paras.length > 1) {
+            html += '<details class="deroule"><summary><span class="pm"></span>Voir le déroulé du soin</summary><div class="deroule-body">';
+            for (var pi = 1; pi < paras.length; pi++) html += '<p class="text-[16px] text-ink-700 leading-[1.75] mb-4">' + esc(paras[pi]) + '</p>';
+            html += '</div></details>';
+          }
           html += '</div>';
         });
         phasesEl.innerHTML = html;
