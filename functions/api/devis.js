@@ -8,16 +8,29 @@
 //
 // GET  /api/devis?d=<jeton> : la page /mon-devis lit le récit pour l'afficher.
 //
+// CORS ouvert (*) car Mélyia (appli Electron, origine "null"/file://) POST en cross-origin.
+//
 // Le récit nominatif (donnée de santé) vit dans KV derrière un jeton non devinable
 // (HDS assumé hors-scope par le praticien) ; la page est noindex ; rien dans les logs.
 
 const JETON_RE = /^[A-Za-z0-9_-]{4,40}$/;
 
+const CORS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+  'Access-Control-Max-Age': '86400',
+};
+
 function json(obj, status) {
   return new Response(JSON.stringify(obj), {
     status: status || 200,
-    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store', ...CORS },
   });
+}
+
+export async function onRequestOptions() {
+  return new Response(null, { status: 204, headers: CORS });
 }
 
 export async function onRequestPost({ request, env }) {
@@ -45,6 +58,6 @@ export async function onRequestGet({ request, env }) {
   if (!val) return json({ error: 'introuvable' }, 404);
   return new Response(val, {
     status: 200,
-    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store', ...CORS },
   });
 }
