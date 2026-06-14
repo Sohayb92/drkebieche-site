@@ -1,0 +1,151 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { soins, familles } from '../data/soins.js';
+
+/**
+ * Page patient PERSONNALISÉE (premium) générée par Mélyia.
+ * URL : /mon-devis#<base64url(JSON)>  — les données du devis voyagent dans le
+ * FRAGMENT (#), jamais envoyé au serveur (rien dans les logs). Décodées côté client.
+ * JSON attendu : { p: salutation, n: "Prénom Nom", j: jeton, s: [clés de soins] }
+ * Ce n'est PAS le devis officiel (qui reste le PDF Logos remis/signé) : c'est sa
+ * version expliquée. noindex.
+ */
+---
+
+<Layout
+  title="Votre devis expliqué — Cabinet Dr Sohaïb Kebieche, Colombes"
+  description="Vos soins, expliqués simplement, et la possibilité de prendre rendez-vous."
+  noindex={true}
+>
+
+  <section class="container-wide pt-12 md:pt-20 pb-8 md:pb-12">
+    <div class="max-w-3xl" data-reveal>
+      <span class="eyebrow mb-5">Votre devis, expliqué</span>
+      <p id="md-salut" class="text-[17px] md:text-[19px] font-semibold mb-3 hidden" style="color: var(--color-teal-700)"></p>
+      <h1 class="text-[32px] md:text-[44px] leading-[1.12] tracking-tight mb-6">
+        Vos soins, expliqués simplement.
+      </h1>
+      <p class="text-[17px] text-ink-700 leading-[1.7]">
+        Cette page accompagne le devis remis en consultation. Chaque soin prévu y est résumé, avec le lien vers l’explication complète — schémas à l’appui, à relire à tête reposée. Pour toute question, le plus simple reste d’appeler : <a href="tel:+33142429469" class="font-semibold whitespace-nowrap" style="color: var(--color-teal-700)">01 42 42 94 69</a>.
+      </p>
+    </div>
+  </section>
+
+  {/* Récap personnalisé — rempli côté client */}
+  <section class="container-wide pb-2 hidden" id="md-recap">
+    <div class="max-w-3xl card !p-6" style="background: var(--color-cream-50); border-color: var(--color-cream-300)" data-reveal>
+      <div class="text-[12px] uppercase tracking-[0.18em] font-semibold mb-3" style="color: var(--color-copper-600)">Les soins de votre devis</div>
+      <ul id="md-recap-list" class="text-[15px] text-ink-800 leading-[1.9] list-disc pl-5"></ul>
+    </div>
+  </section>
+
+  {/* Lien ouvert sans données : message neutre */}
+  <section class="container-wide pb-16 hidden" id="md-vide">
+    <div class="max-w-3xl card !p-6" data-reveal>
+      <p class="text-[15px] text-ink-700 leading-[1.65]">
+        Ce lien s’ouvre depuis le mail de votre devis. S’il semble incomplet, appelez-nous au
+        <a href="tel:+33142429469" class="font-semibold whitespace-nowrap" style="color: var(--color-teal-700)"> 01 42 42 94 69</a>, nous nous occupons de tout.
+      </p>
+    </div>
+  </section>
+
+  {/* Cartes explicatives — toutes masquées par défaut, révélées selon le devis */}
+  <section class="container-wide pt-6 pb-16 md:pb-20">
+    <div class="max-w-4xl" id="md-liste">
+      {familles.map((f) => (
+        <div class="mon-groupe mb-10 last:mb-0 hidden" data-famille={f}>
+          <div class="text-[12px] uppercase tracking-[0.18em] font-semibold mb-5" style="color: var(--color-copper-600)">{f}</div>
+          <div class="grid md:grid-cols-2 gap-5">
+            {soins.filter((s) => s.famille === f).map((s) => (
+              <a href={s.href} class="card !p-6 block mon-soin hidden" data-soin={s.key} data-titre={s.titre}>
+                <h2 class="text-[18px] font-medium mb-2" style="font-family: var(--font-display)">{s.titre}</h2>
+                <p class="text-[14px] text-ink-700 leading-[1.65] mb-3">{s.resume}</p>
+                <span class="text-[13.5px] font-medium inline-flex items-center gap-1.5" style="color: var(--color-teal-700)">
+                  Lire l’explication complète <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="max-w-4xl mt-10 flex gap-4 items-start rounded-2xl p-5 md:p-6" style="background: var(--color-cream-200); border-left: 3px solid var(--color-copper-400)" data-reveal>
+      <p class="text-[13.5px] text-ink-700 leading-[1.65]">
+        <strong>Votre devis fait référence.</strong> Ces explications sont là pour vous aider à comprendre : c’est le <strong>devis officiel</strong> remis en consultation qui décrit précisément votre plan de traitement et ses montants. Rien n’est engagé sans votre accord.
+      </p>
+    </div>
+  </section>
+
+  {/* CTA prise de RDV */}
+  <section class="container-wide pb-24">
+    <div class="card p-10 md:p-14 text-center" style="background: var(--color-cream-50); border-color: var(--color-cream-300)" data-reveal>
+      <h3 class="text-[24px] md:text-[28px] font-medium mb-3" style="font-family: var(--font-display)">
+        Vous souhaitez avancer ?
+      </h3>
+      <p class="text-[15px] text-ink-500 mb-7 max-w-xl mx-auto">
+        Indiquez-le-nous d’un geste : mon équipe vous rappelle pour organiser vos rendez-vous, à votre rythme.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/rappel" id="md-rdv" class="btn btn-primary whitespace-nowrap">Je souhaite prendre rendez-vous</a>
+        <a href="tel:+33142429469" class="btn btn-secondary whitespace-nowrap">01 42 42 94 69</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script is:inline>
+  (function () {
+    function dec(s) {
+      s = s.replace(/-/g, '+').replace(/_/g, '/');
+      while (s.length % 4) s += '=';
+      try { return decodeURIComponent(escape(atob(s))); } catch (e) { return null; }
+    }
+    var raw = (location.hash || '').replace(/^#/, '');
+    var data = null;
+    if (raw) { var j = dec(raw); if (j) { try { data = JSON.parse(j); } catch (e) {} } }
+
+    var liste = document.getElementById('md-liste');
+    if (!data || !Array.isArray(data.s) || !data.s.length) {
+      if (liste) liste.style.display = 'none';
+      document.getElementById('md-vide').classList.remove('hidden');
+      return;
+    }
+
+    // Salutation
+    if (data.p) {
+      var sal = document.getElementById('md-salut');
+      sal.textContent = String(data.p) + ',';
+      sal.classList.remove('hidden');
+    }
+
+    // Révéler les soins du devis + collecter les titres
+    var keys = data.s;
+    var titres = [];
+    document.querySelectorAll('.mon-soin').forEach(function (c) {
+      if (keys.indexOf(c.dataset.soin) !== -1) { c.classList.remove('hidden'); titres.push(c.dataset.titre); }
+    });
+    document.querySelectorAll('.mon-groupe').forEach(function (g) {
+      if (g.querySelector('.mon-soin:not(.hidden)')) g.classList.remove('hidden');
+    });
+
+    // Récap
+    if (titres.length) {
+      var ul = document.getElementById('md-recap-list');
+      ul.innerHTML = titres.map(function (t) {
+        return '<li>' + String(t).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }) + '</li>';
+      }).join('');
+      document.getElementById('md-recap').classList.remove('hidden');
+    }
+
+    // Bouton RDV → /rappel (jeton + nom, comme les mails)
+    var rdv = document.getElementById('md-rdv');
+    if (rdv) {
+      var u = '/rappel?r=' + encodeURIComponent(data.j || '');
+      if (data.n) u += '&p=' + encodeURIComponent(data.n);
+      u += '&utm_source=melyia&utm_medium=email&utm_campaign=mondevis';
+      rdv.setAttribute('href', u);
+    }
+  })();
+</script>
