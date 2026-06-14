@@ -3,55 +3,69 @@ import Layout from '../layouts/Layout.astro';
 import { soins, familles } from '../data/soins.js';
 
 /**
- * Page patient PERSONNALISÉE (premium) générée par Mélyia.
- * URL : /mon-devis#<base64url(JSON)>  — les données du devis voyagent dans le
- * FRAGMENT (#), jamais envoyé au serveur (rien dans les logs). Décodées côté client.
- * JSON attendu : { p: salutation, n: "Prénom Nom", j: jeton, s: [clés de soins] }
- * Ce n'est PAS le devis officiel (qui reste le PDF Logos remis/signé) : c'est sa
- * version expliquée. noindex.
+ * Page patient PERSONNALISÉE (premium).
+ * 2 modes :
+ *  - RÉCIT (v2) : /mon-devis?d=<jeton> → fetch /api/devis (Cloudflare KV) → récit lia
+ *    par phases (la « lettre clinique du Dr, mise en scène »).
+ *  - FALLBACK (v1) : /mon-devis#<base64> → récap court + cartes pédago filtrées
+ *    (anciens liens / KV indisponible).
+ * Ce n'est PAS le devis officiel (PDF Logos signé) : c'est sa version expliquée. noindex.
  */
 ---
 
 <Layout
   title="Votre devis expliqué — Cabinet Dr Sohaïb Kebieche, Colombes"
-  description="Vos soins, expliqués simplement, et la possibilité de prendre rendez-vous."
+  description="Votre plan de traitement, expliqué étape par étape."
   noindex={true}
 >
-
-  <section class="container-wide pt-12 md:pt-20 pb-8 md:pb-12">
+  <!-- En-tête personnel -->
+  <section class="container-wide pt-12 md:pt-20 pb-6 md:pb-8">
     <div class="max-w-3xl" data-reveal>
-      <span class="eyebrow mb-5">Votre devis, expliqué</span>
+      <span class="eyebrow mb-5">Votre plan de traitement, expliqué</span>
       <p id="md-salut" class="text-[17px] md:text-[19px] font-semibold mb-3 hidden" style="color: var(--color-teal-700)"></p>
       <h1 class="text-[32px] md:text-[44px] leading-[1.12] tracking-tight mb-6">
-        Vos soins, expliqués simplement.
+        Votre plan de traitement, étape par étape.
       </h1>
-      <p class="text-[17px] text-ink-700 leading-[1.7]">
-        Cette page accompagne le devis remis en consultation. Chaque soin prévu y est résumé, avec le lien vers l’explication complète — schémas à l’appui, à relire à tête reposée. Pour toute question, le plus simple reste d’appeler : <a href="tel:+33142429469" class="font-semibold whitespace-nowrap" style="color: var(--color-teal-700)">01 42 42 94 69</a>.
+      <p id="md-objectif" class="text-[17px] text-ink-700 leading-[1.7]">
+        Cette page accompagne le devis remis en consultation : chaque soin prévu y est expliqué simplement, à relire à tête reposée. Pour toute question : <a href="tel:+33142429469" class="font-semibold whitespace-nowrap" style="color: var(--color-teal-700)">01 42 42 94 69</a>.
       </p>
     </div>
   </section>
 
-  {/* Récap personnalisé — rempli côté client */}
+  <!-- MODE RÉCIT (KV) : phases rendues côté client -->
+  <section class="container-wide pb-4 hidden" id="md-recit">
+    <div class="max-w-3xl" id="md-phases"></div>
+  </section>
+
+  <!-- Reste à charge (mode récit) -->
+  <section class="container-wide pb-6 hidden" id="md-rac">
+    <div class="max-w-3xl card !p-6" style="background: var(--color-cream-50); border-color: var(--color-cream-300)">
+      <div class="text-[12px] uppercase tracking-[0.18em] font-semibold mb-2" style="color: var(--color-copper-600)">Votre participation</div>
+      <div id="md-rac-montant" class="text-[30px] md:text-[34px] leading-none mb-1.5" style="font-family: var(--font-display); color: var(--color-teal-700)"></div>
+      <div class="text-[13px] text-ink-500 mb-3">avant intervention de votre mutuelle</div>
+      <p class="text-[14px] text-ink-700 leading-[1.6]">Transmettez le devis ci-joint à votre mutuelle ; nous restons à votre disposition pour toute question.</p>
+    </div>
+  </section>
+
+  <!-- MODE FALLBACK (fragment v1) : récap court + cartes pédago -->
   <section class="container-wide pb-2 hidden" id="md-recap">
-    <div class="max-w-3xl card !p-6" style="background: var(--color-cream-50); border-color: var(--color-cream-300)" data-reveal>
+    <div class="max-w-3xl card !p-6" style="background: var(--color-cream-50); border-color: var(--color-cream-300)">
       <div class="text-[12px] uppercase tracking-[0.18em] font-semibold mb-3" style="color: var(--color-copper-600)">Les soins de votre devis</div>
       <ul id="md-recap-list" class="text-[15px] text-ink-800 leading-[1.9] list-disc pl-5"></ul>
     </div>
   </section>
 
-  {/* Lien ouvert sans données : message neutre */}
   <section class="container-wide pb-16 hidden" id="md-vide">
-    <div class="max-w-3xl card !p-6" data-reveal>
+    <div class="max-w-3xl card !p-6">
       <p class="text-[15px] text-ink-700 leading-[1.65]">
-        Ce lien s’ouvre depuis le mail de votre devis. S’il semble incomplet, appelez-nous au
+        Ce lien s'ouvre depuis le mail de votre devis. S'il semble incomplet, appelez-nous au
         <a href="tel:+33142429469" class="font-semibold whitespace-nowrap" style="color: var(--color-teal-700)"> 01 42 42 94 69</a>, nous nous occupons de tout.
       </p>
     </div>
   </section>
 
-  {/* Cartes explicatives — toutes masquées par défaut, révélées selon le devis */}
-  <section class="container-wide pt-6 pb-16 md:pb-20">
-    <div class="max-w-4xl" id="md-liste">
+  <section class="container-wide pt-4 pb-12 md:pb-16 hidden" id="md-cards">
+    <div class="max-w-4xl">
       {familles.map((f) => (
         <div class="mon-groupe mb-10 last:mb-0 hidden" data-famille={f}>
           <div class="text-[12px] uppercase tracking-[0.18em] font-semibold mb-5" style="color: var(--color-copper-600)">{f}</div>
@@ -61,7 +75,7 @@ import { soins, familles } from '../data/soins.js';
                 <h2 class="text-[18px] font-medium mb-2" style="font-family: var(--font-display)">{s.titre}</h2>
                 <p class="text-[14px] text-ink-700 leading-[1.65] mb-3">{s.resume}</p>
                 <span class="text-[13.5px] font-medium inline-flex items-center gap-1.5" style="color: var(--color-teal-700)">
-                  Lire l’explication complète <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                  Lire l'explication complète <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
                 </span>
               </a>
             ))}
@@ -69,22 +83,22 @@ import { soins, familles } from '../data/soins.js';
         </div>
       ))}
     </div>
+  </section>
 
-    <div class="max-w-4xl mt-10 flex gap-4 items-start rounded-2xl p-5 md:p-6" style="background: var(--color-cream-200); border-left: 3px solid var(--color-copper-400)" data-reveal>
+  <!-- Disclaimer officiel (commun) -->
+  <section class="container-wide pb-8">
+    <div class="max-w-3xl flex gap-4 items-start rounded-2xl p-5 md:p-6" style="background: var(--color-cream-200); border-left: 3px solid var(--color-copper-400)" data-reveal>
       <p class="text-[13.5px] text-ink-700 leading-[1.65]">
-        <strong>Votre devis fait référence.</strong> Ces explications sont là pour vous aider à comprendre : c’est le <strong>devis officiel</strong> remis en consultation qui décrit précisément votre plan de traitement et ses montants. Rien n’est engagé sans votre accord.
+        <strong>Votre devis fait référence.</strong> Le document officiel — remis et signé en consultation — décrit précisément votre plan de traitement et ses montants. Cette page n'en est que l'explication.
       </p>
     </div>
   </section>
 
-  {/* CTA prise de RDV */}
+  <!-- CTA (commun) -->
   <section class="container-wide pb-24">
-    <div class="card p-10 md:p-14 text-center" style="background: var(--color-cream-50); border-color: var(--color-cream-300)" data-reveal>
-      <h3 class="text-[24px] md:text-[28px] font-medium mb-3" style="font-family: var(--font-display)">
-        Vous souhaitez avancer ?
-      </h3>
-      <p class="text-[15px] text-ink-500 mb-7 max-w-xl mx-auto">
-        Indiquez-le-nous d’un geste : mon équipe vous rappelle pour organiser vos rendez-vous, à votre rythme.
+    <div class="card p-10 md:p-14 text-center max-w-3xl" style="background: var(--color-cream-50); border-color: var(--color-cream-300)" data-reveal>
+      <p id="md-cloture" class="text-[15px] text-ink-600 mb-7 max-w-xl mx-auto leading-[1.7]">
+        Lorsque vous souhaiterez avancer, indiquez-le-nous : mon équipe vous rappellera pour organiser vos rendez-vous, à votre rythme.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/rappel" id="md-rdv" class="btn btn-primary whitespace-nowrap">Je souhaite prendre rendez-vous</a>
@@ -93,59 +107,90 @@ import { soins, familles } from '../data/soins.js';
     </div>
   </section>
 
+  <script type="application/json" id="soins-data" set:html={JSON.stringify(soins)} is:inline></script>
+
+  <script is:inline>
+    (function () {
+      var SOINS = {};
+      try { JSON.parse(document.getElementById('soins-data').textContent).forEach(function (s) { SOINS[s.key] = s; }); } catch (e) {}
+      var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); };
+      var params = new URLSearchParams(location.search);
+      var d = params.get('d');
+
+      function setRdv(jeton, nom) {
+        var rdv = document.getElementById('md-rdv');
+        if (!rdv) return;
+        var u = '/rappel?r=' + encodeURIComponent(jeton || '');
+        if (nom) u += '&p=' + encodeURIComponent(nom);
+        u += '&utm_source=melyia&utm_medium=email&utm_campaign=mondevis';
+        rdv.setAttribute('href', u);
+      }
+
+      function carteSoin(key) {
+        var s = SOINS[key];
+        if (!s) return '';
+        return '<a href="' + esc(s.href) + '" class="card !p-5 block mt-4" style="background:var(--color-cream-50)">' +
+          '<div class="text-[15px] font-medium mb-1" style="font-family:var(--font-display)">' + esc(s.titre) + '</div>' +
+          '<p class="text-[13.5px] text-ink-700 leading-[1.6] mb-2">' + esc(s.resume) + '</p>' +
+          '<span class="text-[13px] font-medium" style="color:var(--color-teal-700)">Tout savoir sur ce soin →</span></a>';
+      }
+
+      // ---- MODE RÉCIT (KV) ----
+      function renderRecit(r) {
+        if (r.salutation) { var sal = document.getElementById('md-salut'); sal.textContent = r.salutation + ','; sal.classList.remove('hidden'); }
+        if (r.objectif) {
+          document.getElementById('md-objectif').innerHTML =
+            'Suite à notre consultation, je vous adresse le détail de votre plan de traitement. ' + esc(r.objectif);
+        }
+        var phasesEl = document.getElementById('md-phases');
+        var html = '';
+        (r.phases || []).forEach(function (ph, i) {
+          html += '<div class="mb-10">';
+          html += '<div class="text-[12px] uppercase tracking-[0.18em] font-semibold mb-2" style="color:var(--color-copper-600)">Étape ' + (i + 1) + '</div>';
+          html += '<h2 class="text-[22px] md:text-[26px] mb-4" style="font-family:var(--font-display); color:var(--color-teal-800)">' + esc(ph.titre) + '</h2>';
+          (ph.paragraphes || []).forEach(function (p) { html += '<p class="text-[16px] text-ink-700 leading-[1.75] mb-4">' + esc(p) + '</p>'; });
+          (ph.soinsKeys || []).forEach(function (k) { html += carteSoin(k); });
+          html += '</div>';
+        });
+        phasesEl.innerHTML = html;
+        document.getElementById('md-recit').classList.remove('hidden');
+        if (r.rac) {
+          document.getElementById('md-rac-montant').textContent = r.rac + ' €';
+          document.getElementById('md-rac').classList.remove('hidden');
+        }
+        if (r.cloture) document.getElementById('md-cloture').textContent = r.cloture;
+        setRdv(r.jeton || d, r.nom);
+      }
+
+      // ---- MODE FALLBACK (fragment) ----
+      function dec(s) { s = s.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; try { return decodeURIComponent(escape(atob(s))); } catch (e) { return null; } }
+      function renderFallback() {
+        var raw = (location.hash || '').replace(/^#/, '');
+        var data = null;
+        if (raw) { var j = dec(raw); if (j) { try { data = JSON.parse(j); } catch (e) {} } }
+        if (!data || !Array.isArray(data.s) || !data.s.length) { document.getElementById('md-vide').classList.remove('hidden'); return; }
+        if (data.p) { var sal = document.getElementById('md-salut'); sal.textContent = data.p + ','; sal.classList.remove('hidden'); }
+        var titres = [];
+        document.getElementById('md-cards').classList.remove('hidden');
+        document.querySelectorAll('.mon-soin').forEach(function (c) {
+          if (data.s.indexOf(c.dataset.soin) !== -1) { c.classList.remove('hidden'); titres.push(c.dataset.titre); }
+        });
+        document.querySelectorAll('.mon-groupe').forEach(function (g) { if (g.querySelector('.mon-soin:not(.hidden)')) g.classList.remove('hidden'); });
+        if (titres.length) {
+          document.getElementById('md-recap-list').innerHTML = titres.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
+          document.getElementById('md-recap').classList.remove('hidden');
+        }
+        setRdv(data.j, data.n);
+      }
+
+      if (d) {
+        fetch('/api/devis?d=' + encodeURIComponent(d))
+          .then(function (res) { if (!res.ok) throw new Error('kv'); return res.json(); })
+          .then(renderRecit)
+          .catch(function () { renderFallback(); });
+      } else {
+        renderFallback();
+      }
+    })();
+  </script>
 </Layout>
-
-<script is:inline>
-  (function () {
-    function dec(s) {
-      s = s.replace(/-/g, '+').replace(/_/g, '/');
-      while (s.length % 4) s += '=';
-      try { return decodeURIComponent(escape(atob(s))); } catch (e) { return null; }
-    }
-    var raw = (location.hash || '').replace(/^#/, '');
-    var data = null;
-    if (raw) { var j = dec(raw); if (j) { try { data = JSON.parse(j); } catch (e) {} } }
-
-    var liste = document.getElementById('md-liste');
-    if (!data || !Array.isArray(data.s) || !data.s.length) {
-      if (liste) liste.style.display = 'none';
-      document.getElementById('md-vide').classList.remove('hidden');
-      return;
-    }
-
-    // Salutation
-    if (data.p) {
-      var sal = document.getElementById('md-salut');
-      sal.textContent = String(data.p) + ',';
-      sal.classList.remove('hidden');
-    }
-
-    // Révéler les soins du devis + collecter les titres
-    var keys = data.s;
-    var titres = [];
-    document.querySelectorAll('.mon-soin').forEach(function (c) {
-      if (keys.indexOf(c.dataset.soin) !== -1) { c.classList.remove('hidden'); titres.push(c.dataset.titre); }
-    });
-    document.querySelectorAll('.mon-groupe').forEach(function (g) {
-      if (g.querySelector('.mon-soin:not(.hidden)')) g.classList.remove('hidden');
-    });
-
-    // Récap
-    if (titres.length) {
-      var ul = document.getElementById('md-recap-list');
-      ul.innerHTML = titres.map(function (t) {
-        return '<li>' + String(t).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }) + '</li>';
-      }).join('');
-      document.getElementById('md-recap').classList.remove('hidden');
-    }
-
-    // Bouton RDV → /rappel (jeton + nom, comme les mails)
-    var rdv = document.getElementById('md-rdv');
-    if (rdv) {
-      var u = '/rappel?r=' + encodeURIComponent(data.j || '');
-      if (data.n) u += '&p=' + encodeURIComponent(data.n);
-      u += '&utm_source=melyia&utm_medium=email&utm_campaign=mondevis';
-      rdv.setAttribute('href', u);
-    }
-  })();
-</script>
