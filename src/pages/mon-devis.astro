@@ -37,6 +37,14 @@ import { soins, familles } from '../data/soins.js';
     <div class="max-w-3xl" id="md-phases"></div>
   </section>
 
+  <!-- Conseils (ex : apporter sa brosse électrique) -->
+  <section class="container-wide pb-6 hidden" id="md-conseils">
+    <div class="max-w-3xl card !p-6" style="background: var(--color-cream-50); border-color: var(--color-cream-300)">
+      <div class="text-[12px] uppercase tracking-[0.18em] font-semibold mb-3" style="color: var(--color-copper-600)">Pour préparer vos séances</div>
+      <ul id="md-conseils-list" class="text-[15px] text-ink-800 leading-[1.8] list-disc pl-5"></ul>
+    </div>
+  </section>
+
   <!-- Reste à charge (mode récit) -->
   <section class="container-wide pb-6 hidden" id="md-rac">
     <div class="max-w-3xl card !p-6" style="background: var(--color-cream-50); border-color: var(--color-cream-300)">
@@ -180,6 +188,10 @@ import { soins, familles } from '../data/soins.js';
         });
         phasesEl.innerHTML = html;
         document.getElementById('md-recit').classList.remove('hidden');
+        if (Array.isArray(r.conseils) && r.conseils.length) {
+          document.getElementById('md-conseils-list').innerHTML = r.conseils.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('');
+          document.getElementById('md-conseils').classList.remove('hidden');
+        }
         if (r.rac) {
           document.getElementById('md-rac-montant').textContent = r.rac + ' €';
           document.getElementById('md-rac').classList.remove('hidden');
