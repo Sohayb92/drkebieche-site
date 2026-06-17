@@ -1,5 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import salleSoinsFenetre from '../assets/cabinet/salle-soins-fenetre.jpg';
+import salleSoinsBleue from '../assets/cabinet/salle-soins-bleue.jpg';
+import salleAttente from '../assets/cabinet/salle-attente.jpg';
+import sterilisation from '../assets/cabinet/sterilisation.jpg';
+import salleRadio from '../assets/cabinet/salle-radio.jpg';
 ---
 
 <Layout
@@ -29,11 +35,9 @@ import Layout from '../layouts/Layout.astro';
   <section class="container-wide pb-16 md:pb-24">
     <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-      <!-- Photo cabinet (placeholder jusqu’au shooting) -->
-      <div class="relative aspect-[4/3] rounded-2xl overflow-hidden section-dark" data-reveal>
-        <div class="absolute inset-0 flex items-center justify-center">
-          <span class="text-[14px] opacity-65" style="font-family: var(--font-display)">Photographies du cabinet à venir</span>
-        </div>
+      <!-- Photo cabinet : salle d'attente -->
+      <div class="relative aspect-[4/3] rounded-2xl overflow-hidden" style="border:1px solid var(--color-cream-300)" data-reveal>
+        <Image src={salleAttente} alt="Salle d'attente chaleureuse du Cabinet Dentaire La Cabane à Colombes, quartier des Vallées" widths={[480, 768, 1190]} sizes="(min-width: 1024px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
       </div>
 
       <!-- Infos -->
@@ -108,6 +112,41 @@ import Layout from '../layouts/Layout.astro';
           <strong>Hygiène & stérilisation.</strong> Le cabinet applique une chaîne complète de stérilisation des instruments, conforme aux référentiels en vigueur. Ce n’est pas un argument : c’est la norme — et elle est respectée sans compromis, pour chaque patient.
         </p>
       </div>
+    </div>
+  </section>
+
+
+  <!-- VISITE / GALERIE -->
+  <section class="container-wide pb-16 md:pb-24">
+    <div class="max-w-3xl mb-8" data-reveal>
+      <span class="eyebrow mb-4 block">La visite</span>
+      <h2 class="text-[24px] md:text-[30px] leading-[1.25] tracking-tight" style="color: var(--color-teal-800)">Quelques images du cabinet</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-4 md:gap-5" data-reveal>
+      <figure class="m-0">
+        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden" style="border:1px solid var(--color-cream-300)">
+          <Image src={salleSoinsFenetre} alt="Salle de soins lumineuse du cabinet dentaire à Colombes, fenêtre cintrée parisienne" widths={[480, 768, 896]} sizes="(min-width: 640px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        </div>
+        <figcaption class="text-[13px] text-ink-500 mt-2 ml-1">Salle de soins</figcaption>
+      </figure>
+      <figure class="m-0">
+        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden" style="border:1px solid var(--color-cream-300)">
+          <Image src={salleSoinsBleue} alt="Salle de soins équipée d'un scanner 3D (empreinte optique) au cabinet du Dr Kebieche à Colombes" widths={[480, 768, 1376]} sizes="(min-width: 640px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        </div>
+        <figcaption class="text-[13px] text-ink-500 mt-2 ml-1">Salle de soins · empreinte optique 3D</figcaption>
+      </figure>
+      <figure class="m-0">
+        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden" style="border:1px solid var(--color-cream-300)">
+          <Image src={salleRadio} alt="Salle de radiologie panoramique et cone beam (imagerie 3D) du cabinet dentaire à Colombes" widths={[480, 768, 896]} sizes="(min-width: 640px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        </div>
+        <figcaption class="text-[13px] text-ink-500 mt-2 ml-1">Radiologie panoramique &amp; cone beam (3D)</figcaption>
+      </figure>
+      <figure class="m-0">
+        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden" style="border:1px solid var(--color-cream-300)">
+          <Image src={sterilisation} alt="Zone de stérilisation et autoclave du cabinet dentaire du Dr Kebieche à Colombes" widths={[480, 768, 1376]} sizes="(min-width: 640px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+        </div>
+        <figcaption class="text-[13px] text-ink-500 mt-2 ml-1">Stérilisation</figcaption>
+      </figure>
     </div>
   </section>
 

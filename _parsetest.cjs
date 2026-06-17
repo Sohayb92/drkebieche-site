@@ -1,0 +1,21 @@
+const fs = require('fs');
+const puppeteer = require('puppeteer');
+(async () => {
+  const txt = fs.readFileSync('C:/Users/Famille/drkebieche-site/_devistext.txt', 'utf8').replace(/\r\n/g, '\n');
+  const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+  const page = await browser.newPage();
+  const errs = [];
+  page.on('pageerror', (e) => errs.push(e.message));
+  await page.goto('file:///C:/Users/Famille/melyia/web/index.html', { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await new Promise((r) => setTimeout(r, 1500));
+  const res = await page.evaluate((t) => (typeof parseDevisFromText === 'function' ? parseDevisFromText(t) : { error: 'parseDevisFromText absent' }), txt);
+  await browser.close();
+  if (errs.length) console.log('PAGEERRORS:', errs.join(' | '));
+  console.log('patient   :', JSON.stringify(res.patient), '| numLogos:', res.numeroLogos);
+  console.log('soinsKeys :', JSON.stringify(res.soinsKeys));
+  console.log('honoraires:', res.total_honoraires, '| reste a charge:', res.total_reste_a_charge);
+  console.log('actes     :', (res.actes || []).length);
+  (res.actes || []).forEach((a) => console.log('   -', a.dent, '|', a.libelle));
+  const altLeak = (res.actes || []).some((a) => /métallique|metallique/i.test(a.libelle));
+  console.log('FUITE ALTERNATIVE (couronne métallique) ?', altLeak ? 'OUI ⚠' : 'non ✓');
+})();

@@ -1,0 +1,38 @@
+Devis 25575-11735-2
+Page 1/3
+Identification du patient
+Nom et prénom : KEBIECHE Sohaïb
+Date de naissance : 30/07/1995
+N° de sécurité sociale du patient : 1 95 07 92 026 289 02
+Date du devis : 14/06/2026
+Description du traitement proposé : Overlay céramique
+Traitement proposé – Description précise et détaillée des actes
+N° de
+traitem
+ent
+N° dent ou
+localisation
+Cotation
+CCAM,NGAP
+ou acte HN
+Nature de l’acte
+146HBGD027Dépose couronne3Aucun80,00NR080,00
+246HBGD011Dépose inlay core3Aucun120,00NR0120,00
+346HBGD033Désobturation endodontique molaire240,00NR0240,00
+346HBFD024Mise en forme et obturation114,40114,4068,6445,76
+346HBQK040Rétroalvéolaires perinterventionnelle et finale11,9711,977,184,79
+446HBLD486couronne provisoire53Aucun61,8010,006,0055,80
+446HBLD245Inlay core53Aucun350,0070,0042,00308,00
+446HBLD734Couronne  céramo-métallique43Aucun750,00120,0072,00678,00
+TOTAL € (des actes envisagés)
+1 728,17326,37195,821 532,35
+Identification du chirurgien-dentiste traitant
+Docteur Sohaib KEBIECHE
+Devis 25575-11735-2
+Page 2/3
+Information Alternative thérapeutique - en cas de reste à charge éventuel
+Actes sans reste à charge
+446HBLD490couronne provisoire561,8061,8010,006,0055,80oui
+446HBLD090Inlay core5150,00150,0070,0042,00108,00oui
+446HBLD038Couronne métallique2298,70298,70120,0072,00226,70oui
+Le patient ou son représentant légal reconnaît avoir eu la possibilité du choix de son traitement.
