@@ -35,10 +35,10 @@ import salleRadio from '../assets/cabinet/salle-radio.jpg';
   <section class="container-wide pb-16 md:pb-24">
     <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-      <!-- Photo cabinet : salle d'attente -->
-      <div class="relative aspect-[4/3] rounded-2xl overflow-hidden" style="border:1px solid var(--color-cream-300)" data-reveal>
-        <Image src={salleAttente} alt="Salle d'attente chaleureuse du Cabinet Dentaire La Cabane à Colombes, quartier des Vallées" widths={[480, 768, 1190]} sizes="(min-width: 1024px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-      </div>
+      <!-- Photo cabinet : salle d'attente (cliquable → lightbox) -->
+      <button type="button" class="gallery-item group relative block w-full p-0 aspect-[4/3] rounded-2xl overflow-hidden cursor-zoom-in" style="border:1px solid var(--color-cream-300)" data-reveal data-full={salleAttente.src} data-caption="Salle d'attente">
+        <Image src={salleAttente} alt="Salle d'attente chaleureuse du Cabinet Dentaire La Cabane à Colombes, quartier des Vallées" widths={[480, 768, 1190]} sizes="(min-width: 1024px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+      </button>
 
       <!-- Infos -->
       <div class="space-y-6" data-reveal data-reveal-delay="140">
@@ -124,27 +124,27 @@ import salleRadio from '../assets/cabinet/salle-radio.jpg';
     </div>
     <div class="grid sm:grid-cols-2 gap-4 md:gap-5" data-reveal>
       <figure class="m-0">
-        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden" style="border:1px solid var(--color-cream-300)">
-          <Image src={salleSoinsFenetre} alt="Salle de soins lumineuse du cabinet dentaire à Colombes, fenêtre cintrée parisienne" widths={[480, 768, 896]} sizes="(min-width: 640px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        </div>
+        <button type="button" class="gallery-item group relative block w-full p-0 aspect-[4/3] rounded-2xl overflow-hidden cursor-zoom-in" style="border:1px solid var(--color-cream-300)" data-full={salleSoinsFenetre.src} data-caption="Salle de soins">
+          <Image src={salleSoinsFenetre} alt="Salle de soins lumineuse du cabinet dentaire à Colombes, fenêtre cintrée parisienne" widths={[480, 768, 896]} sizes="(min-width: 640px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+        </button>
         <figcaption class="text-[13px] text-ink-500 mt-2 ml-1">Salle de soins</figcaption>
       </figure>
       <figure class="m-0">
-        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden" style="border:1px solid var(--color-cream-300)">
-          <Image src={salleSoinsBleue} alt="Salle de soins équipée d'un scanner 3D (empreinte optique) au cabinet du Dr Kebieche à Colombes" widths={[480, 768, 1376]} sizes="(min-width: 640px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        </div>
+        <button type="button" class="gallery-item group relative block w-full p-0 aspect-[4/3] rounded-2xl overflow-hidden cursor-zoom-in" style="border:1px solid var(--color-cream-300)" data-full={salleSoinsBleue.src} data-caption="Salle de soins · empreinte optique 3D">
+          <Image src={salleSoinsBleue} alt="Salle de soins équipée d'un scanner 3D (empreinte optique) au cabinet du Dr Kebieche à Colombes" widths={[480, 768, 1376]} sizes="(min-width: 640px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+        </button>
         <figcaption class="text-[13px] text-ink-500 mt-2 ml-1">Salle de soins · empreinte optique 3D</figcaption>
       </figure>
       <figure class="m-0">
-        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden" style="border:1px solid var(--color-cream-300)">
-          <Image src={salleRadio} alt="Salle de radiologie panoramique et cone beam (imagerie 3D) du cabinet dentaire à Colombes" widths={[480, 768, 896]} sizes="(min-width: 640px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        </div>
+        <button type="button" class="gallery-item group relative block w-full p-0 aspect-[4/3] rounded-2xl overflow-hidden cursor-zoom-in" style="border:1px solid var(--color-cream-300)" data-full={salleRadio.src} data-caption="Radiologie panoramique et cone beam (3D)">
+          <Image src={salleRadio} alt="Salle de radiologie panoramique et cone beam (imagerie 3D) du cabinet dentaire à Colombes" widths={[480, 768, 896]} sizes="(min-width: 640px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+        </button>
         <figcaption class="text-[13px] text-ink-500 mt-2 ml-1">Radiologie panoramique &amp; cone beam (3D)</figcaption>
       </figure>
       <figure class="m-0">
-        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden" style="border:1px solid var(--color-cream-300)">
-          <Image src={sterilisation} alt="Zone de stérilisation et autoclave du cabinet dentaire du Dr Kebieche à Colombes" widths={[480, 768, 1376]} sizes="(min-width: 640px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-        </div>
+        <button type="button" class="gallery-item group relative block w-full p-0 aspect-[4/3] rounded-2xl overflow-hidden cursor-zoom-in" style="border:1px solid var(--color-cream-300)" data-full={sterilisation.src} data-caption="Stérilisation">
+          <Image src={sterilisation} alt="Zone de stérilisation et autoclave du cabinet dentaire du Dr Kebieche à Colombes" widths={[480, 768, 1376]} sizes="(min-width: 640px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" loading="lazy" />
+        </button>
         <figcaption class="text-[13px] text-ink-500 mt-2 ml-1">Stérilisation</figcaption>
       </figure>
     </div>
@@ -167,5 +167,41 @@ import salleRadio from '../assets/cabinet/salle-radio.jpg';
       </div>
     </div>
   </section>
+
+  <!-- Lightbox : clic sur une photo du cabinet → affichage en grand -->
+  <div id="lightbox" class="fixed inset-0 z-[200] hidden items-center justify-center p-4" style="background: rgba(17, 19, 21, 0.94)">
+    <button id="lightbox-close" type="button" aria-label="Fermer" class="absolute top-3 right-5 text-[36px] leading-none" style="color: var(--color-cream-100)">&times;</button>
+    <figure class="m-0 flex flex-col items-center">
+      <img id="lightbox-img" src="" alt="" class="max-w-[92vw] max-h-[84vh] rounded-xl object-contain" style="box-shadow: 0 20px 60px rgba(0,0,0,0.5)" />
+      <figcaption id="lightbox-cap" class="text-[14px] mt-4" style="color: var(--color-cream-100)"></figcaption>
+    </figure>
+  </div>
+
+  <script>
+    (function () {
+      const lb = document.getElementById('lightbox');
+      if (!lb) return;
+      const img = document.getElementById('lightbox-img');
+      const cap = document.getElementById('lightbox-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || ''; cap.textContent = caption || '';
+        lb.classList.remove('hidden'); lb.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      };
+      const close = () => {
+        lb.classList.add('hidden'); lb.classList.remove('flex');
+        img.src = ''; document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery-item').forEach((el) => {
+        el.addEventListener('click', () => {
+          const im = el.querySelector('img');
+          open(el.dataset.full, im && im.alt, el.dataset.caption);
+        });
+      });
+      document.getElementById('lightbox-close').addEventListener('click', close);
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.classList.contains('hidden')) close(); });
+    })();
+  </script>
 
 </Layout>
