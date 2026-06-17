@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import salleSoinsFenetre from '../assets/cabinet/salle-soins-fenetre.jpg';
+import salleSoinsBleue from '../assets/cabinet/salle-soins-bleue.jpg';
 
 
 // 4 familles médicales (architecture validée : pattern dentistes premium internationaux)
@@ -335,8 +336,11 @@ function iconSvg(name: string) {
           </a>
         </div>
 
-        <!-- Plateau technique (remplace le placeholder photo en attendant le shooting) -->
+        <!-- Plateau technique : photo salle de soins (empreinte 3D) + détails -->
         <div data-reveal data-reveal-delay="160">
+          <div class="relative aspect-[16/9] rounded-2xl overflow-hidden mb-5" style="border:1px solid var(--color-cream-300)">
+            <Image src={salleSoinsBleue} alt="Salle de soins équipée pour l'empreinte optique 3D et l'imagerie, cabinet du Dr Kebieche à Colombes" widths={[480, 768, 1376]} sizes="(min-width: 1024px) 45vw, 100vw" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+          </div>
           <div class="rounded-2xl p-7 md:p-9 section-dark">
             <div class="eyebrow mb-6">Le plateau technique</div>
             <ul class="space-y-5">
