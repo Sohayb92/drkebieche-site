@@ -45,15 +45,6 @@ import { soins, familles } from '../data/soins.js';
     </div>
   </section>
 
-  <!-- Reste à charge (mode récit) -->
-  <section class="container-wide pb-6 hidden" id="md-rac">
-    <div class="max-w-3xl card !p-6" style="background: var(--color-cream-50); border-color: var(--color-cream-300)">
-      <div class="text-[12px] uppercase tracking-[0.18em] font-semibold mb-2" style="color: var(--color-copper-600)">Montant du devis</div>
-      <div id="md-rac-montant" class="text-[30px] md:text-[34px] leading-none mb-1.5" style="font-family: var(--font-display); color: var(--color-teal-700)"></div>
-      <div class="text-[13px] text-ink-500 mb-3">à régler, puis remboursé par l'Assurance Maladie et votre mutuelle</div>
-      <p class="text-[14px] text-ink-700 leading-[1.6]">Transmettez votre devis à votre mutuelle pour estimer votre remboursement.</p>
-    </div>
-  </section>
 
   <!-- MODE FALLBACK (fragment v1) : récap court + cartes pédago -->
   <section class="container-wide pb-2 hidden" id="md-recap">
@@ -191,10 +182,6 @@ import { soins, familles } from '../data/soins.js';
         if (Array.isArray(r.conseils) && r.conseils.length) {
           document.getElementById('md-conseils-list').innerHTML = r.conseils.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('');
           document.getElementById('md-conseils').classList.remove('hidden');
-        }
-        if (r.rac) {
-          document.getElementById('md-rac-montant').textContent = r.rac + ' €';
-          document.getElementById('md-rac').classList.remove('hidden');
         }
         if (r.cloture) document.getElementById('md-cloture').textContent = r.cloture;
         setRdv(r.jeton || d, r.nom);
