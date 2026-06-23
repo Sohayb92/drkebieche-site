@@ -1,0 +1,65 @@
+---
+/**
+ * Facette céramique — avant / après (vue de face).
+ *  Avant : dents à harmoniser (teinte, forme, petit éclat, léger désalignement).
+ *  Après : une fine pellicule de céramique collée sur la face visible — la dent dessous est préservée.
+ * Codes couleur : crème = dent naturelle · teal = facette céramique · cuivre = gencive.
+ */
+
+// Dents « après » (régulières) — bord libre arrondi en bas
+const TEETH_EVEN = [
+  'M 44 42 L 44 80 C 44 94 76 94 76 80 L 76 42 Z',
+  'M 84 42 L 84 84 C 84 98 116 98 116 84 L 116 42 Z',
+  'M 124 42 L 124 80 C 124 94 156 94 156 80 L 156 42 Z',
+];
+// Dents « avant » — hauteurs inégales + un éclat sur la dent centrale
+const TEETH_UNEVEN = [
+  'M 44 42 L 44 76 C 44 90 76 90 76 76 L 76 42 Z',
+  'M 84 42 L 84 86 C 84 99 100 99 100 92 L 102 82 L 116 86 L 116 42 Z',
+  'M 124 42 L 124 82 C 124 95 156 95 156 82 L 156 42 Z',
+];
+// Facette : fine pellicule sur la face visible de chaque dent (insérée dans le contour)
+const FACETTES = [
+  'M 47 45 L 47 79 C 47 90 73 90 73 79 L 73 45 Z',
+  'M 87 45 L 87 83 C 87 94 113 94 113 83 L 113 45 Z',
+  'M 127 45 L 127 79 C 127 90 153 90 153 79 L 153 45 Z',
+];
+
+const panels = [
+  { key: 'avant', titre: 'Avant', ligne: "Teinte, forme ou alignement à harmoniser — sans abîmer la dent." },
+  { key: 'apres', titre: 'Avec les facettes', ligne: "Une fine pellicule de céramique collée sur la face visible : la dent dessous est préservée, le rendu naturel." },
+];
+---
+
+<figure class="my-10 md:my-12">
+  <div class="grid grid-cols-2 gap-4 md:gap-5 max-w-[520px] mx-auto">
+    {panels.map((p) => (
+      <div class="rounded-2xl p-4 md:p-5 text-center" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+        <svg viewBox="0 0 200 124" role="img" aria-label={p.titre} class="w-full max-w-[180px] mx-auto">
+          <!-- Gencive + festons -->
+          <rect x="26" y="22" width="148" height="22" rx="8" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
+          <circle cx="60" cy="44" r="11" style="fill: var(--color-copper-300)" />
+          <circle cx="100" cy="44" r="11" style="fill: var(--color-copper-300)" />
+          <circle cx="140" cy="44" r="11" style="fill: var(--color-copper-300)" />
+
+          {p.key === 'avant'
+            ? <g>{TEETH_UNEVEN.map(d => <path d={d} style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2" stroke-linejoin="round" />)}</g>
+            : <g>
+                {TEETH_EVEN.map(d => <path d={d} style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2" stroke-linejoin="round" />)}
+                {FACETTES.map(d => <path d={d} style="fill: var(--color-teal-200); fill-opacity: 0.8; stroke: var(--color-teal-600); stroke-width: 1.6" stroke-linejoin="round" />)}
+                <!-- petit reflet -->
+                <line x1="94" y1="52" x2="94" y2="74" style="stroke: #fff; stroke-width: 2.5; stroke-linecap: round; opacity: 0.6" />
+              </g>
+          }
+        </svg>
+        <div class="mt-3 text-[16.5px] font-medium" style="font-family: var(--font-display)">{p.titre}</div>
+        <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">{p.ligne}</p>
+      </div>
+    ))}
+  </div>
+
+  <figcaption class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-ink-500">
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-teal-200); border: 1px solid var(--color-teal-600)"></span> Facette céramique collée</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-cream-100); border: 1px solid var(--color-ink-400)"></span> Dent préservée</span>
+  </figcaption>
+</figure>

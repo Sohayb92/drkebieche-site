@@ -13,7 +13,9 @@ export const soins = [
   { key: 'greffe-gencive', famille: 'Parodontologie', titre: 'Greffe de gencive (récessions)', href: '/soins/parodontologie#recessions-gingivales', resume: "Recouvrir les racines exposées par une chirurgie plastique mini-invasive (technique du tunnel)." },
   { key: 'maintenance-paro', famille: 'Parodontologie', titre: 'Maintenance parodontale', href: '/soins/parodontologie#maintenance', resume: "Le suivi régulier (tous les 6 mois) qui stabilise les résultats du traitement parodontal dans le temps." },
   // Dentisterie adhésive & prothèses
-  { key: 'overlay', famille: 'Dentisterie adhésive & prothèses', titre: 'Overlay céramique', href: '/soins/dentisterie-adhesive-protheses#inlay-onlay-overlay', resume: "Une pièce de céramique sur mesure, collée sous digue, qui répare la dent en préservant un maximum de tissu sain." },
+  { key: 'overlay', famille: 'Dentisterie adhésive & prothèses', titre: 'Overlay céramique', href: '/soins/dentisterie-adhesive-protheses#inlay-onlay-overlay', resume: "Une pièce de céramique sur mesure, collée sous digue, qui coiffe toute la surface de mastication et protège la dent des fêlures." },
+  { key: 'onlay', famille: 'Dentisterie adhésive & prothèses', titre: 'Onlay céramique', href: '/soins/dentisterie-adhesive-protheses#inlay-onlay-overlay', resume: "Une pièce de céramique sur mesure qui recouvre la ou les pointes abîmées de la dent, collée sous digue, en préservant le maximum de tissu sain." },
+  { key: 'facette', famille: 'Dentisterie adhésive & prothèses', titre: 'Facette céramique', href: '/soins/dentisterie-adhesive-protheses#facettes', resume: "Une fine pellicule de céramique collée sur la face visible de la dent pour harmoniser le sourire, en préservant la dent." },
   { key: 'composite', famille: 'Dentisterie adhésive & prothèses', titre: 'Composite stratifié', href: '/soins/dentisterie-adhesive-protheses#composites', resume: "La dent reconstruite couche par couche, sous digue, en une séance — pour les caries petites à moyennes." },
   { key: 'couronne', famille: 'Dentisterie adhésive & prothèses', titre: 'Couronne', href: '/soins/dentisterie-adhesive-protheses#couronnes-bridges', resume: "Un « casque » sur mesure qui coiffe la dent quand le collage ne suffit plus — céramo-métallique, céramo-céramique ou zircone, précisé sur le devis." },
   { key: 'bridge', famille: 'Dentisterie adhésive & prothèses', titre: 'Bridge', href: '/soins/dentisterie-adhesive-protheses#couronnes-bridges', resume: "Un « pont » qui remplace une dent absente en prenant appui sur les dents voisines couronnées." },
@@ -25,6 +27,7 @@ export const soins = [
   { key: 'rte', famille: 'Soins du quotidien', titre: 'Retraitement de racine', href: '/soins/soins-quotidiens#retraitement', resume: "La reprise d’un ancien traitement devenu non étanche, avec une lésion au bout de la racine — et ses deux suites possibles." },
   { key: 'detartrage', famille: 'Soins du quotidien', titre: 'Détartrage & contrôle', href: '/soins/soins-quotidiens#detartrage', resume: "Le rendez-vous annuel qui enlève le tartre et dépiste tôt — caries débutantes, déchaussement, usure." },
   { key: 'blanchiment', famille: 'Soins du quotidien', titre: 'Blanchiment dentaire', href: '/soins/soins-quotidiens#blanchiment', resume: "Gouttières sur mesure portées 2 h par jour pendant 4 à 6 semaines — résultat qui tient en général 3 à 5 ans." },
+  { key: 'gouttiere', famille: 'Soins du quotidien', titre: 'Gouttière occlusale (bruxisme)', href: '/soins/soins-quotidiens#gouttiere-bruxisme', resume: "Une attelle fine et sur mesure, portée la nuit, qui protège les dents du serrement et du grincement (bruxisme)." },
 ];
 
 export const familles = [...new Set(soins.map((s) => s.famille))];

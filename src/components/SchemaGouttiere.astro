@@ -1,0 +1,76 @@
+---
+/**
+ * Gouttière occlusale (bruxisme) — 2 temps :
+ *  1. Le serrement / grincement : dents du haut et du bas en contact, forces qui usent l'émail.
+ *  2. Avec la gouttière : une attelle souple sur les dents du haut encaisse les forces, l'émail est protégé.
+ * Codes couleur : crème = dent · cuivre = gencive + forces · teal = gouttière sur mesure.
+ */
+
+// Dents du haut (3 incisives, bord libre en bas) et du bas (miroir, bord libre en haut)
+const TEETH_TOP = [
+  'M 44 40 L 44 74 C 44 86 76 86 76 74 L 76 40 Z',
+  'M 84 40 L 84 78 C 84 90 116 90 116 78 L 116 40 Z',
+  'M 124 40 L 124 74 C 124 86 156 86 156 74 L 156 40 Z',
+];
+const TEETH_BOTTOM = [
+  'M 44 126 L 44 96 C 44 86 76 86 76 96 L 76 126 Z',
+  'M 84 126 L 84 92 C 84 82 116 82 116 92 L 116 126 Z',
+  'M 124 126 L 124 96 C 124 86 156 86 156 96 L 156 126 Z',
+];
+// Gouttière qui coiffe les dents du haut (bord ondulé en bas)
+const TRAY = 'M 38 36 L 162 36 L 162 76 C 162 95 148 97 140 88 C 134 98 122 99 100 99 C 78 99 66 98 60 88 C 52 97 38 95 38 76 Z';
+
+const panels = [
+  { key: 'serrement', titre: 'Le serrement nocturne', ligne: "Serrer ou grincer des dents, souvent la nuit et sans s'en rendre compte, use l'émail et fatigue les mâchoires." },
+  { key: 'gouttiere', titre: 'La gouttière protège', ligne: "Portée la nuit, fine et sur mesure, elle encaisse les forces : les dents et les articulations sont protégées." },
+];
+---
+
+<figure class="my-10 md:my-12">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-[560px] mx-auto">
+    {panels.map((p) => (
+      <div class="rounded-2xl p-4 md:p-5 text-center" style="background: var(--color-cream-50); border: 1px solid var(--color-cream-300)">
+        <svg viewBox="0 0 200 168" role="img" aria-label={p.titre} class="w-full max-w-[190px] mx-auto">
+          <!-- Gencive du haut -->
+          <rect x="26" y="18" width="148" height="22" rx="8" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
+          <!-- Gencive du bas -->
+          <rect x="26" y="126" width="148" height="22" rx="8" style="fill: var(--color-copper-300); stroke: var(--color-copper-500); stroke-width: 1.5" />
+
+          {p.key === 'serrement' && (
+            <g>
+              {TEETH_TOP.map(d => <path d={d} style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2" stroke-linejoin="round" />)}
+              {TEETH_BOTTOM.map(d => <path d={d} style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2" stroke-linejoin="round" />)}
+              <!-- forces de serrement (flèches qui convergent vers le contact) -->
+              <line x1="100" y1="46" x2="100" y2="62" style="stroke: var(--color-copper-600); stroke-width: 2.4; stroke-linecap: round" />
+              <polygon points="100,68 94,58 106,58" style="fill: var(--color-copper-600)" />
+              <line x1="100" y1="120" x2="100" y2="104" style="stroke: var(--color-copper-600); stroke-width: 2.4; stroke-linecap: round" />
+              <polygon points="100,98 94,108 106,108" style="fill: var(--color-copper-600)" />
+              <!-- éclat d'usure au contact -->
+              <path d="M 86 83 l 5 -5 l 1 5 l 5 -3 l -2 6 l 6 1 l -6 3 l 3 5 l -6 -3 l -2 5 l -2 -6 l -6 1 Z" style="fill: var(--color-copper-400)" />
+            </g>
+          )}
+
+          {p.key === 'gouttiere' && (
+            <g>
+              {TEETH_TOP.map(d => <path d={d} style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2" stroke-linejoin="round" />)}
+              {TEETH_BOTTOM.map(d => <path d={d} style="fill: var(--color-cream-100); stroke: var(--color-ink-400); stroke-width: 2" stroke-linejoin="round" />)}
+              <!-- gouttière souple coiffant les dents du haut -->
+              <path d={TRAY} style="fill: var(--color-teal-300); fill-opacity: 0.5; stroke: var(--color-teal-600); stroke-width: 2.2" stroke-linejoin="round" />
+              <!-- la force du bas vient buter sur la gouttière (amortie) -->
+              <line x1="100" y1="120" x2="100" y2="106" style="stroke: var(--color-copper-600); stroke-width: 2.4; stroke-linecap: round" />
+              <polygon points="100,100 94,110 106,110" style="fill: var(--color-copper-600)" />
+            </g>
+          )}
+        </svg>
+        <div class="mt-3 text-[16.5px] font-medium" style="font-family: var(--font-display)">{p.titre}</div>
+        <p class="mt-1.5 text-[12.5px] leading-[1.55] text-ink-500">{p.ligne}</p>
+      </div>
+    ))}
+  </div>
+
+  <figcaption class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-ink-500">
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-teal-300); border: 1px solid var(--color-teal-600)"></span> Gouttière sur mesure</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded" style="background: var(--color-cream-100); border: 1px solid var(--color-ink-400)"></span> Dents</span>
+    <span class="inline-flex items-center gap-2"><span class="inline-block w-3.5 h-3.5 rounded-full" style="background: var(--color-copper-600)"></span> Forces de serrement</span>
+  </figcaption>
+</figure>

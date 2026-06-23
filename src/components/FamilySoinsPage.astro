@@ -18,6 +18,8 @@ import SchemaCouronnes from './SchemaCouronnes.astro';
 import SchemaRTE from './SchemaRTE.astro';
 import SchemaAmovible from './SchemaAmovible.astro';
 import SchemaComblement from './SchemaComblement.astro';
+import SchemaFacette from './SchemaFacette.astro';
+import SchemaGouttiere from './SchemaGouttiere.astro';
 
 // Registre des schémas pédagogiques (prop `schema` des sections)
 const SCHEMAS: Record<string, any> = {
@@ -38,6 +40,8 @@ const SCHEMAS: Record<string, any> = {
   rte: SchemaRTE,
   amovible: SchemaAmovible,
   comblement: SchemaComblement,
+  facette: SchemaFacette,
+  gouttiere: SchemaGouttiere,
 };
 
 interface Section {
